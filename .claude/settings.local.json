@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"page:%{http_code} size:%{size_download}\\\\n\" http://localhost:3000/recipes/nadan-chicken-curry)",
+      "Bash(curl -s -o /dev/null -w \"img:%{http_code} size:%{size_download}\\\\n\" http://localhost:3000/recipe-images/nadan-chicken-curry/step-01a-chilies-before-roasting.jpg)",
+      "Bash(curl -s -o /dev/null -w \"cook:%{http_code} size:%{size_download}\\\\n\" http://localhost:3000/recipes/nadan-chicken-curry/cook)"
+    ]
+  }
+}
