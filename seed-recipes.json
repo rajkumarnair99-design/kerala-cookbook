@@ -7,13 +7,34 @@
     "note": "Recipes from the southern parts of Kerala, particularly Trivandrum."
   },
   "categories": [
-    { "slug": "breakfast-dishes", "name": "Breakfast Dishes" },
-    { "slug": "vegetable-dishes", "name": "Vegetable Dishes" },
-    { "slug": "meat-dishes", "name": "Meat Dishes" },
-    { "slug": "fish-dishes", "name": "Fish Dishes" },
-    { "slug": "egg-dishes", "name": "Egg Dishes" },
-    { "slug": "rice-noodles", "name": "Rice & Noodles" },
-    { "slug": "snacks-sweets", "name": "Snacks & Sweets" }
+    {
+      "slug": "breakfast-dishes",
+      "name": "Breakfast Dishes"
+    },
+    {
+      "slug": "vegetable-dishes",
+      "name": "Vegetable Dishes"
+    },
+    {
+      "slug": "meat-dishes",
+      "name": "Meat Dishes"
+    },
+    {
+      "slug": "fish-dishes",
+      "name": "Fish Dishes"
+    },
+    {
+      "slug": "egg-dishes",
+      "name": "Egg Dishes"
+    },
+    {
+      "slug": "rice-noodles",
+      "name": "Rice & Noodles"
+    },
+    {
+      "slug": "snacks-sweets",
+      "name": "Snacks & Sweets"
+    }
   ],
   "recipes": [
     {
@@ -22,32 +43,161 @@
       "subtitle": "A crisp, savoury breakfast pancake made from a medley of rice and grams",
       "category_slug": "breakfast-dishes",
       "serves": "6 - 8",
-      "tags": ["vegetarian", "breakfast", "fermented", "south-indian"],
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "fermented",
+        "south-indian"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve hot with chutney.",
       "ingredients": [
-        { "section": null, "name": "Raw rice", "quantity": "2", "unit": "cups", "preparation": null, "optional": false },
-        { "section": null, "name": "Black gram", "quantity": "1/4", "unit": "cup", "preparation": null, "optional": false },
-        { "section": null, "name": "Split pigeon peas", "quantity": "1/4", "unit": "cup", "preparation": null, "optional": false },
-        { "section": null, "name": "Split green gram", "quantity": "1/4", "unit": "cup", "preparation": null, "optional": false },
-        { "section": null, "name": "Split bengal gram", "quantity": "1/4", "unit": "cup", "preparation": null, "optional": false },
-        { "section": null, "name": "Dry red chillies", "quantity": "10", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Onion", "quantity": "1", "unit": "medium", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Asafetida powder", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Green chillies", "quantity": "2", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false },
-        { "section": null, "name": "Oil", "quantity": null, "unit": null, "preparation": "to grease the pan", "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Raw rice",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Black gram",
+          "quantity": "1/4",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Split pigeon peas",
+          "quantity": "1/4",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Split green gram",
+          "quantity": "1/4",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Split bengal gram",
+          "quantity": "1/4",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Dry red chillies",
+          "quantity": "10",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "1",
+          "unit": "medium",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Asafetida powder",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to grease the pan",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Wash and soak raw rice and all the grams (black gram, split pigeon peas, split green gram and split bengal gram) in plenty of water for 3-4 hours.", "timer_minutes": 210, "tip": null },
-        { "step_number": 2, "instruction": "Grind the red chillies first, then add the soaked mixture in small quantities to make a coarse batter; keep aside.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Grind onion, green chillies and curry leaves together to make a coarse paste.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "Add this paste to the batter along with asafetida and salt; add water to get the desired consistency.", "timer_minutes": null, "tip": null },
-        { "step_number": 5, "instruction": "Heat the dosa pan and grease lightly with oil.", "timer_minutes": null, "tip": null },
-        { "step_number": 6, "instruction": "Pour a big spoonful of batter in the centre of the pan and spread with the back of the spoon to make a thin pancake.", "timer_minutes": null, "tip": null },
-        { "step_number": 7, "instruction": "When the dosa appears cooked on top, turn it over with a spatula.", "timer_minutes": null, "tip": null },
-        { "step_number": 8, "instruction": "Remove when crisp and serve hot with chutney.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Wash and soak raw rice and all the grams (black gram, split pigeon peas, split green gram and split bengal gram) in plenty of water for 3-4 hours.",
+          "timer_minutes": 210,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Grind the red chillies first, then add the soaked mixture in small quantities to make a coarse batter; keep aside.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Grind onion, green chillies and curry leaves together to make a coarse paste.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Add this paste to the batter along with asafetida and salt; add water to get the desired consistency.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Heat the dosa pan and grease lightly with oil.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Pour a big spoonful of batter in the centre of the pan and spread with the back of the spoon to make a thin pancake.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 7,
+          "instruction": "When the dosa appears cooked on top, turn it over with a spatula.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 8,
+          "instruction": "Remove when crisp and serve hot with chutney.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -56,20 +206,1217 @@
       "subtitle": "A thick wheat and coconut pancake, traditionally served with a sunny-side-up egg",
       "category_slug": "breakfast-dishes",
       "serves": "6 - 8",
-      "tags": ["vegetarian", "breakfast", "wheat", "quick"],
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "wheat",
+        "quick"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with fried egg (sunny side up / egg bulls-eye).",
       "ingredients": [
-        { "section": null, "name": "Wheat flour", "quantity": "2", "unit": "cups", "preparation": null, "optional": false },
-        { "section": null, "name": "Grated coconut", "quantity": "5", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false },
-        { "section": null, "name": "Oil", "quantity": null, "unit": null, "preparation": "for cooking", "optional": false }
+        {
+          "section": null,
+          "name": "Wheat flour",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "5",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": null,
+          "unit": null,
+          "preparation": "for cooking",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Mix wheat flour, grated coconut and salt; add water gradually to make a very soft dough (consistency between chapatti dough and dosa batter).", "timer_minutes": null, "tip": "The dough should be softer than chapatti dough — this is what gives oratti its tender texture." },
-        { "step_number": 2, "instruction": "Heat oil in a pan and transfer a small amount of the dough to the pan; spread the dough with your fingers to make a thick pancake.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Turn over a few times until the pancake is well cooked on both sides.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "Serve hot with a fried egg (sunny side up).", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Mix wheat flour, grated coconut and salt; add water gradually to make a very soft dough (consistency between chapatti dough and dosa batter).",
+          "timer_minutes": null,
+          "tip": "The dough should be softer than chapatti dough — this is what gives oratti its tender texture."
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat oil in a pan and transfer a small amount of the dough to the pan; spread the dough with your fingers to make a thick pancake.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Turn over a few times until the pancake is well cooked on both sides.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Serve hot with a fried egg (sunny side up).",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "dosa",
+      "title": "Dosa",
+      "subtitle": "The classic fermented rice and black gram pancake — crisp at the edges, soft at the centre",
+      "category_slug": "breakfast-dishes",
+      "serves": "8 - 10",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "fermented",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve hot with sambar and chutney.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Idli rice",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Raw rice",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Black gram",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Fenugreek seeds",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "as required",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to grease the dosa pan",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Wash and soak rice and black gram separately in plenty of water for 7 - 8 hours; add fenugreek to the black gram while soaking.",
+          "timer_minutes": 450,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Grind the rice and black gram separately to a fine batter adding water; mix the ground rice and black gram and add salt; cover and keep aside to ferment overnight.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Heat the dosa pan and grease lightly with oil.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Pour a big spoonful of batter in the centre of the pan and spread with the back of the spoon to make a thin pancake.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "When the dosa appears cooked on top, turn it over with a spatula.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Remove when crisp and serve hot with sambar and chutney.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "gothambu-dosa",
+      "title": "Gothambu Dosa",
+      "subtitle": "An instant wheat-flour pancake — no soaking, no fermenting, ready in minutes",
+      "category_slug": "breakfast-dishes",
+      "serves": "4 - 6",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "wheat",
+        "quick"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve hot with chutney.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Wheat flour",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to grease the dosa pan",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Mix wheat flour and salt; add water to make a fine batter.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat the dosa pan and grease lightly with oil.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Pour a big spoonful of batter in the centre of the pan and spread with the back of the spoon to make a thin pancake.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "When the dosa appears cooked on top, turn it over with a spatula.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Remove when crisp and serve hot with chutney.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "kaduku-varatha-appam",
+      "title": "Kaduku Varatha Appam",
+      "subtitle": "A rice pancake tempered with mustard seeds, coconut and curry leaves",
+      "category_slug": "breakfast-dishes",
+      "serves": "6 - 8",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve hot with chutney.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Raw rice",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Boiled rice",
+          "quantity": "1/2",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "1/2",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Dry red chillies",
+          "quantity": "3",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Mustard seeds",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coconut oil",
+          "quantity": "1",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Wash and soak the raw rice and boiled rice in plenty of water for 4 - 5 hours.",
+          "timer_minutes": 270,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Grind the rice mixture to a coarse batter.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Grind the grated coconut, dry red chillies and curry leaves separately to a coarse paste; add this to the batter with salt and water to get the desired consistency.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Heat oil in a pan and add mustard seeds; when the mustard seeds pop, remove and mix it with the batter.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Heat the dosa pan and grease lightly with oil.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Pour a big spoonful of batter in the centre of the pan and spread with the back of the spoon to make a thin pancake; spread a little oil over the dosa.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 7,
+          "instruction": "When the dosa appears cooked on top, turn it over with a spatula.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 8,
+          "instruction": "Remove when crisp and serve hot with chutney.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "idli",
+      "title": "Idli",
+      "subtitle": "Feather-light steamed rice and black gram cakes — the gentle breakfast staple",
+      "category_slug": "breakfast-dishes",
+      "serves": "6 - 8",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "fermented",
+        "steamed",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve hot with sambar and chutney.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Idli rice",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Raw rice",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Black gram",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Fenugreek seeds",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "as required",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Wash and soak rice and black gram separately in plenty of water for 7 - 8 hours; add fenugreek to the black gram while soaking.",
+          "timer_minutes": 450,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Grind the rice and black gram separately to a fine batter adding water; mix the ground rice and black gram and add salt; cover and keep aside to ferment overnight.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Heat water in a steamer; pour the batter onto idli trays and steam cook for 5 - 10 minutes.",
+          "timer_minutes": 10,
+          "tip": "You can use a skewer to see if the idlis are cooked."
+        },
+        {
+          "step_number": 4,
+          "instruction": "Serve hot with sambar and chutney.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "appam",
+      "title": "Appam",
+      "subtitle": "Lacy-edged, bowl-shaped rice hoppers with a pillowy centre — Kerala's most beloved breakfast",
+      "category_slug": "breakfast-dishes",
+      "serves": "6 - 8",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "fermented",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve with chicken or potato stew.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Raw rice",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Cooked rice",
+          "quantity": "1",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Yeast",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "as required",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Sugar",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Prepare yeast solution by mixing sugar and yeast with half a cup of warm water; keep aside for 30 minutes until a froth appears (ferments).",
+          "timer_minutes": 30,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Grind raw rice, cooked rice and grated coconut with water to make a fine batter; add yeast solution and grind further for a few more minutes; transfer to a bowl; add salt and keep aside to ferment for about 4 - 5 hours.",
+          "timer_minutes": 270,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add 3 tbsp of sugar to the fermented batter; add more water to the batter if necessary.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Heat the 'Appam chatti' (grease lightly with oil if the pan is not non-stick).",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Pour 3 - 4 tbsp of the batter into the 'chatti'; swirl the 'chatti' by hand so that about 2 inches of the sides of the chatti is thinly coated and the remaining batter collects at the centre; cover with a tight fitting lid and cook on a low flame for about 3 minutes.",
+          "timer_minutes": 3,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "When it is ready, the edges resemble crisp lace and the centre is soft and well risen.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 7,
+          "instruction": "Remove from the chatti with a spatula and serve with chicken or potato stew.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "idiappam",
+      "title": "Idiappam",
+      "subtitle": "Delicate rice-flour string hoppers steamed in coconut — soft, light, and made to soak up curry",
+      "category_slug": "breakfast-dishes",
+      "serves": "6 - 8",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "steamed",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve with stew or any curry of your choice.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Raw rice flour",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Mix raw rice flour with salt; add boiling water gradually and knead into a soft dough.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Boil water in a steamer; grease the concave depressions of the 'idiappam thattu' with oil and fill it with the prepared dough using a 'seva nazhi' (idiappam presser/sieve) in a circular motion.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add 2 tsp of grated coconut over this and then press more of the dough over it to sandwich the grated coconut; repeat for all tiers of the tray; place the trays into the steamer and cook the idiappams for about 5 minutes.",
+          "timer_minutes": 5,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Serve the idiappams with stew or any curry of your choice.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "puttu",
+      "title": "Puttu",
+      "subtitle": "Cylinders of steamed rice flour and coconut — a Kerala breakfast that holds together just so",
+      "category_slug": "breakfast-dishes",
+      "serves": "6 - 8",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "steamed",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve with Kadala Curry and Pappadom, or with banana and sugar. Replace rice flour with wheat flour to make 'gothambu' (wheat) puttu.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Rice flour (puttu podi)",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Mix rice flour and salt thoroughly in a large bowl; moisten the flour by sprinkling with water gradually and mixing continuously with your hand; the flour should be just moist enough to hold together when pressed between your fingers.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Add 1 tbsp of grated coconut to the perforated bottom lid of the 'Puttukutti'; add a thick layer of the rice flour mixture over it (about 2 - 3 inches) followed by another thin layer of grated coconut; continue for 3 to 4 layers and end with grated coconut on top.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Boil water in the steamer and place the puttukutti on top; cover the puttukutti with its lid; remove the cooked puttu when a steady strong steam comes off the lid.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Serve with Kadala Curry and Pappadom or with banana and sugar.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "kozhukatta",
+      "title": "Kozhukatta",
+      "subtitle": "Soft steamed rice dumplings spiced with cumin and sweetened with coconut",
+      "category_slug": "breakfast-dishes",
+      "serves": "6 - 8",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "steamed",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve hot with curry of your choice.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Boiled rice",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Cumin seeds",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "as required",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Wash and soak rice in plenty of water for 4 - 5 hours.",
+          "timer_minutes": 270,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Grind the soaked rice in small quantities to make a soft dough.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Grind cumin and grated coconut to a coarse paste; add this to the dough with salt and mix well.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Make small balls of this dough.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "These balls may be either cooked in boiling water or steam cooked; when cooked, they will be firm in consistency.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Serve hot with curry of your choice.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "puri",
+      "title": "Puri",
+      "subtitle": "Puffed, golden wheat discs fried to order — simple and celebratory at once",
+      "category_slug": "breakfast-dishes",
+      "serves": "6 - 8",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "fried",
+        "wheat"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve with bhaji, chana masala or any curry of your choice.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Wheat flour",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Refined wheat flour",
+          "quantity": "1/2",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to fry and roll out the dough",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "In a large bowl, combine the wheat flour and refined wheat flour; add 1 tbsp of oil to the mixture and make a pliable soft dough gradually adding water; cover the dough with a wet towel and keep aside for 1 - 2 hours.",
+          "timer_minutes": 90,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Before rolling out, knead the dough again and make lime-sized balls of it; roll the balls into 5-inch discs on a board.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Heat oil in a wok or kadai; when the oil is hot, add the puris one by one and fry, turning once; remove and drain on paper napkins.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Serve with bhaji, chana masala or any curry of your choice.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "uppuma",
+      "title": "Uppuma",
+      "subtitle": "A warm, savoury breakfast of semolina toasted with ginger, onion and coconut",
+      "category_slug": "breakfast-dishes",
+      "serves": "6",
+      "tags": [
+        "vegetarian",
+        "breakfast",
+        "quick",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve hot with bananas or any side dish of your choice.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Rava (coarse grained semolina)",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "2",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "1/4",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chillies",
+          "quantity": "3",
+          "unit": null,
+          "preparation": "chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ginger",
+          "quantity": "1",
+          "unit": "inch piece",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil/Ghee",
+          "quantity": "3",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Water",
+          "quantity": "4",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Heat oil/ghee in a pan; add onions, green chillies and ginger; sauté until the onion becomes tender.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Add 4 cups of water and salt and bring to a boil; add grated coconut.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add rava to the boiling water little by little stirring continuously so that no lumps are formed; cover the pan and cook on low heat until uppuma is soft and lump-free.",
+          "timer_minutes": null,
+          "tip": "If using oil initially, add a little ghee at the end to enhance the flavors."
+        },
+        {
+          "step_number": 4,
+          "instruction": "Serve hot with bananas or any side dish of your choice.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "green-chutney",
+      "title": "Green Chutney",
+      "subtitle": "A fresh coconut chutney with green chilli and ginger — the quiet companion to dosa and idli",
+      "category_slug": "breakfast-dishes",
+      "serves": "6",
+      "tags": [
+        "vegetarian",
+        "chutney",
+        "accompaniment",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve with dosa or idli.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chilli",
+          "quantity": "4",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ginger",
+          "quantity": "1/2",
+          "unit": "inch piece",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Shallots",
+          "quantity": "2",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tamarind juice",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Mustard seeds",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Dry red chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Oil",
+          "quantity": "1",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Grind grated coconut, green chillies, ginger, shallots, tamarind juice and salt to a fine paste; add water to your required consistency.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat oil in a pan and add mustard seeds; when the mustard seeds pop, add dry red chillies and curry leaves and sauté for a minute; transfer the seasoning to the chutney.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Serve with dosa or idli.",
+          "timer_minutes": null,
+          "tip": null
+        }
+      ]
+    },
+    {
+      "slug": "red-chutney",
+      "title": "Red Chutney",
+      "subtitle": "A warming coconut chutney stained red with dry red chillies and finished with curry leaves",
+      "category_slug": "breakfast-dishes",
+      "serves": "6",
+      "tags": [
+        "vegetarian",
+        "chutney",
+        "accompaniment",
+        "south-indian"
+      ],
+      "source": "Good food at home — A Kerala Family Recipe Collection",
+      "notes": "Serve with dosa or idli.",
+      "ingredients": [
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Dry red chillies",
+          "quantity": "6",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ginger",
+          "quantity": "1/2",
+          "unit": "inch piece",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chilli",
+          "quantity": "1",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Shallots",
+          "quantity": "2",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tamarind juice",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Mustard seeds",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Dry red chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": "1",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "instruction": "Grind grated coconut, dry red chillies, green chilli, ginger, shallots, tamarind juice and salt to a fine paste; add water to your required consistency.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat oil in a pan and add mustard seeds; when the mustard seeds pop, add dry red chillies and curry leaves and sauté for a minute; transfer the chutney to the pan and heat on a low flame for about 3 minutes.",
+          "timer_minutes": 3,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Serve with dosa or idli.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -78,33 +1425,173 @@
       "subtitle": "A thin, fragrant, tamarind-and-pepper broth — the everyday comfort soup of a Kerala home",
       "category_slug": "vegetable-dishes",
       "serves": "8",
-      "tags": ["vegetarian", "vegan", "soup", "south-indian"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "soup",
+        "south-indian"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with rice.",
       "ingredients": [
-        { "section": null, "name": "Split pigeon peas", "quantity": "1/4", "unit": "cup", "preparation": null, "optional": false },
-        { "section": null, "name": "Tomato", "quantity": "3", "unit": "large", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Garlic", "quantity": "7", "unit": "cloves", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Cumin seeds", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Black pepper powder", "quantity": "1/2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Red chilli powder", "quantity": "1", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Coriander powder", "quantity": "1 1/2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Turmeric powder", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Asafetida powder", "quantity": "2", "unit": "pinches", "preparation": null, "optional": false },
-        { "section": null, "name": "Tamarind juice", "quantity": "2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false },
-        { "section": "For seasoning", "name": "Oil", "quantity": "1", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": "For seasoning", "name": "Mustard seeds", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": "For seasoning", "name": "Dry red chillies", "quantity": "2", "unit": null, "preparation": null, "optional": false },
-        { "section": "For seasoning", "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false }
+        {
+          "section": null,
+          "name": "Split pigeon peas",
+          "quantity": "1/4",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tomato",
+          "quantity": "3",
+          "unit": "large",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garlic",
+          "quantity": "7",
+          "unit": "cloves",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Cumin seeds",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Black pepper powder",
+          "quantity": "1/2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Red chilli powder",
+          "quantity": "1",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coriander powder",
+          "quantity": "1 1/2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Turmeric powder",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Asafetida powder",
+          "quantity": "2",
+          "unit": "pinches",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tamarind juice",
+          "quantity": "2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Oil",
+          "quantity": "1",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Mustard seeds",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Dry red chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Cook the split pigeon peas and tomato in a pressure cooker with 2 cups of water.", "timer_minutes": 15, "tip": null },
-        { "step_number": 2, "instruction": "Grind red chilli powder, coriander powder, cumin seeds, garlic, turmeric powder and black pepper powder with a little water to a fine paste.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Transfer the cooked tomato and the peas (sauce only) by passing through a sieve into a saucepan. Add the ground masala, salt and asafetida. Bring to a boil and remove from heat.", "timer_minutes": null, "tip": "Passing through a sieve gives rasam its characteristic thin, clear body." },
-        { "step_number": 4, "instruction": "Heat oil in a pan and add mustard seeds. When they pop, add dry red chillies and curry leaves and sauté for a minute.", "timer_minutes": 1, "tip": null },
-        { "step_number": 5, "instruction": "Add this seasoning to the rasam and mix well.", "timer_minutes": null, "tip": null },
-        { "step_number": 6, "instruction": "Serve hot with rice.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Cook the split pigeon peas and tomato in a pressure cooker with 2 cups of water.",
+          "timer_minutes": 15,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Grind red chilli powder, coriander powder, cumin seeds, garlic, turmeric powder and black pepper powder with a little water to a fine paste.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Transfer the cooked tomato and the peas (sauce only) by passing through a sieve into a saucepan. Add the ground masala, salt and asafetida. Bring to a boil and remove from heat.",
+          "timer_minutes": null,
+          "tip": "Passing through a sieve gives rasam its characteristic thin, clear body."
+        },
+        {
+          "step_number": 4,
+          "instruction": "Heat oil in a pan and add mustard seeds. When they pop, add dry red chillies and curry leaves and sauté for a minute.",
+          "timer_minutes": 1,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Add this seasoning to the rasam and mix well.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Serve hot with rice.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -113,39 +1600,219 @@
       "subtitle": "The classic mixed-vegetable lentil stew that turns everyday rice into a meal",
       "category_slug": "vegetable-dishes",
       "serves": "8",
-      "tags": ["vegetarian", "vegan", "stew", "south-indian"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "stew",
+        "south-indian"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Pairs with rice, dosa, idli, or appam.",
       "ingredients": [
-        { "section": null, "name": "Split pigeon peas", "quantity": "1", "unit": "cup", "preparation": null, "optional": false },
-        { "section": null, "name": "Cucumber", "quantity": "50", "unit": "g", "preparation": "cut into 1-inch pieces", "optional": false },
-        { "section": null, "name": "Snake gourd", "quantity": "50", "unit": "g", "preparation": "cut into 1-inch pieces", "optional": false },
-        { "section": null, "name": "Broad beans", "quantity": "7", "unit": null, "preparation": "cut into 1-inch pieces", "optional": false },
-        { "section": null, "name": "Drumstick", "quantity": "1", "unit": null, "preparation": "cut into 1-inch pieces", "optional": false },
-        { "section": null, "name": "Shallots", "quantity": "20", "unit": null, "preparation": "cut in two pieces each", "optional": false },
-        { "section": null, "name": "Okra", "quantity": "10", "unit": null, "preparation": "cut into 1-inch pieces", "optional": false },
-        { "section": null, "name": "Tomato", "quantity": "1", "unit": "medium", "preparation": "chopped", "optional": false },
-        { "section": null, "name": "Coriander leaves", "quantity": "1/2", "unit": "bunch", "preparation": null, "optional": false },
-        { "section": null, "name": "Coriander powder", "quantity": "3", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Red chilli powder", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Turmeric powder", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Fenugreek powder", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Asafetida powder", "quantity": "1", "unit": "pinch", "preparation": null, "optional": false },
-        { "section": null, "name": "Tamarind juice", "quantity": "3", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": "For seasoning", "name": "Oil", "quantity": "2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": "For seasoning", "name": "Mustard seeds", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": "For seasoning", "name": "Dry red chillies", "quantity": "2", "unit": null, "preparation": null, "optional": false },
-        { "section": "For seasoning", "name": "Shallots", "quantity": "5", "unit": null, "preparation": "thinly sliced", "optional": false },
-        { "section": "For seasoning", "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false }
+        {
+          "section": null,
+          "name": "Split pigeon peas",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Cucumber",
+          "quantity": "50",
+          "unit": "g",
+          "preparation": "cut into 1-inch pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Snake gourd",
+          "quantity": "50",
+          "unit": "g",
+          "preparation": "cut into 1-inch pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Broad beans",
+          "quantity": "7",
+          "unit": null,
+          "preparation": "cut into 1-inch pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Drumstick",
+          "quantity": "1",
+          "unit": null,
+          "preparation": "cut into 1-inch pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Shallots",
+          "quantity": "20",
+          "unit": null,
+          "preparation": "cut in two pieces each",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Okra",
+          "quantity": "10",
+          "unit": null,
+          "preparation": "cut into 1-inch pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tomato",
+          "quantity": "1",
+          "unit": "medium",
+          "preparation": "chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coriander leaves",
+          "quantity": "1/2",
+          "unit": "bunch",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coriander powder",
+          "quantity": "3",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Red chilli powder",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Turmeric powder",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Fenugreek powder",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Asafetida powder",
+          "quantity": "1",
+          "unit": "pinch",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tamarind juice",
+          "quantity": "3",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Oil",
+          "quantity": "2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Mustard seeds",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Dry red chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Shallots",
+          "quantity": "5",
+          "unit": null,
+          "preparation": "thinly sliced",
+          "optional": false
+        },
+        {
+          "section": "For seasoning",
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Cook the split pigeon peas in a pressure cooker with 2 cups of water.", "timer_minutes": 15, "tip": null },
-        { "step_number": 2, "instruction": "Remove the cooker lid and add the cut vegetables, turmeric powder, salt and asafetida with 2 cups of water; cook on a high flame.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "When the vegetables are cooked, add coriander powder, tamarind juice, okra and tomato and bring to a boil.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "Add fenugreek powder and coriander leaves, mix well and remove from heat.", "timer_minutes": null, "tip": null },
-        { "step_number": 5, "instruction": "Heat oil in a pan and add mustard seeds. When they pop, add dry red chillies, curry leaves and thinly sliced shallots; sauté for a minute.", "timer_minutes": 1, "tip": null },
-        { "step_number": 6, "instruction": "Add this seasoning to the sambar and mix well.", "timer_minutes": null, "tip": null },
-        { "step_number": 7, "instruction": "Serve with rice.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Cook the split pigeon peas in a pressure cooker with 2 cups of water.",
+          "timer_minutes": 15,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Remove the cooker lid and add the cut vegetables, turmeric powder, salt and asafetida with 2 cups of water; cook on a high flame.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "When the vegetables are cooked, add coriander powder, tamarind juice, okra and tomato and bring to a boil.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Add fenugreek powder and coriander leaves, mix well and remove from heat.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Heat oil in a pan and add mustard seeds. When they pop, add dry red chillies, curry leaves and thinly sliced shallots; sauté for a minute.",
+          "timer_minutes": 1,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Add this seasoning to the sambar and mix well.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 7,
+          "instruction": "Serve with rice.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -154,55 +1821,392 @@
       "subtitle": "A spicy chicken curry as it is usually made in Trivandrum, Kerala – a regular classic",
       "category_slug": "meat-dishes",
       "serves": "6",
-      "tags": ["chicken", "curry", "roasted-masala", "trivandrum", "kerala", "signature"],
+      "tags": [
+        "chicken",
+        "curry",
+        "roasted-masala",
+        "trivandrum",
+        "kerala",
+        "signature"
+      ],
       "source": "Rajkumar's kitchen — adapted and photographed, 2026",
       "notes": "A detailed home-style version with step-by-step photography. Follow each step as shown to achieve an authentic Trivandrum Nadan Chicken Curry.",
       "video_url": null,
       "ingredients": [
-        { "section": null, "name": "Chicken", "quantity": "1", "unit": "kg", "preparation": "cut into small pieces", "optional": false },
-        { "section": null, "name": "Onion", "quantity": "2", "unit": "medium", "preparation": "thinly sliced", "optional": false },
-        { "section": null, "name": "Green chillies", "quantity": "2", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Ginger", "quantity": "1 inch piece", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Garlic", "quantity": "5", "unit": "cloves", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Potato", "quantity": "1", "unit": "medium", "preparation": "cubed", "optional": true },
-        { "section": null, "name": "Coconut milk powder", "quantity": "3-4", "unit": "tbsp", "preparation": "mixed with 1 cup hot water", "optional": false },
-        { "section": null, "name": "Coconut oil", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false },
-        { "section": "Roasted masala", "name": "Dry red chillies", "quantity": "20", "unit": null, "preparation": null, "optional": false },
-        { "section": "Roasted masala", "name": "Coriander seeds", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": "Roasted masala", "name": "Fennel seeds", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": "Roasted masala", "name": "Cardamom", "quantity": "4", "unit": null, "preparation": null, "optional": false },
-        { "section": "Roasted masala", "name": "Cloves", "quantity": "4", "unit": null, "preparation": null, "optional": false },
-        { "section": "Roasted masala", "name": "Cinnamon", "quantity": "1 inch piece", "unit": null, "preparation": null, "optional": false },
-        { "section": "Roasted masala", "name": "Star anise", "quantity": "1", "unit": null, "preparation": null, "optional": false },
-        { "section": "Roasted masala", "name": "Whole black pepper", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": "For the seasoning", "name": "Coconut oil", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": "For the seasoning", "name": "Mustard seeds", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": "For the seasoning", "name": "Shallots", "quantity": "6", "unit": null, "preparation": "sliced", "optional": false },
-        { "section": "For the seasoning", "name": "Dry red chillies", "quantity": "2", "unit": null, "preparation": null, "optional": false },
-        { "section": "For the seasoning", "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false }
+        {
+          "section": null,
+          "name": "Chicken",
+          "quantity": "1",
+          "unit": "kg",
+          "preparation": "cut into small pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "2",
+          "unit": "medium",
+          "preparation": "thinly sliced",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ginger",
+          "quantity": "1 inch piece",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garlic",
+          "quantity": "5",
+          "unit": "cloves",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Potato",
+          "quantity": "1",
+          "unit": "medium",
+          "preparation": "cubed",
+          "optional": true
+        },
+        {
+          "section": null,
+          "name": "Coconut milk powder",
+          "quantity": "3-4",
+          "unit": "tbsp",
+          "preparation": "mixed with 1 cup hot water",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coconut oil",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": "Roasted masala",
+          "name": "Dry red chillies",
+          "quantity": "20",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "Roasted masala",
+          "name": "Coriander seeds",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "Roasted masala",
+          "name": "Fennel seeds",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "Roasted masala",
+          "name": "Cardamom",
+          "quantity": "4",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "Roasted masala",
+          "name": "Cloves",
+          "quantity": "4",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "Roasted masala",
+          "name": "Cinnamon",
+          "quantity": "1 inch piece",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "Roasted masala",
+          "name": "Star anise",
+          "quantity": "1",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "Roasted masala",
+          "name": "Whole black pepper",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For the seasoning",
+          "name": "Coconut oil",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For the seasoning",
+          "name": "Mustard seeds",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For the seasoning",
+          "name": "Shallots",
+          "quantity": "6",
+          "unit": null,
+          "preparation": "sliced",
+          "optional": false
+        },
+        {
+          "section": "For the seasoning",
+          "name": "Dry red chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": "For the seasoning",
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Roast the dry red chilies separately in a dry pan. They're done when they swell up, become shiny, and start releasing smoke — remove immediately from the pan.", "timer_minutes": null, "tip": "Chilies scorch fast and burnt chili is bitter. Watch for the shine and the first wisp of smoke — that's your cue.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-01a-chilies-before-roasting.jpg", "/recipe-images/nadan-chicken-curry/step-01b-chilies-after-roasting.jpg"] },
-        { "step_number": 2, "instruction": "Lower the heat and roast the coriander seeds in the same pan until fragrant and golden brown.", "timer_minutes": null, "tip": "You'll smell it before you see it — coriander goes from raw to fragrant to golden in under a minute on low heat.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-02a-coriander-seeds-in-pan.jpg", "/recipe-images/nadan-chicken-curry/step-02b-coriander-seeds-roasted.jpg"] },
-        { "step_number": 3, "instruction": "Lower the heat further and lightly roast the whole spices (fennel, cardamom, cloves, cinnamon, star anise, black pepper) for less than a minute — just enough to dry them out.", "timer_minutes": 1, "tip": "Whole spices need only seconds. Over-roasting makes them harsh.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-03-whole-spices-roasting.jpg"] },
-        { "step_number": 4, "instruction": "Remove the stems from the roasted red chillies. Grind all the roasted ingredients together to a fine powder.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-04a-roasted-spices-ready-to-grind.jpg", "/recipe-images/nadan-chicken-curry/step-04b-ground-masala-powder.jpg"] },
-        { "step_number": 5, "instruction": "Thinly slice the onions.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-05-sliced-onions.jpg"] },
-        { "step_number": 6, "instruction": "Finely chop the green chillies, ginger and garlic together.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-06a-chili-ginger-garlic-before.jpg", "/recipe-images/nadan-chicken-curry/step-06b-chili-ginger-garlic-chopped.jpg"] },
-        { "step_number": 7, "instruction": "Heat oil in a heavy pan and add the sliced onions.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-07a-oil-in-pan.jpg", "/recipe-images/nadan-chicken-curry/step-07b-onions-added.jpg"] },
-        { "step_number": 8, "instruction": "When the onions start browning, lower heat and add the chopped green chilli, ginger and garlic. Sauté for a couple of minutes.", "timer_minutes": 2, "tip": "Patience here is everything. The onions need to be browned and make sure the green chili, ginger and garlic are not sauteed for too long.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-08a-ginger-garlic-added-to-onions.jpg", "/recipe-images/nadan-chicken-curry/step-08b-onions-browning.jpg", "/recipe-images/nadan-chicken-curry/step-08c-onions-ginger-garlic-combined.jpg"] },
-        { "step_number": 9, "instruction": "Add the chicken pieces and sauté on high heat until the flesh turns white.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-09a-chicken-added-raw.jpg", "/recipe-images/nadan-chicken-curry/step-09b-chicken-with-salt.jpg"] },
-        { "step_number": 10, "instruction": "Add salt and the ground roasted masala powder. Mix thoroughly so every piece of chicken is coated.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-10a-masala-added-to-chicken.jpg", "/recipe-images/nadan-chicken-curry/step-10b-chicken-coated-in-masala.jpg"] },
-        { "step_number": 11, "instruction": "Add one cup of hot water to the chicken and mix well.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-11a-hot-water-prepared.jpg", "/recipe-images/nadan-chicken-curry/step-11b-water-added-to-chicken.jpg"] },
-        { "step_number": 12, "instruction": "Lower the heat to medium, cover the pan, and cook for about 5 minutes.", "timer_minutes": 5, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-12-covered-simmering.jpg"] },
-        { "step_number": 13, "instruction": "Add the potato cubes (optional), cover, and cook for about 10 minutes.", "timer_minutes": 10, "tip": "Potatoes are traditional but optional — it adds another texture to the dish.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-13a-potatoes-added.jpg", "/recipe-images/nadan-chicken-curry/step-13b-covered-cooking-potatoes.jpg"] },
-        { "step_number": 14, "instruction": "Prepare the coconut milk by stirring 3–4 heaped tablespoons of coconut milk powder into 1 cup of hot water. Add the coconut milk to the chicken through a strainer.", "timer_minutes": null, "tip": "Straining catches any lumps.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-14a-coconut-milk-mixed.jpg", "/recipe-images/nadan-chicken-curry/step-14b-coconut-milk-strained-in.jpg"] },
-        { "step_number": 15, "instruction": "Keep the pan uncovered and continue cooking until the potatoes are tender and the gravy has reduced to the right consistency. Check salt and adjust if needed. Switch off the flame.", "timer_minutes": null, "tip": "\"Right consistency\" is a matter of taste — the consistency is usually right when you see oil start floating on top of the gravy.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-15-gravy-reduced.jpg"] },
-        { "step_number": 16, "instruction": "Prepare the ingredients for the seasoning. Slice the shallots as shown.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-16a-seasoning-ingredients.jpg", "/recipe-images/nadan-chicken-curry/step-16b-shallots-cut.jpg"] },
-        { "step_number": 17, "instruction": "Heat 2 tablespoons of coconut oil in a small seasoning pan. When the oil is hot, add mustard seeds. When they pop completely, add the sliced shallots and brown them.", "timer_minutes": null, "tip": "Wait for the mustard seeds to finish popping before adding shallots.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-17a-oil-in-tadka-pan.jpg", "/recipe-images/nadan-chicken-curry/step-17b-mustard-seeds-shallots.jpg", "/recipe-images/nadan-chicken-curry/step-17c-shallots-browned.jpg"] },
-        { "step_number": 18, "instruction": "When the shallots are brown, add the curry leaves and dry red chillies. Sauté for a few seconds.", "timer_minutes": null, "tip": "Curry leaves go in last — they crackle and release their aroma in seconds.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-18a-curry-leaves-added.jpg", "/recipe-images/nadan-chicken-curry/step-18b-tadka-sizzling.jpg"] },
-        { "step_number": 19, "instruction": "Pour the sizzling seasoning over the chicken curry. Cover the pan immediately and keep it covered for a few seconds so the aromatic steam is trapped in.", "timer_minutes": null, "tip": "Trapping the seasoning steam lets the aroma settle into the curry.", "image_urls": ["/recipe-images/nadan-chicken-curry/step-19-seasoning-added-covered.jpg"] },
-        { "step_number": 20, "instruction": "Transfer the chicken curry to a serving bowl.", "timer_minutes": null, "tip": null, "image_urls": ["/recipe-images/nadan-chicken-curry/step-20-final-plated.jpg"] }
+        {
+          "step_number": 1,
+          "instruction": "Roast the dry red chilies separately in a dry pan. They're done when they swell up, become shiny, and start releasing smoke — remove immediately from the pan.",
+          "timer_minutes": null,
+          "tip": "Chilies scorch fast and burnt chili is bitter. Watch for the shine and the first wisp of smoke — that's your cue.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-01a-chilies-before-roasting.jpg",
+            "/recipe-images/nadan-chicken-curry/step-01b-chilies-after-roasting.jpg"
+          ]
+        },
+        {
+          "step_number": 2,
+          "instruction": "Lower the heat and roast the coriander seeds in the same pan until fragrant and golden brown.",
+          "timer_minutes": null,
+          "tip": "You'll smell it before you see it — coriander goes from raw to fragrant to golden in under a minute on low heat.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-02a-coriander-seeds-in-pan.jpg",
+            "/recipe-images/nadan-chicken-curry/step-02b-coriander-seeds-roasted.jpg"
+          ]
+        },
+        {
+          "step_number": 3,
+          "instruction": "Lower the heat further and lightly roast the whole spices (fennel, cardamom, cloves, cinnamon, star anise, black pepper) for less than a minute — just enough to dry them out.",
+          "timer_minutes": 1,
+          "tip": "Whole spices need only seconds. Over-roasting makes them harsh.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-03-whole-spices-roasting.jpg"
+          ]
+        },
+        {
+          "step_number": 4,
+          "instruction": "Remove the stems from the roasted red chillies. Grind all the roasted ingredients together to a fine powder.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-04a-roasted-spices-ready-to-grind.jpg",
+            "/recipe-images/nadan-chicken-curry/step-04b-ground-masala-powder.jpg"
+          ]
+        },
+        {
+          "step_number": 5,
+          "instruction": "Thinly slice the onions.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-05-sliced-onions.jpg"
+          ]
+        },
+        {
+          "step_number": 6,
+          "instruction": "Finely chop the green chillies, ginger and garlic together.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-06a-chili-ginger-garlic-before.jpg",
+            "/recipe-images/nadan-chicken-curry/step-06b-chili-ginger-garlic-chopped.jpg"
+          ]
+        },
+        {
+          "step_number": 7,
+          "instruction": "Heat oil in a heavy pan and add the sliced onions.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-07a-oil-in-pan.jpg",
+            "/recipe-images/nadan-chicken-curry/step-07b-onions-added.jpg"
+          ]
+        },
+        {
+          "step_number": 8,
+          "instruction": "When the onions start browning, lower heat and add the chopped green chilli, ginger and garlic. Sauté for a couple of minutes.",
+          "timer_minutes": 2,
+          "tip": "Patience here is everything. The onions need to be browned and make sure the green chili, ginger and garlic are not sauteed for too long.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-08a-ginger-garlic-added-to-onions.jpg",
+            "/recipe-images/nadan-chicken-curry/step-08b-onions-browning.jpg",
+            "/recipe-images/nadan-chicken-curry/step-08c-onions-ginger-garlic-combined.jpg"
+          ]
+        },
+        {
+          "step_number": 9,
+          "instruction": "Add the chicken pieces and sauté on high heat until the flesh turns white.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-09a-chicken-added-raw.jpg",
+            "/recipe-images/nadan-chicken-curry/step-09b-chicken-with-salt.jpg"
+          ]
+        },
+        {
+          "step_number": 10,
+          "instruction": "Add salt and the ground roasted masala powder. Mix thoroughly so every piece of chicken is coated.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-10a-masala-added-to-chicken.jpg",
+            "/recipe-images/nadan-chicken-curry/step-10b-chicken-coated-in-masala.jpg"
+          ]
+        },
+        {
+          "step_number": 11,
+          "instruction": "Add one cup of hot water to the chicken and mix well.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-11a-hot-water-prepared.jpg",
+            "/recipe-images/nadan-chicken-curry/step-11b-water-added-to-chicken.jpg"
+          ]
+        },
+        {
+          "step_number": 12,
+          "instruction": "Lower the heat to medium, cover the pan, and cook for about 5 minutes.",
+          "timer_minutes": 5,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-12-covered-simmering.jpg"
+          ]
+        },
+        {
+          "step_number": 13,
+          "instruction": "Add the potato cubes (optional), cover, and cook for about 10 minutes.",
+          "timer_minutes": 10,
+          "tip": "Potatoes are traditional but optional — it adds another texture to the dish.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-13a-potatoes-added.jpg",
+            "/recipe-images/nadan-chicken-curry/step-13b-covered-cooking-potatoes.jpg"
+          ]
+        },
+        {
+          "step_number": 14,
+          "instruction": "Prepare the coconut milk by stirring 3–4 heaped tablespoons of coconut milk powder into 1 cup of hot water. Add the coconut milk to the chicken through a strainer.",
+          "timer_minutes": null,
+          "tip": "Straining catches any lumps.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-14a-coconut-milk-mixed.jpg",
+            "/recipe-images/nadan-chicken-curry/step-14b-coconut-milk-strained-in.jpg"
+          ]
+        },
+        {
+          "step_number": 15,
+          "instruction": "Keep the pan uncovered and continue cooking until the potatoes are tender and the gravy has reduced to the right consistency. Check salt and adjust if needed. Switch off the flame.",
+          "timer_minutes": null,
+          "tip": "\"Right consistency\" is a matter of taste — the consistency is usually right when you see oil start floating on top of the gravy.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-15-gravy-reduced.jpg"
+          ]
+        },
+        {
+          "step_number": 16,
+          "instruction": "Prepare the ingredients for the seasoning. Slice the shallots as shown.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-16a-seasoning-ingredients.jpg",
+            "/recipe-images/nadan-chicken-curry/step-16b-shallots-cut.jpg"
+          ]
+        },
+        {
+          "step_number": 17,
+          "instruction": "Heat 2 tablespoons of coconut oil in a small seasoning pan. When the oil is hot, add mustard seeds. When they pop completely, add the sliced shallots and brown them.",
+          "timer_minutes": null,
+          "tip": "Wait for the mustard seeds to finish popping before adding shallots.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-17a-oil-in-tadka-pan.jpg",
+            "/recipe-images/nadan-chicken-curry/step-17b-mustard-seeds-shallots.jpg",
+            "/recipe-images/nadan-chicken-curry/step-17c-shallots-browned.jpg"
+          ]
+        },
+        {
+          "step_number": 18,
+          "instruction": "When the shallots are brown, add the curry leaves and dry red chillies. Sauté for a few seconds.",
+          "timer_minutes": null,
+          "tip": "Curry leaves go in last — they crackle and release their aroma in seconds.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-18a-curry-leaves-added.jpg",
+            "/recipe-images/nadan-chicken-curry/step-18b-tadka-sizzling.jpg"
+          ]
+        },
+        {
+          "step_number": 19,
+          "instruction": "Pour the sizzling seasoning over the chicken curry. Cover the pan immediately and keep it covered for a few seconds so the aromatic steam is trapped in.",
+          "timer_minutes": null,
+          "tip": "Trapping the seasoning steam lets the aroma settle into the curry.",
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-19-seasoning-added-covered.jpg"
+          ]
+        },
+        {
+          "step_number": 20,
+          "instruction": "Transfer the chicken curry to a serving bowl.",
+          "timer_minutes": null,
+          "tip": null,
+          "image_urls": [
+            "/recipe-images/nadan-chicken-curry/step-20-final-plated.jpg"
+          ]
+        }
       ]
     },
     {
@@ -211,32 +2215,166 @@
       "subtitle": "A gentle, peppery, coconut-milk chicken stew — the traditional partner for appam",
       "category_slug": "meat-dishes",
       "serves": "6",
-      "tags": ["chicken", "stew", "coconut-milk", "mild", "appam-pairing"],
+      "tags": [
+        "chicken",
+        "stew",
+        "coconut-milk",
+        "mild",
+        "appam-pairing"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with appam. You can replace the chicken with mutton.",
       "ingredients": [
-        { "section": null, "name": "Chicken", "quantity": "1", "unit": "kg", "preparation": "cut into small pieces", "optional": false },
-        { "section": null, "name": "Potato", "quantity": "1", "unit": null, "preparation": "cut into small pieces", "optional": false },
-        { "section": null, "name": "Onion", "quantity": "2", "unit": "medium", "preparation": "thinly sliced", "optional": false },
-        { "section": null, "name": "Garlic", "quantity": "5", "unit": "cloves", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Ginger", "quantity": "2 inch piece", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Green chillies", "quantity": "6", "unit": null, "preparation": "split in two", "optional": false },
-        { "section": null, "name": "Tomatoes", "quantity": "1", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Black pepper powder", "quantity": "2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Garam masala", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Turmeric powder", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Thick coconut milk", "quantity": "1", "unit": "cup", "preparation": null, "optional": false },
-        { "section": null, "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false },
-        { "section": null, "name": "Oil", "quantity": null, "unit": null, "preparation": "for cooking", "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Chicken",
+          "quantity": "1",
+          "unit": "kg",
+          "preparation": "cut into small pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Potato",
+          "quantity": "1",
+          "unit": null,
+          "preparation": "cut into small pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "2",
+          "unit": "medium",
+          "preparation": "thinly sliced",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garlic",
+          "quantity": "5",
+          "unit": "cloves",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ginger",
+          "quantity": "2 inch piece",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chillies",
+          "quantity": "6",
+          "unit": null,
+          "preparation": "split in two",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tomatoes",
+          "quantity": "1",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Black pepper powder",
+          "quantity": "2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garam masala",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Turmeric powder",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Thick coconut milk",
+          "quantity": "1",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": null,
+          "unit": null,
+          "preparation": "for cooking",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Heat oil in a pan and add onions, ginger, garlic and green chillies; sauté well.", "timer_minutes": null, "tip": null },
-        { "step_number": 2, "instruction": "Add black pepper powder and garam masala, followed by the tomatoes; sauté until the oil separates.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Add the cut chicken and salt with 1 cup of water; cook over a low flame.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "When the chicken is about three-quarters done, add the potatoes.", "timer_minutes": null, "tip": null },
-        { "step_number": 5, "instruction": "When the chicken and potatoes are cooked and the gravy is reduced to the required consistency, add the coconut milk and curry leaves; bring to a boil.", "timer_minutes": null, "tip": "Don't let coconut milk boil too long — add it at the end and bring to a gentle boil to keep it from splitting." },
-        { "step_number": 6, "instruction": "Serve with appam.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Heat oil in a pan and add onions, ginger, garlic and green chillies; sauté well.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Add black pepper powder and garam masala, followed by the tomatoes; sauté until the oil separates.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add the cut chicken and salt with 1 cup of water; cook over a low flame.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "When the chicken is about three-quarters done, add the potatoes.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "When the chicken and potatoes are cooked and the gravy is reduced to the required consistency, add the coconut milk and curry leaves; bring to a boil.",
+          "timer_minutes": null,
+          "tip": "Don't let coconut milk boil too long — add it at the end and bring to a gentle boil to keep it from splitting."
+        },
+        {
+          "step_number": 6,
+          "instruction": "Serve with appam.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -245,28 +2383,132 @@
       "subtitle": "A dry, deeply browned chicken fry with caramelised onions — rich and restaurant-style at home",
       "category_slug": "meat-dishes",
       "serves": "6",
-      "tags": ["chicken", "dry-fry", "caramelised-onion"],
+      "tags": [
+        "chicken",
+        "dry-fry",
+        "caramelised-onion"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve hot with rice.",
       "ingredients": [
-        { "section": null, "name": "Chicken", "quantity": "1", "unit": "kg", "preparation": "cut into small pieces", "optional": false },
-        { "section": null, "name": "Onion", "quantity": "5", "unit": "medium", "preparation": "thinly sliced", "optional": false },
-        { "section": null, "name": "Green chillies", "quantity": "3", "unit": null, "preparation": "chopped", "optional": false },
-        { "section": null, "name": "Red chilli powder", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Coriander powder", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Turmeric powder", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Garam masala", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Oil", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Chicken",
+          "quantity": "1",
+          "unit": "kg",
+          "preparation": "cut into small pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "5",
+          "unit": "medium",
+          "preparation": "thinly sliced",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chillies",
+          "quantity": "3",
+          "unit": null,
+          "preparation": "chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Red chilli powder",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coriander powder",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Turmeric powder",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garam masala",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Heat oil in a pan and add half of the sliced onions and green chillies; sauté for a few minutes.", "timer_minutes": null, "tip": null },
-        { "step_number": 2, "instruction": "Add coriander powder, red chilli powder, turmeric powder and garam masala; sauté until the raw smell disappears.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Add the chicken and salt and cook over a low flame. You may add a little water if required. Cook until the water has evaporated.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "In a separate pan, heat oil and add the other half of the sliced onions; sauté until the onion turns golden brown.", "timer_minutes": null, "tip": "Patience here is everything — cook the second batch of onions until deeply golden, not just translucent." },
-        { "step_number": 5, "instruction": "Add the cooked chicken and stir-fry well for 5-10 minutes. Add curry leaves and mix well.", "timer_minutes": 10, "tip": null },
-        { "step_number": 6, "instruction": "Serve hot with rice.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Heat oil in a pan and add half of the sliced onions and green chillies; sauté for a few minutes.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Add coriander powder, red chilli powder, turmeric powder and garam masala; sauté until the raw smell disappears.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add the chicken and salt and cook over a low flame. You may add a little water if required. Cook until the water has evaporated.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "In a separate pan, heat oil and add the other half of the sliced onions; sauté until the onion turns golden brown.",
+          "timer_minutes": null,
+          "tip": "Patience here is everything — cook the second batch of onions until deeply golden, not just translucent."
+        },
+        {
+          "step_number": 5,
+          "instruction": "Add the cooked chicken and stir-fry well for 5-10 minutes. Add curry leaves and mix well.",
+          "timer_minutes": 10,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Serve hot with rice.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -275,31 +2517,156 @@
       "subtitle": "Kerala's iconic tangy, coconut-based fish curry — best the day after it's made",
       "category_slug": "fish-dishes",
       "serves": "4 - 6",
-      "tags": ["fish", "curry", "coconut", "tamarind", "kerala"],
+      "tags": [
+        "fish",
+        "curry",
+        "coconut",
+        "tamarind",
+        "kerala"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Add drumstick and raw mango when making tuna curry. Tastes even better the next day as the flavours settle.",
       "ingredients": [
-        { "section": null, "name": "Fish (mackerel, sardines or tuna)", "quantity": "500", "unit": "g", "preparation": "cleaned and cut into required-size pieces", "optional": false },
-        { "section": null, "name": "Grated coconut", "quantity": "3/4", "unit": "cup", "preparation": null, "optional": false },
-        { "section": null, "name": "Shallots", "quantity": "3", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Green chillies", "quantity": "2", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Coriander seeds", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Dry red chillies", "quantity": "20", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Turmeric powder", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Fenugreek powder", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Tamarind juice", "quantity": null, "unit": null, "preparation": "as required", "optional": false },
-        { "section": null, "name": "Coconut oil", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Fish (mackerel, sardines or tuna)",
+          "quantity": "500",
+          "unit": "g",
+          "preparation": "cleaned and cut into required-size pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Grated coconut",
+          "quantity": "3/4",
+          "unit": "cup",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Shallots",
+          "quantity": "3",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coriander seeds",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Dry red chillies",
+          "quantity": "20",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Turmeric powder",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Fenugreek powder",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tamarind juice",
+          "quantity": null,
+          "unit": null,
+          "preparation": "as required",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coconut oil",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Clean and cut the fish into required-size pieces.", "timer_minutes": null, "tip": null },
-        { "step_number": 2, "instruction": "In a pan, roast the coriander seeds and dry red chillies well.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Grind the roasted coriander seeds and dry red chillies to a fine paste with a little water.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "Add grated coconut and shallots and grind further to make a coarse paste.", "timer_minutes": null, "tip": null },
-        { "step_number": 5, "instruction": "In a pan, add the ground masala to the fish. Add turmeric powder, fenugreek powder, tamarind juice, green chillies, curry leaves, salt and sufficient water; cook.", "timer_minutes": null, "tip": "A traditional earthen 'manchatti' pot gives this curry the best flavour." },
-        { "step_number": 6, "instruction": "When the fish is cooked and the gravy is reduced, add coconut oil and curry leaves; mix well.", "timer_minutes": null, "tip": null },
-        { "step_number": 7, "instruction": "Serve hot with rice.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Clean and cut the fish into required-size pieces.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "In a pan, roast the coriander seeds and dry red chillies well.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Grind the roasted coriander seeds and dry red chillies to a fine paste with a little water.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Add grated coconut and shallots and grind further to make a coarse paste.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "In a pan, add the ground masala to the fish. Add turmeric powder, fenugreek powder, tamarind juice, green chillies, curry leaves, salt and sufficient water; cook.",
+          "timer_minutes": null,
+          "tip": "A traditional earthen 'manchatti' pot gives this curry the best flavour."
+        },
+        {
+          "step_number": 6,
+          "instruction": "When the fish is cooked and the gravy is reduced, add coconut oil and curry leaves; mix well.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 7,
+          "instruction": "Serve hot with rice.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -308,31 +2675,156 @@
       "subtitle": "A coconut-free red fish curry, sharp with gambooge and a hit of raw coconut oil at the end",
       "category_slug": "fish-dishes",
       "serves": "6 - 8",
-      "tags": ["fish", "curry", "kingfish", "coconut-free", "gambooge"],
+      "tags": [
+        "fish",
+        "curry",
+        "kingfish",
+        "coconut-free",
+        "gambooge"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve hot with rice. 'Arakkatha' means ground-coconut-free — this curry is lighter and keeps longer.",
       "ingredients": [
-        { "section": null, "name": "Fish (kingfish)", "quantity": "500", "unit": "g", "preparation": "cleaned and cut into required-size pieces", "optional": false },
-        { "section": null, "name": "Shallots", "quantity": "6", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Garlic", "quantity": "3", "unit": "cloves", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Ginger", "quantity": "1 inch piece", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Turmeric powder", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Fenugreek powder", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Red chilli powder", "quantity": "4", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Gambooge (kudampuli)", "quantity": "4", "unit": "pieces", "preparation": null, "optional": false },
-        { "section": null, "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false },
-        { "section": null, "name": "Oil", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Coconut oil", "quantity": "1", "unit": "tsp", "preparation": "finishing drizzle", "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Fish (kingfish)",
+          "quantity": "500",
+          "unit": "g",
+          "preparation": "cleaned and cut into required-size pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Shallots",
+          "quantity": "6",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garlic",
+          "quantity": "3",
+          "unit": "cloves",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ginger",
+          "quantity": "1 inch piece",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Turmeric powder",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Fenugreek powder",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Red chilli powder",
+          "quantity": "4",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Gambooge (kudampuli)",
+          "quantity": "4",
+          "unit": "pieces",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coconut oil",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": "finishing drizzle",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Clean and cut the fish into required-size pieces.", "timer_minutes": null, "tip": null },
-        { "step_number": 2, "instruction": "Heat oil in a pan and add shallots, garlic and ginger; sauté well.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Add red chilli powder and turmeric powder and sauté on a low flame for a minute.", "timer_minutes": 1, "tip": "Keep the flame low — chilli powder burns easily and turns bitter." },
-        { "step_number": 4, "instruction": "Add 2 cups of water, gambooge, curry leaves, fenugreek powder and salt; bring to a boil.", "timer_minutes": null, "tip": null },
-        { "step_number": 5, "instruction": "Add the fish pieces and continue boiling for 3-4 minutes.", "timer_minutes": 4, "tip": null },
-        { "step_number": 6, "instruction": "Lower the heat and reduce the sauce. Once the fish is cooked, add coconut oil and curry leaves.", "timer_minutes": null, "tip": "The raw coconut oil drizzled at the end is non-negotiable — it's the signature finish." },
-        { "step_number": 7, "instruction": "Mix well and serve hot with rice.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Clean and cut the fish into required-size pieces.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat oil in a pan and add shallots, garlic and ginger; sauté well.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add red chilli powder and turmeric powder and sauté on a low flame for a minute.",
+          "timer_minutes": 1,
+          "tip": "Keep the flame low — chilli powder burns easily and turns bitter."
+        },
+        {
+          "step_number": 4,
+          "instruction": "Add 2 cups of water, gambooge, curry leaves, fenugreek powder and salt; bring to a boil.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Add the fish pieces and continue boiling for 3-4 minutes.",
+          "timer_minutes": 4,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Lower the heat and reduce the sauce. Once the fish is cooked, add coconut oil and curry leaves.",
+          "timer_minutes": null,
+          "tip": "The raw coconut oil drizzled at the end is non-negotiable — it's the signature finish."
+        },
+        {
+          "step_number": 7,
+          "instruction": "Mix well and serve hot with rice.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -341,32 +2833,162 @@
       "subtitle": "Boiled eggs smothered in a thick, onion-heavy roasted masala — the perfect appam companion",
       "category_slug": "egg-dishes",
       "serves": "6",
-      "tags": ["egg", "roast", "appam-pairing"],
+      "tags": [
+        "egg",
+        "roast",
+        "appam-pairing"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with appam.",
       "ingredients": [
-        { "section": null, "name": "Eggs", "quantity": "6", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Onion", "quantity": "5", "unit": "medium", "preparation": "thinly sliced", "optional": false },
-        { "section": null, "name": "Tomato", "quantity": "2", "unit": "small", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Green chillies", "quantity": "2", "unit": null, "preparation": "split into two", "optional": false },
-        { "section": null, "name": "Garlic", "quantity": "3", "unit": "cloves", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Ginger", "quantity": "1/2 inch piece", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Coriander powder", "quantity": "2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Red chilli powder", "quantity": "2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Turmeric powder", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Garam masala powder", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Coriander leaves", "quantity": "1/2", "unit": "bunch", "preparation": null, "optional": false },
-        { "section": null, "name": "Oil", "quantity": "4", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Eggs",
+          "quantity": "6",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "5",
+          "unit": "medium",
+          "preparation": "thinly sliced",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Tomato",
+          "quantity": "2",
+          "unit": "small",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": "split into two",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garlic",
+          "quantity": "3",
+          "unit": "cloves",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ginger",
+          "quantity": "1/2 inch piece",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coriander powder",
+          "quantity": "2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Red chilli powder",
+          "quantity": "2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Turmeric powder",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garam masala powder",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coriander leaves",
+          "quantity": "1/2",
+          "unit": "bunch",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": "4",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Boil the eggs, remove the shells, and keep aside.", "timer_minutes": 10, "tip": null },
-        { "step_number": 2, "instruction": "Heat oil in a pan; add onion, green chillies, garlic and ginger; sauté until the onions turn light brown.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Add the chopped tomatoes and sauté further until the oil separates.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "Add coriander powder, red chilli powder, turmeric powder, garam masala, ½ cup of water and salt; mix well.", "timer_minutes": null, "tip": null },
-        { "step_number": 5, "instruction": "Cook on a low flame and remove when the sauce has a very thick consistency.", "timer_minutes": null, "tip": "The masala should coat a spoon — nearly dry, not saucy. That's what makes it a 'roast'." },
-        { "step_number": 6, "instruction": "Remove from heat, add coriander leaves and the boiled eggs; mix to coat the eggs with the masala.", "timer_minutes": null, "tip": null },
-        { "step_number": 7, "instruction": "Serve with appam.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Boil the eggs, remove the shells, and keep aside.",
+          "timer_minutes": 10,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat oil in a pan; add onion, green chillies, garlic and ginger; sauté until the onions turn light brown.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add the chopped tomatoes and sauté further until the oil separates.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Add coriander powder, red chilli powder, turmeric powder, garam masala, ½ cup of water and salt; mix well.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Cook on a low flame and remove when the sauce has a very thick consistency.",
+          "timer_minutes": null,
+          "tip": "The masala should coat a spoon — nearly dry, not saucy. That's what makes it a 'roast'."
+        },
+        {
+          "step_number": 6,
+          "instruction": "Remove from heat, add coriander leaves and the boiled eggs; mix to coat the eggs with the masala.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 7,
+          "instruction": "Serve with appam.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -375,24 +2997,105 @@
       "subtitle": "A quick, peppery Kerala-style scramble with curry leaves and mustard seeds",
       "category_slug": "egg-dishes",
       "serves": "4",
-      "tags": ["egg", "quick", "weeknight", "breakfast"],
+      "tags": [
+        "egg",
+        "quick",
+        "weeknight",
+        "breakfast"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with bread or rice.",
       "ingredients": [
-        { "section": null, "name": "Eggs", "quantity": "4", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Onion", "quantity": "1", "unit": "medium", "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Green chillies", "quantity": "2", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Dry red chilli", "quantity": "1", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Mustard seeds", "quantity": "1/2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Curry leaves", "quantity": "1", "unit": "sprig", "preparation": null, "optional": false },
-        { "section": null, "name": "Oil", "quantity": "2", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Eggs",
+          "quantity": "4",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "1",
+          "unit": "medium",
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Green chillies",
+          "quantity": "2",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Dry red chilli",
+          "quantity": "1",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Mustard seeds",
+          "quantity": "1/2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Curry leaves",
+          "quantity": "1",
+          "unit": "sprig",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": "2",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Crack the eggs into a mixing bowl, add salt, and whisk to make an even mixture.", "timer_minutes": null, "tip": null },
-        { "step_number": 2, "instruction": "Heat oil in a frying pan and add mustard seeds. When they pop, add onion, green chillies, dry red chilli and curry leaves; sauté for 2 minutes.", "timer_minutes": 2, "tip": null },
-        { "step_number": 3, "instruction": "Add the egg mixture and cook on medium heat, folding the mixture frequently to scramble.", "timer_minutes": null, "tip": "Fold gently and slowly — it's the difference between creamy curds and rubbery lumps." },
-        { "step_number": 4, "instruction": "Serve with bread or rice.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Crack the eggs into a mixing bowl, add salt, and whisk to make an even mixture.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat oil in a frying pan and add mustard seeds. When they pop, add onion, green chillies, dry red chilli and curry leaves; sauté for 2 minutes.",
+          "timer_minutes": 2,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add the egg mixture and cook on medium heat, folding the mixture frequently to scramble.",
+          "timer_minutes": null,
+          "tip": "Fold gently and slowly — it's the difference between creamy curds and rubbery lumps."
+        },
+        {
+          "step_number": 4,
+          "instruction": "Serve with bread or rice.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -401,26 +3104,116 @@
       "subtitle": "Fragrant basmati perfumed with whole spices and ghee — a family feast centrepiece",
       "category_slug": "rice-noodles",
       "serves": "6 - 8",
-      "tags": ["rice", "basmati", "ghee", "feast", "vegetarian"],
+      "tags": [
+        "rice",
+        "basmati",
+        "ghee",
+        "feast",
+        "vegetarian"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with chicken curry.",
       "ingredients": [
-        { "section": null, "name": "Basmati rice", "quantity": "500", "unit": "g", "preparation": null, "optional": false },
-        { "section": null, "name": "Onion", "quantity": "1", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Cardamom", "quantity": "4", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Cloves", "quantity": "6", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Cinnamon", "quantity": "1 inch piece", "unit": null, "preparation": null, "optional": false },
-        { "section": null, "name": "Ghee", "quantity": "6", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Basmati rice",
+          "quantity": "500",
+          "unit": "g",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "1",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Cardamom",
+          "quantity": "4",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Cloves",
+          "quantity": "6",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Cinnamon",
+          "quantity": "1 inch piece",
+          "unit": null,
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ghee",
+          "quantity": "6",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Wash and soak the rice for half an hour; drain and keep aside.", "timer_minutes": 30, "tip": null },
-        { "step_number": 2, "instruction": "Heat ghee in a deep pan and add cardamom, cloves and cinnamon; sauté for a minute.", "timer_minutes": 1, "tip": null },
-        { "step_number": 3, "instruction": "Add the chopped onions and sauté for another minute.", "timer_minutes": 1, "tip": null },
-        { "step_number": 4, "instruction": "Add rice, mix well and sauté for 4 minutes.", "timer_minutes": 4, "tip": "Toasting the rice in ghee before adding water keeps the grains separate and aromatic." },
-        { "step_number": 5, "instruction": "Add double the volume of water and salt; bring to a boil.", "timer_minutes": null, "tip": null },
-        { "step_number": 6, "instruction": "Reduce the heat, cover and cook over a low flame for 15 minutes, or until the water has evaporated.", "timer_minutes": 15, "tip": null },
-        { "step_number": 7, "instruction": "Serve with chicken curry.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Wash and soak the rice for half an hour; drain and keep aside.",
+          "timer_minutes": 30,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat ghee in a deep pan and add cardamom, cloves and cinnamon; sauté for a minute.",
+          "timer_minutes": 1,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add the chopped onions and sauté for another minute.",
+          "timer_minutes": 1,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Add rice, mix well and sauté for 4 minutes.",
+          "timer_minutes": 4,
+          "tip": "Toasting the rice in ghee before adding water keeps the grains separate and aromatic."
+        },
+        {
+          "step_number": 5,
+          "instruction": "Add double the volume of water and salt; bring to a boil.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Reduce the heat, cover and cook over a low flame for 15 minutes, or until the water has evaporated.",
+          "timer_minutes": 15,
+          "tip": null
+        },
+        {
+          "step_number": 7,
+          "instruction": "Serve with chicken curry.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -429,29 +3222,137 @@
       "subtitle": "An everyday one-pot rice with carrot and beans — plain enough for a weeknight, dressed enough for guests",
       "category_slug": "rice-noodles",
       "serves": "6 - 8",
-      "tags": ["rice", "basmati", "vegetarian", "one-pot"],
+      "tags": [
+        "rice",
+        "basmati",
+        "vegetarian",
+        "one-pot"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with chicken curry or any gravy of choice.",
       "ingredients": [
-        { "section": null, "name": "Basmati rice", "quantity": "500", "unit": "g", "preparation": null, "optional": false },
-        { "section": null, "name": "Onion", "quantity": "1", "unit": null, "preparation": "finely chopped", "optional": false },
-        { "section": null, "name": "Carrot", "quantity": "1", "unit": null, "preparation": "thinly sliced into 1-inch pieces", "optional": false },
-        { "section": null, "name": "French beans", "quantity": "20", "unit": null, "preparation": "cut into 1-inch pieces", "optional": false },
-        { "section": null, "name": "Garlic paste", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Ginger paste", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Coriander leaves", "quantity": null, "unit": null, "preparation": "for garnish", "optional": false },
-        { "section": null, "name": "Oil", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false }
+        {
+          "section": null,
+          "name": "Basmati rice",
+          "quantity": "500",
+          "unit": "g",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Onion",
+          "quantity": "1",
+          "unit": null,
+          "preparation": "finely chopped",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Carrot",
+          "quantity": "1",
+          "unit": null,
+          "preparation": "thinly sliced into 1-inch pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "French beans",
+          "quantity": "20",
+          "unit": null,
+          "preparation": "cut into 1-inch pieces",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Garlic paste",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Ginger paste",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coriander leaves",
+          "quantity": null,
+          "unit": null,
+          "preparation": "for garnish",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Wash and soak the rice for half an hour; drain and keep aside.", "timer_minutes": 30, "tip": null },
-        { "step_number": 2, "instruction": "Heat oil in a deep pan; add the onion and sauté for 3 minutes.", "timer_minutes": 3, "tip": null },
-        { "step_number": 3, "instruction": "Add ginger and garlic paste; sauté until the raw smell disappears.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "Add the vegetables and sauté for a further 3 minutes.", "timer_minutes": 3, "tip": null },
-        { "step_number": 5, "instruction": "Add rice, mix well and sauté for 4 minutes.", "timer_minutes": 4, "tip": null },
-        { "step_number": 6, "instruction": "Add double the volume of water and salt; bring to a boil.", "timer_minutes": null, "tip": null },
-        { "step_number": 7, "instruction": "Reduce the heat, cover and cook over a low flame for 15 minutes, or until the water has evaporated.", "timer_minutes": 15, "tip": null },
-        { "step_number": 8, "instruction": "Garnish with coriander leaves and serve with chicken curry.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Wash and soak the rice for half an hour; drain and keep aside.",
+          "timer_minutes": 30,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat oil in a deep pan; add the onion and sauté for 3 minutes.",
+          "timer_minutes": 3,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Add ginger and garlic paste; sauté until the raw smell disappears.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Add the vegetables and sauté for a further 3 minutes.",
+          "timer_minutes": 3,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Add rice, mix well and sauté for 4 minutes.",
+          "timer_minutes": 4,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Add double the volume of water and salt; bring to a boil.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 7,
+          "instruction": "Reduce the heat, cover and cook over a low flame for 15 minutes, or until the water has evaporated.",
+          "timer_minutes": 15,
+          "tip": null
+        },
+        {
+          "step_number": 8,
+          "instruction": "Garnish with coriander leaves and serve with chicken curry.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -460,26 +3361,117 @@
       "subtitle": "Crisp, spiraled rice-flour savouries pressed through a 'seva nazhi' — tea-time essentials",
       "category_slug": "snacks-sweets",
       "serves": "8 - 10",
-      "tags": ["snack", "tea-time", "fried", "vegetarian"],
+      "tags": [
+        "snack",
+        "tea-time",
+        "fried",
+        "vegetarian"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with hot tea. A 'seva nazhi' (pakkavada press/sieve) is needed to shape the dough.",
       "ingredients": [
-        { "section": null, "name": "Raw rice powder", "quantity": "2", "unit": "cups", "preparation": null, "optional": false },
-        { "section": null, "name": "Gram flour", "quantity": "2", "unit": "cups", "preparation": null, "optional": false },
-        { "section": null, "name": "Red chilli powder", "quantity": "2", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Asafetida powder", "quantity": "1", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Butter", "quantity": "1", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Oil", "quantity": null, "unit": null, "preparation": "for frying", "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "to taste", "optional": false },
-        { "section": null, "name": "Water", "quantity": null, "unit": null, "preparation": "as required", "optional": false }
+        {
+          "section": null,
+          "name": "Raw rice powder",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Gram flour",
+          "quantity": "2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Red chilli powder",
+          "quantity": "2",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Asafetida powder",
+          "quantity": "1",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Butter",
+          "quantity": "1",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Oil",
+          "quantity": null,
+          "unit": null,
+          "preparation": "for frying",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to taste",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Water",
+          "quantity": null,
+          "unit": null,
+          "preparation": "as required",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Mix the raw rice powder, gram flour, red chilli powder, asafetida powder, salt and butter. Gradually add water and knead to a soft dough that can be pressed through the seva nazhi.", "timer_minutes": null, "tip": null },
-        { "step_number": 2, "instruction": "Heat oil in a wok or kadai.", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Fill the seva nazhi with the mixture and press it directly in a circular motion over the whole surface of the hot oil.", "timer_minutes": null, "tip": "Press in one continuous spiral — don't lift between strokes or the pakkavada breaks into pieces." },
-        { "step_number": 4, "instruction": "Fry the pakkavada until it turns golden brown.", "timer_minutes": null, "tip": null },
-        { "step_number": 5, "instruction": "Remove and drain on paper napkins.", "timer_minutes": null, "tip": null },
-        { "step_number": 6, "instruction": "Serve with hot tea.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Mix the raw rice powder, gram flour, red chilli powder, asafetida powder, salt and butter. Gradually add water and knead to a soft dough that can be pressed through the seva nazhi.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat oil in a wok or kadai.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Fill the seva nazhi with the mixture and press it directly in a circular motion over the whole surface of the hot oil.",
+          "timer_minutes": null,
+          "tip": "Press in one continuous spiral — don't lift between strokes or the pakkavada breaks into pieces."
+        },
+        {
+          "step_number": 4,
+          "instruction": "Fry the pakkavada until it turns golden brown.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 5,
+          "instruction": "Remove and drain on paper napkins.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Serve with hot tea.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     },
     {
@@ -488,25 +3480,110 @@
       "subtitle": "Crisp onion fritters in a spiced gram-flour batter — the rain-and-chai snack",
       "category_slug": "snacks-sweets",
       "serves": "6 - 8",
-      "tags": ["snack", "tea-time", "fried", "vegetarian", "onion"],
+      "tags": [
+        "snack",
+        "tea-time",
+        "fried",
+        "vegetarian",
+        "onion"
+      ],
       "source": "Good food at home — A Kerala Family Recipe Collection",
       "notes": "Serve with hot tea.",
       "ingredients": [
-        { "section": null, "name": "Large onions", "quantity": "2", "unit": null, "preparation": "cut into thin round slices", "optional": false },
-        { "section": null, "name": "Gram flour", "quantity": "1 1/2", "unit": "cups", "preparation": null, "optional": false },
-        { "section": null, "name": "Red chilli powder", "quantity": "1", "unit": "tbsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Asafetida powder", "quantity": "1/4", "unit": "tsp", "preparation": null, "optional": false },
-        { "section": null, "name": "Salt", "quantity": null, "unit": null, "preparation": "as required", "optional": false },
-        { "section": null, "name": "Water", "quantity": null, "unit": null, "preparation": "as required", "optional": false },
-        { "section": null, "name": "Coconut oil", "quantity": null, "unit": null, "preparation": "to deep fry", "optional": false }
+        {
+          "section": null,
+          "name": "Large onions",
+          "quantity": "2",
+          "unit": null,
+          "preparation": "cut into thin round slices",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Gram flour",
+          "quantity": "1 1/2",
+          "unit": "cups",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Red chilli powder",
+          "quantity": "1",
+          "unit": "tbsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Asafetida powder",
+          "quantity": "1/4",
+          "unit": "tsp",
+          "preparation": null,
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Salt",
+          "quantity": null,
+          "unit": null,
+          "preparation": "as required",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Water",
+          "quantity": null,
+          "unit": null,
+          "preparation": "as required",
+          "optional": false
+        },
+        {
+          "section": null,
+          "name": "Coconut oil",
+          "quantity": null,
+          "unit": null,
+          "preparation": "to deep fry",
+          "optional": false
+        }
       ],
       "steps": [
-        { "step_number": 1, "instruction": "Mix gram flour, red chilli powder, asafetida and salt. Add water gradually to make a batter of a consistency that will evenly coat the sliced onions.", "timer_minutes": null, "tip": null },
-        { "step_number": 2, "instruction": "Heat coconut oil in a deep wok (kadai).", "timer_minutes": null, "tip": null },
-        { "step_number": 3, "instruction": "Dunk the onion slices into the batter to coat them evenly.", "timer_minutes": null, "tip": null },
-        { "step_number": 4, "instruction": "Slide the coated onion pieces with a spoon into the hot oil and deep-fry until golden brown.", "timer_minutes": null, "tip": "Coconut oil is worth it — regular oil works, but the flavour won't be the same." },
-        { "step_number": 5, "instruction": "Remove and drain on paper napkins.", "timer_minutes": null, "tip": null },
-        { "step_number": 6, "instruction": "Serve with hot tea.", "timer_minutes": null, "tip": null }
+        {
+          "step_number": 1,
+          "instruction": "Mix gram flour, red chilli powder, asafetida and salt. Add water gradually to make a batter of a consistency that will evenly coat the sliced onions.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 2,
+          "instruction": "Heat coconut oil in a deep wok (kadai).",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 3,
+          "instruction": "Dunk the onion slices into the batter to coat them evenly.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 4,
+          "instruction": "Slide the coated onion pieces with a spoon into the hot oil and deep-fry until golden brown.",
+          "timer_minutes": null,
+          "tip": "Coconut oil is worth it — regular oil works, but the flavour won't be the same."
+        },
+        {
+          "step_number": 5,
+          "instruction": "Remove and drain on paper napkins.",
+          "timer_minutes": null,
+          "tip": null
+        },
+        {
+          "step_number": 6,
+          "instruction": "Serve with hot tea.",
+          "timer_minutes": null,
+          "tip": null
+        }
       ]
     }
   ]
