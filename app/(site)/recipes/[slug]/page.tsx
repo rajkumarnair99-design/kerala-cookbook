@@ -12,14 +12,14 @@ import {
 } from "@/lib/recipes";
 
 export async function generateStaticParams() {
-  return getAllRecipes().map((r) => ({ slug: r.slug }));
+  return (await getAllRecipes()).map((r) => ({ slug: r.slug }));
 }
 
 export async function generateMetadata(
   props: PageProps<"/recipes/[slug]">,
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const recipe = getRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
   if (!recipe) return { title: "Recipe not found" };
   return {
     title: recipe.title,
@@ -31,10 +31,10 @@ export default async function RecipePage(
   props: PageProps<"/recipes/[slug]">,
 ) {
   const { slug } = await props.params;
-  const recipe = getRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
   if (!recipe) notFound();
 
-  const category = getCategoryBySlug(recipe.category_slug);
+  const category = await getCategoryBySlug(recipe.category_slug);
 
   return (
     <article className="mx-auto max-w-4xl px-4 sm:px-6 py-10 sm:py-14">

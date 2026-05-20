@@ -4,14 +4,14 @@ import CookMode from "@/components/cook/CookMode";
 import { getAllRecipes, getRecipeBySlug } from "@/lib/recipes";
 
 export async function generateStaticParams() {
-  return getAllRecipes().map((r) => ({ slug: r.slug }));
+  return (await getAllRecipes()).map((r) => ({ slug: r.slug }));
 }
 
 export async function generateMetadata(
   props: PageProps<"/recipes/[slug]/cook">,
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const recipe = getRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
   if (!recipe) return { title: "Cook mode" };
   return {
     title: `Cook mode · ${recipe.title}`,
@@ -23,7 +23,7 @@ export default async function CookModePage(
   props: PageProps<"/recipes/[slug]/cook">,
 ) {
   const { slug } = await props.params;
-  const recipe = getRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
   if (!recipe) notFound();
   return <CookMode recipe={recipe} />;
 }

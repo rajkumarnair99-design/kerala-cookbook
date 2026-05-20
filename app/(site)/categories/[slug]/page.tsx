@@ -9,14 +9,14 @@ import {
 } from "@/lib/recipes";
 
 export async function generateStaticParams() {
-  return getAllCategories().map((c) => ({ slug: c.slug }));
+  return (await getAllCategories()).map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata(
   props: PageProps<"/categories/[slug]">,
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const category = getCategoryBySlug(slug);
+  const category = await getCategoryBySlug(slug);
   if (!category) return { title: "Category not found" };
   return {
     title: category.name,
@@ -28,10 +28,10 @@ export default async function CategoryPage(
   props: PageProps<"/categories/[slug]">,
 ) {
   const { slug } = await props.params;
-  const category = getCategoryBySlug(slug);
+  const category = await getCategoryBySlug(slug);
   if (!category) notFound();
 
-  const recipes = getRecipesByCategory(category.slug);
+  const recipes = await getRecipesByCategory(category.slug);
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">

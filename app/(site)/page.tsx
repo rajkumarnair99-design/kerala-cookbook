@@ -4,15 +4,23 @@ import RecipeCard from "@/components/RecipeCard";
 import CategoryCard from "@/components/CategoryCard";
 import {
   getAllCategories,
+  getCategoryCounts,
   getRecentRecipes,
-  getRecipeCountByCategory,
   getSource,
 } from "@/lib/recipes";
 
-export default function Home() {
-  const source = getSource();
-  const recent = getRecentRecipes(4);
-  const categories = getAllCategories();
+export default async function Home() {
+  const [source, recent, categories, counts] = await Promise.all([
+    getSource(),
+    getRecentRecipes(4),
+    getAllCategories(),
+    getCategoryCounts(),
+  ]);
+
+  const categoryNames: Record<string, string> = {};
+  for (const category of categories) {
+    categoryNames[category.slug] = category.name;
+  }
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-6 sm:pt-10">
@@ -42,7 +50,11 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {recent.map((recipe) => (
-            <RecipeCard key={recipe.slug} recipe={recipe} />
+            <RecipeCard
+              key={recipe.slug}
+              recipe={recipe}
+              categoryName={categoryNames[recipe.category_slug]}
+            />
           ))}
         </div>
       </section>
@@ -59,7 +71,7 @@ export default function Home() {
             <CategoryCard
               key={category.slug}
               category={category}
-              count={getRecipeCountByCategory(category.slug)}
+              count={counts[category.slug] ?? 0}
             />
           ))}
         </div>

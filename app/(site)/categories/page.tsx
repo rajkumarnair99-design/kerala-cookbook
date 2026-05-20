@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import CategoryCard from "@/components/CategoryCard";
-import { getAllCategories, getRecipeCountByCategory } from "@/lib/recipes";
+import { getAllCategories, getCategoryCounts } from "@/lib/recipes";
 
 export const metadata: Metadata = {
   title: "Categories",
   description: "Browse all recipe categories in the family cookbook.",
 };
 
-export default function CategoriesPage() {
-  const categories = getAllCategories();
+export default async function CategoriesPage() {
+  const [categories, counts] = await Promise.all([
+    getAllCategories(),
+    getCategoryCounts(),
+  ]);
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
       <header className="max-w-3xl mb-10 sm:mb-12">
@@ -28,7 +31,7 @@ export default function CategoriesPage() {
           <CategoryCard
             key={category.slug}
             category={category}
-            count={getRecipeCountByCategory(category.slug)}
+            count={counts[category.slug] ?? 0}
           />
         ))}
       </div>

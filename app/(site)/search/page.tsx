@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import SearchResults from "./SearchResults";
-import { getAllRecipes } from "@/lib/recipes";
+import { getAllCategories, getAllRecipes } from "@/lib/recipes";
 
 export const metadata: Metadata = {
   title: "Search",
   description: "Search the family cookbook by recipe name, tag, or ingredient.",
 };
 
-export default function SearchPage() {
-  const recipes = getAllRecipes();
+export default async function SearchPage() {
+  const [recipes, categories] = await Promise.all([
+    getAllRecipes(),
+    getAllCategories(),
+  ]);
+
+  const categoryNames: Record<string, string> = {};
+  for (const category of categories) {
+    categoryNames[category.slug] = category.name;
+  }
+
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 py-12 sm:py-16">
       <header className="mb-8 sm:mb-10">
@@ -24,7 +33,7 @@ export default function SearchPage() {
         </p>
       </header>
       <Suspense fallback={<div className="h-14 rounded-full bg-surface border border-rule animate-pulse" />}>
-        <SearchResults recipes={recipes} />
+        <SearchResults recipes={recipes} categoryNames={categoryNames} />
       </Suspense>
     </div>
   );

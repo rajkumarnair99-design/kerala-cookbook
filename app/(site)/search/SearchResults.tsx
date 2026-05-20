@@ -7,6 +7,7 @@ import type { Recipe } from "@/types/recipe";
 
 type Props = {
   recipes: Recipe[];
+  categoryNames: Record<string, string>;
 };
 
 function matches(recipe: Recipe, q: string): boolean {
@@ -21,7 +22,7 @@ function matches(recipe: Recipe, q: string): boolean {
   return haystack.includes(q);
 }
 
-export default function SearchResults({ recipes }: Props) {
+export default function SearchResults({ recipes, categoryNames }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -88,7 +89,11 @@ export default function SearchResults({ recipes }: Props) {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {results.map((r) => (
-                <RecipeCard key={r.slug} recipe={r} />
+                <RecipeCard
+                  key={r.slug}
+                  recipe={r}
+                  categoryName={categoryNames[r.category_slug]}
+                />
               ))}
             </div>
           </>

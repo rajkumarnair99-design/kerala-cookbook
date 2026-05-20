@@ -1,7 +1,7 @@
 import { getSource } from "@/lib/recipes";
 
-export default function Footer() {
-  const source = getSource();
+export default async function Footer() {
+  const source = await getSource();
   return (
     <footer className="mt-24 border-t border-rule">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 text-sm text-ink-muted flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
