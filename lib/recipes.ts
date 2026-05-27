@@ -3,8 +3,13 @@ import { supabase } from "@/lib/supabase";
 import type {
   Category,
   CookbookSource,
+  EditorIngredient,
+  EditorRecipe,
+  EditorSection,
+  EditorStep,
   Ingredient,
   Recipe,
+  RecipeSummary,
   Step,
 } from "@/types/recipe";
 
@@ -203,5 +208,176 @@ export const getCategoryCounts = cache(
       counts[row.category_slug] = (counts[row.category_slug] ?? 0) + 1;
     }
     return counts;
+  },
+);
+
+// A row shape for the admin recipe list: the category name is embedded
+// from the categories table via the category_slug foreign key.
+type RecipeSummaryRow = {
+  slug: string;
+  title: string;
+  author: string | null;
+  categories: { name: string } | null;
+};
+
+/**
+ * Every recipe as a lightweight summary (slug, title, author, category
+ * name), sorted alphabetically by title. Used by the admin recipe list.
+ */
+export const getRecipeSummaries = cache(async (): Promise<RecipeSummary[]> => {
+  const { data, error } = await supabase
+    .from("recipes")
+    .select("slug, title, author, categories ( name )")
+    .order("title", { ascending: true });
+  if (error) {
+    throw new Error(`Failed to load the recipe list: ${error.message}`);
+  }
+  return ((data ?? []) as unknown as RecipeSummaryRow[]).map((row) => ({
+    slug: row.slug,
+    title: row.title,
+    author: row.author,
+    categoryName: row.categories?.name ?? null,
+  }));
+});
+
+// Row shapes for the admin editor fetch. Sections, ingredients, and
+// steps all keep their `id` so save_recipe can update each row in
+// place — sections so renaming/collapsing survives, ingredients so
+// future references survive, steps so step photos survive.
+type EditorSectionRow = {
+  id: number;
+  name: string;
+  sort_order: number;
+  collapsed: boolean;
+};
+type EditorIngredientRow = {
+  id: number;
+  section_id: number;
+  section: string | null;
+  name: string;
+  quantity: string | null;
+  unit: string | null;
+  preparation: string | null;
+  optional: boolean;
+  sort_order: number;
+};
+type EditorPhotoRow = { url: string; sort_order: number };
+type EditorStepRow = {
+  id: number;
+  step_number: number;
+  instruction: string;
+  timer_minutes: number | null;
+  tip: string | null;
+  step_photos: EditorPhotoRow[] | null;
+};
+type EditorRecipeRow = {
+  slug: string;
+  title: string;
+  subtitle: string | null;
+  category_slug: string;
+  serves: string | null;
+  tags: string[] | null;
+  source: string | null;
+  notes: string | null;
+  story: string | null;
+  author: string | null;
+  hero_image_url: string | null;
+  recipe_sections: EditorSectionRow[] | null;
+  recipe_ingredients: EditorIngredientRow[] | null;
+  recipe_steps: EditorStepRow[] | null;
+};
+
+// Convert a database row into the editor's shape: arrays are ordered,
+// and null text becomes "" so form fields are always controlled strings.
+function toEditorRecipe(row: EditorRecipeRow): EditorRecipe {
+  const sections: EditorSection[] = (row.recipe_sections ?? [])
+    .slice()
+    .sort((a, b) => a.sort_order - b.sort_order)
+    .map((s) => ({
+      id: s.id,
+      client_key: null, // existing sections from the database have no client_key
+      name: s.name,
+      sort_order: s.sort_order,
+      collapsed: s.collapsed,
+    }));
+
+  // Build a lookup so we can surface the section's name on each
+  // ingredient (used by the placeholder ingredient editor and any read
+  // path that still expects the legacy `section` text field).
+  const sectionNameById = new Map<number, string>();
+  for (const s of sections) {
+    if (s.id !== null) sectionNameById.set(s.id, s.name);
+  }
+
+  const ingredients: EditorIngredient[] = (row.recipe_ingredients ?? [])
+    .slice()
+    .sort((a, b) => a.sort_order - b.sort_order)
+    .map((i) => ({
+      id: i.id,
+      section_id: i.section_id,
+      section_client_key: null,
+      section: sectionNameById.get(i.section_id) ?? i.section ?? "",
+      name: i.name,
+      quantity: i.quantity ?? "",
+      unit: i.unit ?? "",
+      preparation: i.preparation ?? "",
+      optional: i.optional,
+    }));
+
+  const steps: EditorStep[] = (row.recipe_steps ?? [])
+    .slice()
+    .sort((a, b) => a.step_number - b.step_number)
+    .map((s) => ({
+      id: s.id,
+      instruction: s.instruction,
+      timer_minutes: s.timer_minutes,
+      tip: s.tip ?? "",
+      photos: (s.step_photos ?? [])
+        .slice()
+        .sort((a, b) => a.sort_order - b.sort_order)
+        .map((p) => ({ url: p.url })),
+    }));
+
+  return {
+    slug: row.slug,
+    title: row.title,
+    subtitle: row.subtitle ?? "",
+    category_slug: row.category_slug,
+    serves: row.serves ?? "",
+    tags: row.tags ?? [],
+    source: row.source ?? "",
+    notes: row.notes ?? "",
+    story: row.story ?? "",
+    author: row.author ?? "",
+    hero_image_url: row.hero_image_url,
+    sections,
+    ingredients,
+    steps,
+  };
+}
+
+/**
+ * The full editable recipe for the admin editor, found by slug. Includes
+ * `story` and `author` and the step `id`s. Returns undefined if not found.
+ */
+export const getRecipeForEditor = cache(
+  async (slug: string): Promise<EditorRecipe | undefined> => {
+    const { data, error } = await supabase
+      .from("recipes")
+      .select(
+        `slug, title, subtitle, category_slug, serves, tags, source, notes, story, author, hero_image_url,
+         recipe_sections ( id, name, sort_order, collapsed ),
+         recipe_ingredients ( id, section_id, section, name, quantity, unit, preparation, optional, sort_order ),
+         recipe_steps ( id, step_number, instruction, timer_minutes, tip,
+           step_photos ( url, sort_order ) )`,
+      )
+      .eq("slug", slug)
+      .maybeSingle();
+    if (error) {
+      throw new Error(
+        `Failed to load recipe "${slug}" for editing: ${error.message}`,
+      );
+    }
+    return data ? toEditorRecipe(data as unknown as EditorRecipeRow) : undefined;
   },
 );

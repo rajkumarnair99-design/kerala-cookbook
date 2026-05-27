@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local script artifacts (e.g. verify-overview-save snapshots)
+scripts/.snapshots/

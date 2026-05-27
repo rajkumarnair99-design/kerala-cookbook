@@ -3,7 +3,19 @@
     "allow": [
       "Bash(curl -s -o /dev/null -w \"page:%{http_code} size:%{size_download}\\\\n\" http://localhost:3000/recipes/nadan-chicken-curry)",
       "Bash(curl -s -o /dev/null -w \"img:%{http_code} size:%{size_download}\\\\n\" http://localhost:3000/recipe-images/nadan-chicken-curry/step-01a-chilies-before-roasting.jpg)",
-      "Bash(curl -s -o /dev/null -w \"cook:%{http_code} size:%{size_download}\\\\n\" http://localhost:3000/recipes/nadan-chicken-curry/cook)"
+      "Bash(curl -s -o /dev/null -w \"cook:%{http_code} size:%{size_download}\\\\n\" http://localhost:3000/recipes/nadan-chicken-curry/cook)",
+      "Bash(node *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(npm install *)",
+      "Bash(ps -p 15118 -o command=)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/admin/recipes/nadan-chicken-curry/edit)",
+      "Bash(curl *)",
+      "Bash(npm list *)",
+      "Bash(npx tsx *)",
+      "Bash(git -C /Users/rajkumarnair/Desktop/kerala-cookbook diff --stat components/admin/RecipeEditor.tsx)",
+      "Bash(npx tsc *)",
+      "Bash(grep -v -E \"RecipeEditor|components/admin|^$\")"
     ]
   }
 }

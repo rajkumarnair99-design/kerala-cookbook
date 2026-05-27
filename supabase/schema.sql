@@ -34,6 +34,7 @@ create table public.recipes (
   notes          text,
   story          text,
   author         text,
+  hero_image_url text,
   is_public      boolean not null default true,
   video_url      text,
   created_at     timestamptz not null default now(),
