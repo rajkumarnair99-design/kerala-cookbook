@@ -15,7 +15,9 @@
       "Bash(npx tsx *)",
       "Bash(git -C /Users/rajkumarnair/Desktop/kerala-cookbook diff --stat components/admin/RecipeEditor.tsx)",
       "Bash(npx tsc *)",
-      "Bash(grep -v -E \"RecipeEditor|components/admin|^$\")"
+      "Bash(grep -v -E \"RecipeEditor|components/admin|^$\")",
+      "Bash(git push *)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
