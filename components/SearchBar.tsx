@@ -29,7 +29,7 @@ export default function SearchBar({
         Search recipes
       </label>
       <div
-        className={`flex items-center gap-2 border border-rule bg-surface rounded-full transition-colors focus-within:border-accent-soft focus-within:ring-2 focus-within:ring-accent-soft/20 ${
+        className={`flex items-center gap-2 border border-rule bg-surface rounded-chiclet transition-colors focus-within:border-accent-soft focus-within:ring-2 focus-within:ring-accent-soft/20 ${
           compact ? "px-3 py-1.5" : "px-4 py-3"
         }`}
       >

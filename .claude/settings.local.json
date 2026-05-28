@@ -19,7 +19,10 @@
       "Bash(git push *)",
       "Bash(python3 -c ' *)",
       "Bash(grep -v \"\\): $\")",
-      "Bash(git reset *)"
+      "Bash(git reset *)",
+      "Bash(perl -pi -e s/rounded-full/rounded-chiclet/g components/cook/CookMode.tsx components/cook/Timer.tsx components/CookModeButton.tsx components/FavoriteButton.tsx components/SearchBar.tsx 'app/\\(site\\)/not-found.tsx' 'app/\\(site\\)/search/page.tsx' 'app/\\(site\\)/search/SearchResults.tsx')",
+      "Bash(perl -pi -e 's/rounded-full/rounded-2xl/g' components/VideoPanel.tsx)",
+      "Bash(perl -pi -e 's/rounded-full/rounded-lg/g' \"app/\\(site\\)/recipes/[slug]/page.tsx\")"
     ]
   }
 }

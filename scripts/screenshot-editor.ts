@@ -111,13 +111,21 @@ async function main() {
       });
     }
 
-    const editorUrl = `${BASE}/admin/recipes/${SLUG}/edit`;
-    const resp = await page.goto(editorUrl, { waitUntil: "networkidle0", timeout: 30_000 });
-    const finalUrl = page.url();
-    if (!finalUrl.includes(`/admin/recipes/${SLUG}/edit`)) {
-      throw new Error(
-        `Expected editor, ended at ${finalUrl} (status ${resp?.status() ?? "?"})`,
-      );
+    // --path=<path> navigates to an arbitrary page (e.g. a public recipe)
+    // instead of the editor, skipping the editor-landing assertion.
+    const pathArg = process.argv.find((a) => a.startsWith("--path="));
+    if (pathArg) {
+      const path = pathArg.slice("--path=".length);
+      await page.goto(`${BASE}${path}`, { waitUntil: "networkidle0", timeout: 30_000 });
+    } else {
+      const editorUrl = `${BASE}/admin/recipes/${SLUG}/edit`;
+      const resp = await page.goto(editorUrl, { waitUntil: "networkidle0", timeout: 30_000 });
+      const finalUrl = page.url();
+      if (!finalUrl.includes(`/admin/recipes/${SLUG}/edit`)) {
+        throw new Error(
+          `Expected editor, ended at ${finalUrl} (status ${resp?.status() ?? "?"})`,
+        );
+      }
     }
 
     // Give the client component time to fully hydrate and any client-side
@@ -141,6 +149,14 @@ async function main() {
       }, label);
       if (!clicked) throw new Error(`Could not find nav tab labelled "${label}"`);
       await new Promise((r) => setTimeout(r, 400));
+    }
+
+    // --make-dirty types a space into the first content input so the editor's
+    // "unsaved changes" status dot appears (for capturing it).
+    if (process.argv.includes("--make-dirty")) {
+      await page.focus("main input");
+      await page.keyboard.type(" ");
+      await new Promise((r) => setTimeout(r, 250));
     }
 
     // --scroll=<px> scrolls the content column (the <main>) down before the

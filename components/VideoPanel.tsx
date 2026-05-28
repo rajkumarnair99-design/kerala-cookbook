@@ -72,7 +72,7 @@ export default function VideoPanel({ videoUrl, title, className = "" }: Props) {
         <rect width="100%" height="100%" fill="url(#video-panel-dots)" />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-accent-ink">
-        <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border border-accent-ink/25 bg-surface/80 backdrop-blur-sm shadow-[0_4px_14px_-6px_rgba(168,90,58,0.35)]">
+        <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl border border-accent-ink/25 bg-surface/80 backdrop-blur-sm shadow-[0_4px_14px_-6px_rgba(168,90,58,0.35)]">
           <svg
             aria-hidden
             viewBox="0 0 24 24"

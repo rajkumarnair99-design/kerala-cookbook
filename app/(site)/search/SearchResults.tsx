@@ -48,7 +48,7 @@ export default function SearchResults({ recipes, categoryNames }: Props) {
 
   return (
     <div>
-      <div className="flex items-center gap-2 border border-rule bg-surface rounded-full px-4 py-3 focus-within:border-accent-soft focus-within:ring-2 focus-within:ring-accent-soft/20">
+      <div className="flex items-center gap-2 border border-rule bg-surface rounded-chiclet px-4 py-3 focus-within:border-accent-soft focus-within:ring-2 focus-within:ring-accent-soft/20">
         <svg
           aria-hidden
           viewBox="0 0 24 24"

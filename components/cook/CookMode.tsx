@@ -76,7 +76,7 @@ export default function CookMode({ recipe }: Props) {
             href={exitHref}
             prefetch
             aria-label="Exit cook mode"
-            className="flex-none flex h-11 w-11 items-center justify-center rounded-full border border-rule bg-surface text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors touch-manipulation select-none"
+            className="flex-none flex h-11 w-11 items-center justify-center rounded-chiclet border border-rule bg-surface text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors touch-manipulation select-none"
           >
             <svg
               aria-hidden
@@ -106,7 +106,7 @@ export default function CookMode({ recipe }: Props) {
           <button
             type="button"
             onClick={() => setShowVideo(true)}
-            className="flex-none inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-rule bg-surface px-4 py-2.5 text-xs text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors touch-manipulation select-none"
+            className="flex-none inline-flex min-h-[44px] items-center gap-1.5 rounded-chiclet border border-rule bg-surface px-4 py-2.5 text-xs text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors touch-manipulation select-none"
           >
             <svg
               aria-hidden
@@ -162,7 +162,7 @@ export default function CookMode({ recipe }: Props) {
             type="button"
             onClick={() => setShowIngredients(true)}
             aria-label="View ingredients"
-            className="flex-none flex h-12 w-12 items-center justify-center rounded-full border border-rule bg-surface text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors touch-manipulation select-none"
+            className="flex-none flex h-12 w-12 items-center justify-center rounded-chiclet border border-rule bg-surface text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors touch-manipulation select-none"
           >
             <svg
               aria-hidden
@@ -182,7 +182,7 @@ export default function CookMode({ recipe }: Props) {
             type="button"
             onClick={goBack}
             disabled={onIntro}
-            className="flex-1 h-12 rounded-full border border-rule bg-surface text-ink-soft font-medium hover:border-accent-soft hover:text-accent-ink disabled:opacity-40 disabled:cursor-not-allowed transition-colors touch-manipulation select-none"
+            className="flex-1 h-12 rounded-chiclet border border-rule bg-surface text-ink-soft font-medium hover:border-accent-soft hover:text-accent-ink disabled:opacity-40 disabled:cursor-not-allowed transition-colors touch-manipulation select-none"
           >
             Back
           </button>
@@ -190,7 +190,7 @@ export default function CookMode({ recipe }: Props) {
           <button
             type="button"
             onClick={goNext}
-            className="flex-[2] h-12 rounded-full bg-accent text-white font-medium shadow-[0_8px_20px_-10px_rgba(168,90,58,0.7)] hover:bg-accent-ink transition-colors touch-manipulation select-none"
+            className="flex-[2] h-12 rounded-chiclet bg-accent text-white font-medium shadow-[0_8px_20px_-10px_rgba(168,90,58,0.7)] hover:bg-accent-ink transition-colors touch-manipulation select-none"
           >
             {onIntro ? "Start cooking" : onLastStep ? "Done" : "Next step"}
           </button>
@@ -352,7 +352,7 @@ function BottomSheet({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-rule bg-surface text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors touch-manipulation select-none"
+            className="flex h-11 w-11 items-center justify-center rounded-chiclet border border-rule bg-surface text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors touch-manipulation select-none"
           >
             <svg
               aria-hidden
@@ -411,7 +411,7 @@ function VideoModal({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="flex-none flex h-11 w-11 items-center justify-center rounded-full border border-background/40 bg-background/10 text-background hover:bg-background/20 transition-colors touch-manipulation select-none"
+            className="flex-none flex h-11 w-11 items-center justify-center rounded-chiclet border border-background/40 bg-background/10 text-background hover:bg-background/20 transition-colors touch-manipulation select-none"
           >
             <svg
               aria-hidden

@@ -83,7 +83,7 @@ export default function Timer({ minutes }: Props) {
         <button
           type="button"
           onClick={toggle}
-          className="min-h-[44px] rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-background hover:bg-accent-ink transition-colors touch-manipulation select-none"
+          className="min-h-[44px] rounded-chiclet bg-ink px-5 py-2.5 text-sm font-medium text-background hover:bg-accent-ink transition-colors touch-manipulation select-none"
         >
           {done ? "Restart" : running ? "Pause" : "Start"}
         </button>
@@ -91,7 +91,7 @@ export default function Timer({ minutes }: Props) {
           type="button"
           onClick={reset}
           disabled={!running && secondsLeft === preset}
-          className="min-h-[44px] rounded-full border border-rule bg-surface px-5 py-2.5 text-sm text-ink-soft hover:border-accent-soft hover:text-accent-ink disabled:opacity-40 disabled:cursor-not-allowed transition-colors touch-manipulation select-none"
+          className="min-h-[44px] rounded-chiclet border border-rule bg-surface px-5 py-2.5 text-sm text-ink-soft hover:border-accent-soft hover:text-accent-ink disabled:opacity-40 disabled:cursor-not-allowed transition-colors touch-manipulation select-none"
         >
           Reset
         </button>

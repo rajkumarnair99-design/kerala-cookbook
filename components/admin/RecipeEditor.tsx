@@ -160,7 +160,7 @@ export default function RecipeEditor({
               href="/admin"
               onClick={guardLeave}
               aria-label="Close editor"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-rule text-ink-soft transition-colors hover:border-accent hover:text-accent"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-chiclet border border-rule text-ink-soft transition-colors hover:border-accent hover:text-accent"
             >
               <X className="h-4 w-4" aria-hidden />
             </Link>
@@ -196,7 +196,7 @@ export default function RecipeEditor({
                 <span
                   aria-label="Unsaved changes"
                   title="Unsaved changes"
-                  className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-accent-soft ring-2 ring-background"
+                  className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-sm bg-accent-soft ring-2 ring-background"
                 />
               )}
             </button>
@@ -327,7 +327,7 @@ export default function RecipeEditor({
                       type="button"
                       disabled
                       title="Image upload coming in Stage 4"
-                      className="absolute bottom-4 left-4 inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-stone-800/85 px-4 py-2 text-xs font-medium text-white backdrop-blur-sm"
+                      className="absolute bottom-4 left-4 inline-flex cursor-not-allowed items-center gap-2 rounded-chiclet bg-stone-800/85 px-4 py-2 text-xs font-medium text-white backdrop-blur-sm"
                     >
                       <Camera className="h-3.5 w-3.5" aria-hidden />
                       Change image

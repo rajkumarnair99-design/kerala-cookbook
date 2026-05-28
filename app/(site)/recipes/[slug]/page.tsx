@@ -84,7 +84,7 @@ export default async function RecipePage(
                 {recipe.tags.map((tag) => (
                   <li
                     key={tag}
-                    className="rounded-full bg-background border border-rule px-2.5 py-0.5 text-xs text-ink-soft"
+                    className="rounded-lg bg-background border border-rule px-2.5 py-0.5 text-xs text-ink-soft"
                   >
                     {tag}
                   </li>

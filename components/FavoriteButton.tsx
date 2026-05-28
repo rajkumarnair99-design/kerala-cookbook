@@ -10,7 +10,7 @@ export default function FavoriteButton({ label = "Favorite" }: { label?: string 
       onClick={() => setIsFavorite((f) => !f)}
       aria-pressed={isFavorite}
       aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-      className={`inline-flex min-h-[44px] items-center gap-2 rounded-full border px-5 py-3 text-sm transition-colors touch-manipulation select-none ${
+      className={`inline-flex min-h-[44px] items-center gap-2 rounded-chiclet border px-5 py-3 text-sm transition-colors touch-manipulation select-none ${
         isFavorite
           ? "border-accent bg-accent text-white"
           : "border-rule bg-surface text-ink-soft hover:border-accent-soft hover:text-accent-ink"

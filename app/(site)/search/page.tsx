@@ -32,7 +32,7 @@ export default async function SearchPage() {
           Type a dish, a tag like &ldquo;curry&rdquo;, or an ingredient.
         </p>
       </header>
-      <Suspense fallback={<div className="h-14 rounded-full bg-surface border border-rule animate-pulse" />}>
+      <Suspense fallback={<div className="h-14 rounded-chiclet bg-surface border border-rule animate-pulse" />}>
         <SearchResults recipes={recipes} categoryNames={categoryNames} />
       </Suspense>
     </div>

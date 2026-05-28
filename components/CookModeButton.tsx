@@ -9,7 +9,7 @@ export default function CookModeButton({ slug }: Props) {
     <Link
       href={`/recipes/${slug}/cook`}
       prefetch
-      className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white shadow-[0_6px_18px_-10px_rgba(168,90,58,0.7)] transition-colors hover:bg-accent-ink touch-manipulation select-none"
+      className="inline-flex min-h-[44px] items-center gap-2 rounded-chiclet bg-accent px-6 py-3 text-sm font-medium text-white shadow-[0_6px_18px_-10px_rgba(168,90,58,0.7)] transition-colors hover:bg-accent-ink touch-manipulation select-none"
     >
       <svg
         aria-hidden

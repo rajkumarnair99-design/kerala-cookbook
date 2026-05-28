@@ -15,7 +15,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="inline-block mt-8 rounded-full border border-rule bg-surface px-5 py-2.5 text-sm text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors"
+        className="inline-block mt-8 rounded-chiclet border border-rule bg-surface px-5 py-2.5 text-sm text-ink-soft hover:border-accent-soft hover:text-accent-ink transition-colors"
       >
         Back to the cookbook
       </Link>

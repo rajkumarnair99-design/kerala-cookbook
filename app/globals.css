@@ -25,6 +25,15 @@
 
   --font-sans: var(--font-inter);
   --font-serif: var(--font-fraunces);
+
+  /* Design signature: the house "chiclet" corner radius. Generates the
+     `rounded-chiclet` utility (12px). We never use pure circles
+     (`rounded-full`) on shapes we control — every container, button, badge,
+     chip, or avatar is a rounded-corner square/rectangle. See the "Design
+     signature" section of AGENTS.md for the full rule and the graduated
+     size scale (rounded-sm ≤16px · rounded-lg <32px · rounded-chiclet
+     32–52px · rounded-2xl ≥56px). */
+  --radius-chiclet: 0.75rem;
 }
 
 body {
