@@ -93,6 +93,11 @@ export type EditorIngredient = {
   unit: string;
   preparation: string;
   optional: boolean;
+  /** Editor-only, transient identity for a not-yet-saved row so drag-and-drop
+   *  has a stable key before the row gets a real database id. Never sent to
+   *  the server (the save action picks fields explicitly) and never loaded
+   *  from it — saved rows are identified by their `id` instead. */
+  _dndKey?: string;
 };
 
 export type EditorStep = {

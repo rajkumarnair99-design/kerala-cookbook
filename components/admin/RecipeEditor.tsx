@@ -12,16 +12,21 @@ import Link from "next/link";
 import {
   Camera,
   ChevronDown,
-  Clock,
   FileText,
   LayoutGrid,
   ListChecks,
-  Search,
   Soup,
   Video,
   X,
 } from "lucide-react";
-import type { Category, EditorRecipe, SaveResult } from "@/types/recipe";
+import type {
+  Category,
+  EditorIngredient,
+  EditorRecipe,
+  EditorSection,
+  SaveResult,
+} from "@/types/recipe";
+import IngredientsEditor from "./IngredientsEditor";
 
 /** Shared input styling — matches the public site's warm, minimal form look. */
 const inputClass =
@@ -29,9 +34,10 @@ const inputClass =
   "placeholder:text-ink-muted focus:outline-none focus:border-accent " +
   "focus:ring-1 focus:ring-accent";
 
-/** Per-field character caps for the Overview tab. */
+/** Per-field character caps. */
 const TAGLINE_MAX = 120;
 const STORY_MAX = 600;
+const NOTES_MAX = 2000;
 
 function parseTags(text: string): string[] {
   return text
@@ -41,18 +47,17 @@ function parseTags(text: string): string[] {
 }
 
 /**
- * The six editor sections. Only "Overview" (2A) is built; 2B–2F render a
- * placeholder until their stage is implemented.
+ * The four editor sections. Overview (2A) and Kitchen Notes are built;
+ * Ingredients (2B) and Steps (2D) render a placeholder until their stage
+ * is implemented.
  *
  * Icons come from lucide-react — see TabIcon below for the mapping.
  */
 const TABS = [
   { id: "overview", label: "Overview", stage: null },
   { id: "ingredients", label: "Ingredients", stage: "2B" },
-  { id: "serves-prep", label: "Serves & Prep", stage: "2C" },
   { id: "steps", label: "Steps", stage: "2D" },
-  { id: "notes", label: "Notes", stage: "2E" },
-  { id: "seo-info", label: "SEO & Info", stage: "2F" },
+  { id: "notes", label: "Kitchen Notes", stage: null },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -101,6 +106,16 @@ export default function RecipeEditor({
     value: EditorRecipe[K],
   ) {
     setRecipe((current) => ({ ...current, [key]: value }));
+    setDirty(true);
+  }
+
+  // The Ingredients tab edits two related arrays at once (sections +
+  // ingredients), so it gets its own setter rather than two updateField calls.
+  function updateIngredients(
+    sections: EditorSection[],
+    ingredients: EditorIngredient[],
+  ) {
+    setRecipe((current) => ({ ...current, sections, ingredients }));
     setDirty(true);
   }
 
@@ -189,8 +204,9 @@ export default function RecipeEditor({
 
       {/* Body — vertical left nav + content area */}
       <div className="flex flex-1">
-        {/* Left nav — the six editor sections */}
-        <aside className="w-56 shrink-0 border-r border-rule">
+        {/* Left nav — the six editor sections, plus a footer wordmark
+            pinned to the bottom (shown on every tab). */}
+        <aside className="flex w-56 shrink-0 flex-col border-r border-rule">
           <nav aria-label="Editor sections" className="flex flex-col py-3">
             {TABS.map((tab) => {
               const active = activeTab === tab.id;
@@ -220,6 +236,25 @@ export default function RecipeEditor({
               );
             })}
           </nav>
+
+          {/* Footer — leaf illustration + collection wordmark. mt-auto pins
+              it to the bottom of the full-height sidebar. Decorative, so the
+              image is aria-hidden. */}
+          <div className="mt-auto px-5 pb-6 pt-10">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/leaf-illustration.png"
+              alt=""
+              aria-hidden
+              className="mb-3 h-auto w-40 opacity-85"
+            />
+            <div className="text-[10px] font-medium uppercase tracking-[0.18em] text-ink-muted">
+              Family Recipe Collection
+            </div>
+            <div className="mt-0.5 font-serif text-sm text-ink-soft">
+              Good Food at Home
+            </div>
+          </div>
         </aside>
 
         {/* Content area — fills the remaining width */}
@@ -294,14 +329,14 @@ export default function RecipeEditor({
                     </button>
                   </div>
 
-                  {/* Story / Notes — single text area, writes to
-                      recipes.story. `flex-1 min-h-0` lets the box absorb
-                      the leftover height in the column; the inner textarea
-                      uses the same trick to fill the box. `rows={6}` sets
-                      a sensible minimum if the right column is short. */}
+                  {/* Story — single text area, writes to recipes.story.
+                      `flex-1 min-h-0` lets the box absorb the leftover
+                      height in the column; the inner textarea uses the same
+                      trick to fill the box. `rows={6}` sets a sensible
+                      minimum if the right column is short. */}
                   <div className="flex flex-1 min-h-0 flex-col rounded-2xl border border-rule bg-surface p-4">
                     <div className="mb-2 text-xs uppercase tracking-[0.12em] text-ink-muted">
-                      Story / Notes
+                      Story
                     </div>
                     <textarea
                       value={recipe.story}
@@ -411,8 +446,52 @@ export default function RecipeEditor({
             </>
           )}
 
-          {/* Placeholder tabs (2B–2F) — built in their own stages. */}
-          {activeTab !== "overview" && (
+          {/* Kitchen Notes tab — a single large free-text area bound to
+              recipes.notes. The column has always been loaded and saved;
+              this tab simply makes it editable. */}
+          {activeTab === "notes" && (
+            <>
+              <div className="mt-8">
+                <h2 className="font-serif text-2xl font-medium text-ink">
+                  Kitchen Notes
+                </h2>
+                <p className="mt-1 text-sm text-ink-muted">
+                  Variations, substitutions, storage, reheating, festive
+                  context — the practical wisdom for this dish.
+                </p>
+              </div>
+
+              <div className="mt-6 flex flex-col rounded-2xl border border-rule bg-surface p-4">
+                <textarea
+                  value={recipe.notes}
+                  onChange={(event) => {
+                    const next = event.target.value.slice(0, NOTES_MAX);
+                    updateField("notes", next);
+                  }}
+                  maxLength={NOTES_MAX}
+                  rows={16}
+                  className="w-full resize-none rounded-lg border border-transparent bg-transparent text-sm text-ink placeholder:text-ink-muted focus:outline-none"
+                  placeholder="e.g. Swap coconut oil for ghee for a richer finish. Keeps 3 days refrigerated; reheat gently with a splash of water. Traditionally served at Onam."
+                />
+                <div className="mt-1 text-right text-[11px] tabular-nums text-ink-muted">
+                  {recipe.notes.length}/{NOTES_MAX}
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* Ingredients tab (2B) — section cards with ingredient rows. */}
+          {activeTab === "ingredients" && (
+            <IngredientsEditor
+              sections={recipe.sections}
+              ingredients={recipe.ingredients}
+              onChange={updateIngredients}
+            />
+          )}
+
+          {/* Placeholder — only Steps (2D) remains unbuilt. Overview,
+              Ingredients, and Kitchen Notes have real panels above. */}
+          {activeTab === "steps" && (
             <div className="mt-8 rounded-2xl border border-rule bg-surface p-10 sm:p-14 text-center">
               <p className="font-serif text-2xl text-ink">
                 {activeTabMeta.label}
@@ -612,10 +691,8 @@ function TabIcon({ id }: { id: TabId }) {
   const Icon = {
     overview: LayoutGrid,
     ingredients: Soup,
-    "serves-prep": Clock,
     steps: ListChecks,
     notes: FileText,
-    "seo-info": Search,
   }[id];
 
   return <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden />;

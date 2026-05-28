@@ -299,7 +299,11 @@ async function doCompare() {
 
   console.log("RECIPE-LEVEL FIELDS");
   console.log(`  hero_image_url: ${heroSame ? "unchanged" : "CHANGED  "}  ${tag(heroSame)}`);
-  console.log(`  notes:          ${notesSame ? "unchanged" : "CHANGED  "}  ${tag(notesSame)}`);
+  // notes is now an editable field (the Kitchen Notes tab), so — like
+  // story — a change here is informational, not a failure.
+  console.log(
+    `  notes:          ${notesSame ? "unchanged" : "changed  "}  ${notesSame ? "[unchanged]" : "[EXPECTED if you edited it]"}`,
+  );
   console.log(
     `  story:          ${storySame ? "unchanged" : "changed  "}  ${storySame ? "[unchanged]" : "[EXPECTED if you edited it]"}`,
   );
@@ -360,9 +364,8 @@ async function doCompare() {
   if (!heroSame) {
     issues.push(`hero_image_url changed: ${before.recipe.hero_image_url} → ${after.recipe.hero_image_url}`);
   }
-  if (!notesSame) {
-    issues.push(`notes changed (Overview tab must NOT touch notes)`);
-  }
+  // notes is an editable field (Kitchen Notes tab); a change is expected,
+  // not an issue — same treatment as story. Deliberately NOT pushed.
   if (!updatedMoved) {
     issues.push(`updated_at did not change — did the save actually run?`);
   }

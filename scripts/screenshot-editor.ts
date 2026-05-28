@@ -121,6 +121,25 @@ async function main() {
     // styling (re)mounts to settle before snapshotting.
     await new Promise((r) => setTimeout(r, 2_500));
 
+    // Optionally switch to a specific left-nav tab before snapshotting:
+    //   --tab="Kitchen Notes"
+    const tabArg = process.argv.find((a) => a.startsWith("--tab="));
+    if (tabArg) {
+      const label = tabArg.slice("--tab=".length);
+      const clicked = await page.evaluate((wanted) => {
+        const btn = Array.from(document.querySelectorAll("nav button")).find(
+          (b) => b.textContent?.trim() === wanted,
+        ) as HTMLButtonElement | undefined;
+        if (btn) {
+          btn.click();
+          return true;
+        }
+        return false;
+      }, label);
+      if (!clicked) throw new Error(`Could not find nav tab labelled "${label}"`);
+      await new Promise((r) => setTimeout(r, 400));
+    }
+
     await page.screenshot({ path: OUT, fullPage: true });
 
     // Also capture the dropdown in its open state, if --open is passed.

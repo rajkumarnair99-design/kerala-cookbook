@@ -17,7 +17,9 @@
       "Bash(npx tsc *)",
       "Bash(grep -v -E \"RecipeEditor|components/admin|^$\")",
       "Bash(git push *)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(grep -v \"\\): $\")",
+      "Bash(git reset *)"
     ]
   }
 }
