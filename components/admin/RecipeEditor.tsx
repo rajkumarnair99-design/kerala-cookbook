@@ -148,9 +148,11 @@ export default function RecipeEditor({
   const activeTabMeta = TABS.find((tab) => tab.id === activeTab)!;
 
   return (
-    <div className="flex min-h-screen flex-col">
+    // Fixed-height shell: the page itself never scrolls. The top bar stays
+    // put, the left sidebar stays put, and only the content column scrolls.
+    <div className="flex h-screen flex-col overflow-hidden">
       {/* Top bar — spans the full width, above the left nav and content */}
-      <header className="sticky top-0 z-20 border-b border-rule bg-background/90 backdrop-blur">
+      <header className="z-20 border-b border-rule bg-background/90 backdrop-blur">
         <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
           {/* Close + recipe identity */}
           <div className="flex min-w-0 items-center gap-3">
@@ -202,11 +204,14 @@ export default function RecipeEditor({
         </div>
       </header>
 
-      {/* Body — vertical left nav + content area */}
-      <div className="flex flex-1">
-        {/* Left nav — the six editor sections, plus a footer wordmark
-            pinned to the bottom (shown on every tab). */}
-        <aside className="flex w-56 shrink-0 flex-col border-r border-rule">
+      {/* Body — vertical left nav + content area. min-h-0 lets the two
+          columns own their own scroll instead of growing the page. */}
+      <div className="flex min-h-0 flex-1">
+        {/* Left nav — the four editor sections, plus a footer wordmark
+            pinned to the bottom (shown on every tab). It stays put while the
+            content scrolls; overflow-y-auto lets it scroll internally on a
+            short screen so the footer is never cut off. */}
+        <aside className="flex w-56 shrink-0 flex-col overflow-y-auto border-r border-rule">
           <nav aria-label="Editor sections" className="flex flex-col py-3">
             {TABS.map((tab) => {
               const active = activeTab === tab.id;
@@ -240,7 +245,7 @@ export default function RecipeEditor({
           {/* Footer — leaf illustration + collection wordmark. mt-auto pins
               it to the bottom of the full-height sidebar. Decorative, so the
               image is aria-hidden. */}
-          <div className="mt-auto px-5 pb-6 pt-10">
+          <div className="mt-auto px-5 pb-10 pt-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/leaf-illustration.png"
@@ -257,8 +262,8 @@ export default function RecipeEditor({
           </div>
         </aside>
 
-        {/* Content area — fills the remaining width */}
-        <main className="min-w-0 flex-1 px-5 pb-12 sm:px-8">
+        {/* Content area — the only scrolling region; fills the remaining width */}
+        <main className="min-w-0 flex-1 overflow-y-auto px-5 pb-12 sm:px-8">
           {/* Overview tab (2A) — image, story, and the core text fields.
               Notes, ingredients, steps, and hero_image_url are intentionally
               NOT exposed here; they stay in `recipe` state and are written

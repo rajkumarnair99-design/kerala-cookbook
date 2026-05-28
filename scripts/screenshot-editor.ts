@@ -94,7 +94,10 @@ async function main() {
     });
     page.on("pageerror", (err) => console.log("[browser pageerror]", err.message));
 
-    await page.setViewport({ width: 1280, height: 900, deviceScaleFactor: 2 });
+    // --height=<px> sets the viewport height (for the short-screen test).
+    const heightArg = process.argv.find((a) => a.startsWith("--height="));
+    const viewportHeight = heightArg ? Number(heightArg.slice("--height=".length)) : 900;
+    await page.setViewport({ width: 1280, height: viewportHeight, deviceScaleFactor: 2 });
 
     for (const chunk of chunks) {
       await page.setCookie({
@@ -140,7 +143,40 @@ async function main() {
       await new Promise((r) => setTimeout(r, 400));
     }
 
-    await page.screenshot({ path: OUT, fullPage: true });
+    // --scroll=<px> scrolls the content column (the <main>) down before the
+    // shot, to prove the sidebar stays put. Implies a viewport-only capture.
+    const scrollArg = process.argv.find((a) => a.startsWith("--scroll="));
+    if (scrollArg) {
+      const px = Number(scrollArg.slice("--scroll=".length));
+      await page.evaluate((amount) => {
+        const main = document.querySelector("main");
+        if (main) main.scrollTop = amount;
+      }, px);
+      await new Promise((r) => setTimeout(r, 250));
+    }
+
+    // --scroll-aside=<px> scrolls the left sidebar (to prove its footer is
+    // reachable on a short screen). Reports whether it's actually scrollable.
+    const asideArg = process.argv.find((a) => a.startsWith("--scroll-aside="));
+    if (asideArg) {
+      const px = Number(asideArg.slice("--scroll-aside=".length));
+      const info = await page.evaluate((amount) => {
+        const aside = document.querySelector("aside");
+        if (!aside) return null;
+        aside.scrollTop = amount;
+        return { scrollHeight: aside.scrollHeight, clientHeight: aside.clientHeight, scrollTop: aside.scrollTop };
+      }, px);
+      console.log("aside scroll:", JSON.stringify(info));
+      await new Promise((r) => setTimeout(r, 250));
+    }
+
+    // --viewport (or --scroll/--scroll-aside) captures just the visible
+    // viewport; otherwise the whole scrollable page.
+    const viewportOnly =
+      process.argv.includes("--viewport") ||
+      scrollArg !== undefined ||
+      asideArg !== undefined;
+    await page.screenshot({ path: OUT, fullPage: !viewportOnly });
 
     // Also capture the dropdown in its open state, if --open is passed.
     if (process.argv.includes("--open")) {
