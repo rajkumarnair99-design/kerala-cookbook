@@ -11,7 +11,6 @@ import {
   Lightbulb,
   Pencil,
   Trash2,
-  X,
 } from "lucide-react";
 import type { EditorStep } from "@/types/recipe";
 import { stepDndId } from "./dnd-helpers";
@@ -53,8 +52,7 @@ function AutoTextarea({
   );
 }
 
-/** A small chiclet action button used in the right-hand stack. These stay
- *  as buttons no matter what — they never morph into the value they set. */
+/** A small chiclet action button used in the right-hand stack. */
 function ActionButton({
   icon: Icon,
   label,
@@ -91,15 +89,24 @@ function ActionButton({
  * One step in the timeline. Two states:
  *
  *  READ  (default) — quiet: drag handle, number badge, native-ratio photo,
- *    plain instruction text, optional read-only tip callout, optional timer
- *    readout, and a trash control. A faint hover outline hints it's clickable.
+ *    plain instruction text, optional read-only tip callout, a timer readout
+ *    (or a grey clock placeholder when none is set), and a trash control.
  *
- *  EDIT  (isActive) — clicking anywhere in the card activates it. A fixed
- *    column of four buttons appears (Add image / Add tip / Add timer /
- *    Edit step). Each button reveals an inline editor for its field; the
- *    buttons themselves never change. Re-clicking an already-open button
- *    does nothing. Editors close only when the parent clears `isActive`
- *    (on a successful Save) — never on a click outside.
+ *  EDIT  (isActive) — clicking the card activates it; the four right-column
+ *    buttons appear. Per-field editors reveal inline.
+ *
+ * Closing behaviour (the subtle part):
+ *  - Tip & instruction editors are STICKY-ON-CONTENT: once you type something,
+ *    they stay open until Save. If opened but left empty/unchanged, a click
+ *    elsewhere in the card releases them (Refinement 2).
+ *  - The TIMER is different on purpose: its "Add/Edit timer" button reveals an
+ *    inline input over the value readout that COMMITS-AND-CLOSES on blur
+ *    (empty → no timer). No sticky. The four buttons always stay put; their
+ *    labels flip Add↔Edit based on whether the field has content.
+ *  - The step itself stays active (sticky) only once it has REAL edits
+ *    (data changed from the snapshot taken at activation). With no real edits,
+ *    a click outside the step quietly returns it to read state (Refinement 3);
+ *    a brand-new empty step is removed entirely by the parent.
  */
 export default function StepCard({
   step,
@@ -108,7 +115,9 @@ export default function StepCard({
   autoEdit,
   isFirst,
   isLast,
+  dialogOpen,
   onActivate,
+  onRequestDeactivate,
   onChange,
   onDelete,
 }: {
@@ -122,7 +131,13 @@ export default function StepCard({
    *  extends above / below this step's badge. */
   isFirst: boolean;
   isLast: boolean;
+  /** While a modal (delete confirm) is open, suppress click-outside handling so
+   *  clicking the dialog doesn't deactivate steps. */
+  dialogOpen: boolean;
   onActivate: () => void;
+  /** Ask the parent to drop this step from the active set (used on an
+   *  outside-click when the step has no real edits). */
+  onRequestDeactivate: () => void;
   onChange: (patch: Partial<EditorStep>) => void;
   onDelete: () => void;
 }) {
@@ -141,15 +156,32 @@ export default function StepCard({
     opacity: isDragging ? 0.6 : undefined,
   };
 
-  // Per-field editor reveals. They only open (no toggle-closed); they're
-  // forced shut when the card leaves the active state on save.
+  // Per-field editor reveals.
   const [instructionOpen, setInstructionOpen] = useState(autoEdit);
   const [tipOpen, setTipOpen] = useState(false);
   const [timerOpen, setTimerOpen] = useState(false);
 
-  // When the card leaves the active state (on save), force every editor shut
-  // so a later re-activation starts clean. Adjusting state during render when
-  // a prop changes is React's recommended alternative to a reset effect.
+  // Refs for click-outside / click-elsewhere detection.
+  const rowRef = useRef<HTMLDivElement | null>(null);
+  const instrEditorRef = useRef<HTMLDivElement | null>(null);
+  const tipEditorRef = useRef<HTMLDivElement | null>(null);
+
+  // Snapshot of the step's data at activation. "Real edits" is DERIVED by
+  // comparing the live step to this baseline — so merely activating, or opening
+  // an editor and typing nothing, is not an edit.
+  const baselineRef = useRef({
+    instruction: step.instruction,
+    tip: step.tip,
+    timer_minutes: step.timer_minutes,
+  });
+  // The value each text editor had when revealed — lets us tell "untouched"
+  // (revert/close) from "edited" (keep open).
+  const instrOpenValueRef = useRef(step.instruction);
+  const tipOpenValueRef = useRef(step.tip);
+
+  // On active→inactive (save, or outside-click deactivation) force every editor
+  // shut. (Adjusting state during render when a prop changes is React's
+  // recommended alternative to a reset effect.)
   const [wasActive, setWasActive] = useState(isActive);
   if (wasActive !== isActive) {
     setWasActive(isActive);
@@ -160,13 +192,26 @@ export default function StepCard({
     }
   }
 
+  // Capture the activation snapshot on the inactive→active edge (and on mount
+  // if the step starts active). Done in an effect because ref writes must not
+  // happen during render. We intentionally read step.* without listing them as
+  // deps — we want the values AS OF activation, not on every later keystroke.
+  useEffect(() => {
+    if (isActive) {
+      baselineRef.current = {
+        instruction: step.instruction,
+        tip: step.tip,
+        timer_minutes: step.timer_minutes,
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isActive]);
+
   const photoUrl = step.photos[0]?.url;
+  const hasImage = step.photos.length > 0;
   const hasTip = step.tip.trim().length > 0;
   const hasTimer = step.timer_minutes !== null;
 
-  // Tip callout: visible in read state only if it has content; in edit state
-  // also once its editor is opened. Instruction is always shown (as text or,
-  // when its editor is open, as an input).
   const showTipCallout = isActive ? hasTip || tipOpen : hasTip;
   const tipEditable = isActive && tipOpen;
   const instructionEditable = isActive && instructionOpen;
@@ -174,18 +219,94 @@ export default function StepCard({
   function activate() {
     if (!isActive) onActivate();
   }
+  function openTip() {
+    tipOpenValueRef.current = step.tip;
+    setTipOpen(true);
+  }
+  function openInstruction() {
+    instrOpenValueRef.current = step.instruction;
+    setInstructionOpen(true);
+  }
+
+  const hasRealEdits = () => {
+    const b = baselineRef.current;
+    return (
+      step.instruction !== b.instruction ||
+      step.tip !== b.tip ||
+      step.timer_minutes !== b.timer_minutes
+    );
+  };
+
+  // Click-outside / click-elsewhere. Attached only while active and while no
+  // dialog is open. INSIDE the row → release an opened-but-untouched tip/
+  // instruction editor (the grip is exempt so grabbing to drag never closes an
+  // editor; the timer closes via its own onBlur, not here). OUTSIDE the row →
+  // deactivate the step unless it has real edits.
+  useEffect(() => {
+    if (!isActive || dialogOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (isDragging) return;
+      const row = rowRef.current;
+      const target = e.target as HTMLElement | null;
+      if (!row || !target) return;
+
+      if (row.contains(target)) {
+        if (target.closest("[data-grip]")) return; // protect drag intent
+        if (
+          instructionOpen &&
+          instrEditorRef.current &&
+          !instrEditorRef.current.contains(target) &&
+          (step.instruction.trim() === "" ||
+            step.instruction === instrOpenValueRef.current)
+        ) {
+          setInstructionOpen(false);
+        }
+        if (
+          tipOpen &&
+          tipEditorRef.current &&
+          !tipEditorRef.current.contains(target) &&
+          (step.tip.trim() === "" || step.tip === tipOpenValueRef.current)
+        ) {
+          setTipOpen(false);
+        }
+      } else if (!hasRealEdits()) {
+        onRequestDeactivate();
+      }
+    };
+    document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+    // hasRealEdits is read live via refs/props; step fields in deps keep the
+    // closure current.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    isActive,
+    dialogOpen,
+    isDragging,
+    instructionOpen,
+    tipOpen,
+    step.instruction,
+    step.tip,
+    step.timer_minutes,
+    onRequestDeactivate,
+  ]);
 
   return (
-    // ROW = timeline rail (outside, left) + the card. The whole row is the
-    // sortable node, so dragging the rail handle moves rail + card together.
-    <div ref={setNodeRef} style={style} className="flex gap-3">
-      {/* TIMELINE RAIL — drag handle + numbered badge live here, OUTSIDE the
-          card. A faint 1px line links consecutive badges (the segment below
-          this badge + the inserter's line + the next badge's segment above). */}
+    // ROW = timeline rail (outside, left) + the card. rowRef is used for
+    // click-outside detection; setNodeRef makes the whole row the sortable node.
+    <div
+      ref={(node) => {
+        setNodeRef(node);
+        rowRef.current = node;
+      }}
+      style={style}
+      className="flex gap-3"
+    >
+      {/* TIMELINE RAIL — drag handle + numbered badge, OUTSIDE the card. */}
       <div className="flex shrink-0 items-start gap-1.5">
         <button
           ref={setActivatorNodeRef}
           type="button"
+          data-grip
           aria-label="Drag to reorder step"
           className="mt-2 cursor-grab touch-none text-ink-muted hover:text-ink active:cursor-grabbing"
           {...attributes}
@@ -194,31 +315,25 @@ export default function StepCard({
           <GripVertical className="h-4 w-4" aria-hidden />
         </button>
         <div className="relative w-9 self-stretch">
-          {/* line ABOVE the badge → connects up to the previous badge */}
           {!isFirst && (
             <span
               aria-hidden
               className="absolute left-1/2 top-0 h-2 w-px -translate-x-1/2 bg-rule"
             />
           )}
-          {/* line BELOW the badge → connects down to the next badge */}
           {!isLast && (
             <span
               aria-hidden
               className="absolute left-1/2 bottom-0 top-11 w-px -translate-x-1/2 bg-rule"
             />
           )}
-          {/* the numbered chiclet — cream, not white; sits on the rail */}
           <span className="absolute left-0 top-2 z-10 flex h-9 w-9 items-center justify-center rounded-chiclet border border-rule bg-card text-sm font-semibold text-ink-soft">
             {stepNumber}
           </span>
         </div>
       </div>
 
-      {/* CARD — warm cream fill (never white), gentle border, padding. The
-          background does NOT change on activation; the only cue is the firmer
-          border plus the four buttons appearing in Zone B. Three zones split
-          by faint vertical dividers that breathe ~12px off the top/bottom. */}
+      {/* CARD — three zones split by faint dividers. */}
       <div
         onClick={activate}
         className={
@@ -241,14 +356,16 @@ export default function StepCard({
 
           <div className="min-w-0 flex-1 space-y-5">
             {instructionEditable ? (
-              <AutoTextarea
-                value={step.instruction}
-                onChange={(v) => onChange({ instruction: v })}
-                placeholder="Describe this step…"
-                ariaLabel="Step instruction"
-                autoFocus
-                className="w-full rounded-lg border border-rule bg-inset px-3 py-2 text-sm leading-relaxed text-ink placeholder:text-ink-muted focus:border-accent-soft focus:outline-none focus:ring-1 focus:ring-accent-soft/40"
-              />
+              <div ref={instrEditorRef}>
+                <AutoTextarea
+                  value={step.instruction}
+                  onChange={(v) => onChange({ instruction: v })}
+                  placeholder="Describe this step…"
+                  ariaLabel="Step instruction"
+                  autoFocus
+                  className="w-full rounded-lg border border-rule bg-inset px-3 py-2 text-sm leading-relaxed text-ink placeholder:text-ink-muted focus:border-accent-soft focus:outline-none focus:ring-1 focus:ring-accent-soft/40"
+                />
+              </div>
             ) : (
               <p className="whitespace-pre-wrap text-sm leading-relaxed text-ink">
                 {step.instruction || (
@@ -258,9 +375,6 @@ export default function StepCard({
             )}
 
             {showTipCallout && (
-              // A tender note: the faintest warm tint with a gentle rule-tone
-              // border (not terracotta), so it reads as a note, not an input.
-              // The terracotta accent lives only on the leaf + "Tip" label.
               <div className="flex gap-2 rounded-chiclet border border-rule bg-soft p-3">
                 <Leaf
                   className="mt-0.5 h-4 w-4 shrink-0 text-accent-ink"
@@ -269,14 +383,16 @@ export default function StepCard({
                 <div className="min-w-0 flex-1 text-sm leading-relaxed">
                   <span className="font-semibold text-accent-ink">Tip</span>{" "}
                   {tipEditable ? (
-                    <AutoTextarea
-                      value={step.tip}
-                      onChange={(v) => onChange({ tip: v })}
-                      placeholder="Add a tip…"
-                      ariaLabel="Step tip"
-                      autoFocus={step.tip === ""}
-                      className="mt-1 w-full bg-transparent leading-relaxed text-ink placeholder:text-ink-muted focus:outline-none"
-                    />
+                    <div ref={tipEditorRef} className="mt-1">
+                      <AutoTextarea
+                        value={step.tip}
+                        onChange={(v) => onChange({ tip: v })}
+                        placeholder="Add a tip…"
+                        ariaLabel="Step tip"
+                        autoFocus={step.tip === ""}
+                        className="w-full bg-transparent leading-relaxed text-ink placeholder:text-ink-muted focus:outline-none"
+                      />
+                    </div>
                   ) : (
                     <span className="whitespace-pre-wrap text-ink">
                       {step.tip}
@@ -291,78 +407,84 @@ export default function StepCard({
         {/* divider A | B */}
         <div aria-hidden className="mx-4 -my-1 w-px self-stretch bg-rule" />
 
-        {/* ZONE B — timer readout, then (when active) the timer editor and the
-            four fixed buttons. Fixed width so the card doesn't reflow. */}
+        {/* ZONE B — timer (value / placeholder / inline editor) + buttons */}
         <div className="flex w-32 shrink-0 flex-col items-start gap-2">
-          {/* Timer readout — shows whenever a timer is set; never replaces the
-              "Add timer" button. */}
-          {hasTimer && (
+          {timerOpen ? (
+            // Inline timer editor — the number lives in the input; "min" is a
+            // label beside it (mirrors the read-state "N min"), not inside the
+            // field. Blur COMMITS and closes (empty → no timer). No spinners,
+            // no clear button.
+            <div className="inline-flex items-center gap-1.5">
+              <input
+                type="text"
+                inputMode="numeric"
+                aria-label="Timer minutes"
+                autoFocus
+                value={
+                  step.timer_minutes === null ? "" : String(step.timer_minutes)
+                }
+                onChange={(e) => {
+                  const digits = e.target.value.replace(/\D/g, "");
+                  onChange({
+                    timer_minutes: digits === "" ? null : parseInt(digits, 10),
+                  });
+                }}
+                onBlur={() => {
+                  if (step.timer_minutes !== null && step.timer_minutes < 1) {
+                    onChange({ timer_minutes: null });
+                  }
+                  setTimerOpen(false);
+                }}
+                style={{ width: "3.25rem" }}
+                className="rounded-md border border-rule bg-inset px-2 py-1 text-sm text-ink focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+              />
+              <span className="text-sm text-ink-soft">min</span>
+            </div>
+          ) : hasTimer ? (
+            // Set-timer readout. Non-interactive in both states — the
+            // "Edit timer" button (below) does the editing.
             <div className="inline-flex items-center gap-1.5 text-xs text-ink-soft">
               <Clock className="h-3.5 w-3.5 text-ink-muted" aria-hidden />
               <span>{step.timer_minutes} min</span>
             </div>
+          ) : (
+            // No timer: grey clock placeholder in read state so the zone has
+            // visual purpose (in edit state the "Add timer" button covers it).
+            !isActive && (
+              <div
+                className="inline-flex items-center text-ink-muted"
+                aria-hidden
+              >
+                <Clock className="h-3.5 w-3.5" />
+              </div>
+            )
           )}
 
           {isActive && (
             <>
-              {/* Timer editor — fixed-width input that does not grow as digits
-                  are typed, plus a one-click clear back to "no timer". */}
-              {timerOpen && (
-                <div className="inline-flex items-center gap-1">
-                  <input
-                    type="number"
-                    min={1}
-                    inputMode="numeric"
-                    aria-label="Timer minutes"
-                    autoFocus={step.timer_minutes === null}
-                    value={step.timer_minutes ?? ""}
-                    onChange={(e) => {
-                      const raw = e.target.value;
-                      if (raw === "") {
-                        onChange({ timer_minutes: null });
-                        return;
-                      }
-                      const n = Math.max(1, Math.floor(Number(raw)));
-                      onChange({
-                        timer_minutes: Number.isFinite(n) ? n : null,
-                      });
-                    }}
-                    style={{ width: "3.25rem" }}
-                    className="shrink-0 rounded-md border border-rule bg-inset px-2 py-1 text-right text-sm text-ink focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-                  />
-                  <span className="text-xs text-ink-soft">min</span>
-                  <button
-                    type="button"
-                    aria-label="Clear timer"
-                    title="Clear timer"
-                    onClick={() => onChange({ timer_minutes: null })}
-                    className="inline-flex h-6 w-6 items-center justify-center rounded-md border border-rule text-ink-muted transition-colors hover:border-accent hover:text-accent-ink"
-                  >
-                    <X className="h-3.5 w-3.5" aria-hidden />
-                  </button>
-                </div>
-              )}
-
-              <ActionButton
-                icon={ImagePlus}
-                label="Add image"
-                disabled
-                title="Image upload coming in Stage 4"
-              />
-              <ActionButton
-                icon={Lightbulb}
-                label="Add tip"
-                onClick={() => setTipOpen(true)}
-              />
+              {/* Always four buttons, fixed order. Labels flip Add↔Edit based
+                  on whether the field has content; the buttons themselves never
+                  appear, disappear, or move. */}
               <ActionButton
                 icon={Clock}
-                label="Add timer"
+                label={hasTimer ? "Edit timer" : "Add timer"}
                 onClick={() => setTimerOpen(true)}
               />
               <ActionButton
                 icon={Pencil}
                 label="Edit step"
-                onClick={() => setInstructionOpen(true)}
+                onClick={openInstruction}
+              />
+              <ActionButton
+                icon={Lightbulb}
+                label={hasTip ? "Edit tip" : "Add tip"}
+                onClick={openTip}
+              />
+              <ActionButton
+                icon={ImagePlus}
+                label={hasImage ? "Edit image" : "Add image"}
+                disabled
+                title="Image upload coming in Stage 4"
               />
             </>
           )}

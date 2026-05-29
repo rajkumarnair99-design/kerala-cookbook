@@ -65,15 +65,18 @@ async function rowHandle(page: Page, index: number) {
   return handle.asElement();
 }
 
-/** The Nth step CARD (the bordered box; the row's last child). */
+/** The Nth step CARD (the bordered box; the row's last child). Scrolls it into
+ *  view so boundingBox()/clicks land on-screen. */
 async function cardHandle(page: Page, index: number) {
   const handle = await page.evaluateHandle((i) => {
     const grips = Array.from(
       document.querySelectorAll('button[aria-label="Drag to reorder step"]'),
     );
-    return grips[i]?.parentElement?.parentElement?.lastElementChild ?? null;
+    const card = grips[i]?.parentElement?.parentElement?.lastElementChild ?? null;
+    (card as HTMLElement | null)?.scrollIntoView({ block: "center" });
+    return card;
   }, index);
-  await wait(150);
+  await wait(250);
   return handle.asElement();
 }
 
@@ -86,6 +89,40 @@ async function activateCard(page: Page, index: number) {
   // Click in the instruction area (right of the photo), away from any control.
   await page.mouse.click(box.x + 220, box.y + 24);
   await wait(300);
+}
+
+/** Click a button in <main> by its exact trimmed text. */
+async function clickButtonByText(page: Page, text: string) {
+  await page.evaluate((t) => {
+    const btn = Array.from(document.querySelectorAll("main button")).find(
+      (b) => b.textContent?.trim() === t,
+    ) as HTMLButtonElement | undefined;
+    btn?.click();
+  }, text);
+  await wait(300);
+}
+
+/** Click somewhere outside any step (the "Steps" heading area). */
+async function clickOutside(page: Page) {
+  const h = await page.evaluateHandle(() =>
+    Array.from(document.querySelectorAll("main h2")).find(
+      (e) => e.textContent?.trim() === "Steps",
+    ),
+  );
+  const el = h.asElement();
+  const box = el ? await el.boundingBox() : null;
+  if (box) await page.mouse.click(box.x + 4, box.y + 4);
+  else await page.mouse.click(400, 120);
+  await wait(350);
+}
+
+/** Number of step rows currently rendered. */
+async function rowCount(page: Page) {
+  return page.evaluate(
+    () =>
+      document.querySelectorAll('button[aria-label="Drag to reorder step"]')
+        .length,
+  );
 }
 
 async function main() {
@@ -162,66 +199,49 @@ async function main() {
       });
     }
 
-    // Step 1 (idx 0) has a tip — used for the card/zone + tip close-ups.
-    const TIPPED = 0;
+    // Indices from the recipe data:
+    //  idx 4 (step 5): no timer, no tip
+    //  idx 3 (step 4): 1-min timer, no tip  → proves "Add timer" relabels to
+    //                                          "Edit timer" without disappearing
+    const NO_TIMER = 4;
+    const WITH_TIMER = 3;
 
-    // (a) Full Steps page from the top — rail with badges + handles outside
-    //     the cards, the connecting line, internal dividers, and helper text.
+    // (a) Edit state, NO timer →
+    //     buttons: Add timer / Edit step / Add tip / Add image.
     await gotoSteps(page);
-    await page.evaluate(() => {
-      const m = document.querySelector("main");
-      if (m) m.scrollTop = 0;
-    });
-    await wait(300);
-    await page.screenshot({ path: `${OUT}/steps3-a-fulltop.png` });
-    console.log("✓ a: full page from top");
+    await activateCard(page, NO_TIMER);
+    {
+      const el = await rowHandle(page, NO_TIMER);
+      await el!.screenshot({ path: `${OUT}/btn4-a-no-timer.png` });
+      console.log("✓ a: edit state, no timer");
+    }
 
-    // (d) Top-right helper text "+ Click to add step" (the header block).
+    // (b) Edit state, WITH timer →
+    //     buttons: Edit timer / Edit step / Add tip / Add image.
+    await gotoSteps(page);
+    await activateCard(page, WITH_TIMER);
+    {
+      const el = await rowHandle(page, WITH_TIMER);
+      await el!.screenshot({ path: `${OUT}/btn4-b-with-timer.png` });
+      console.log("✓ b: edit state, with timer (Add timer → Edit timer)");
+    }
+
+    // (c) Steps page top — the new two-line subtitle.
+    await gotoSteps(page);
     {
       const header = await page.evaluateHandle(() => {
-        const p = Array.from(document.querySelectorAll("main p")).find(
-          (e) => e.textContent?.trim() === "+ Click to add step",
+        const h2 = Array.from(document.querySelectorAll("main h2")).find(
+          (e) => e.textContent?.trim() === "Steps",
         );
-        return p?.parentElement ?? null;
+        return h2?.parentElement?.parentElement ?? null;
       });
       const el = header.asElement();
-      if (!el) throw new Error("could not find helper text");
-      await el.screenshot({ path: `${OUT}/steps3-d-helper.png` });
-      console.log("✓ d: helper text");
+      if (!el) throw new Error("could not find Steps header");
+      await el.screenshot({ path: `${OUT}/btn4-c-subtitle.png` });
+      console.log("✓ c: two-line subtitle");
     }
 
-    // (b) One card showing the three zones + tip placement (edit state, so
-    //     Zone B is populated). Capture the whole row so the rail shows too.
-    await gotoSteps(page);
-    await activateCard(page, TIPPED);
-    {
-      const el = await rowHandle(page, TIPPED);
-      await el!.screenshot({ path: `${OUT}/steps3-b-card-zones.png` });
-      console.log("✓ b: card three zones + tip");
-    }
-
-    // (c) Rail close-up — badge + drag handle + connecting line, across the
-    //     first two steps so the line between badges is visible.
-    await gotoSteps(page);
-    {
-      const r0 = await rowHandle(page, 0);
-      const r1 = await rowHandle(page, 1);
-      const b0 = await r0!.boundingBox();
-      const b1 = await r1!.boundingBox();
-      if (!b0 || !b1) throw new Error("need two rows for the rail shot");
-      await page.screenshot({
-        path: `${OUT}/steps3-c-rail.png`,
-        clip: {
-          x: Math.max(0, b0.x - 6),
-          y: b0.y - 8,
-          width: 104,
-          height: b1.y + 64 - b0.y,
-        },
-      });
-      console.log("✓ c: rail close-up (badges + handle + line)");
-    }
-
-    console.log("\nAll shots in /tmp/steps3-*.png");
+    console.log("\nAll shots in /tmp/btn4-*.png");
   } finally {
     await browser.close();
   }

@@ -81,6 +81,29 @@ export default function StepsEditor({
     });
   }
 
+  // Outside-click on a step with no real edits asks to deactivate it. A
+  // brand-new (unsaved) step that's still entirely empty is removed outright,
+  // so an accidental "+" insert doesn't leave an orphan blank card; saved
+  // steps simply return to read state.
+  function deactivate(id: string) {
+    const idx = steps.findIndex((s) => stepDndId(s) === id);
+    const s = idx >= 0 ? steps[idx] : null;
+    const emptyNew =
+      s != null &&
+      s.id === null &&
+      s.instruction.trim() === "" &&
+      s.tip.trim() === "" &&
+      s.timer_minutes === null &&
+      s.photos.length === 0;
+    setActiveIds((prev) => {
+      if (!prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
+    if (emptyNew) onChange(steps.filter((_, i) => i !== idx));
+  }
+
   function changeStep(index: number, patch: Partial<EditorStep>) {
     onChange(steps.map((s, i) => (i === index ? { ...s, ...patch } : s)));
   }
@@ -118,7 +141,12 @@ export default function StepsEditor({
       <div className="mt-8 flex items-start justify-between gap-4">
         <div>
           <h2 className="font-serif text-2xl font-medium text-ink">Steps</h2>
-          <p className="mt-1 text-sm text-ink-muted">Click any step to edit</p>
+          <p className="mt-1 text-sm text-ink-muted">
+            Click any step to edit.
+            <br />
+            Press <span className="font-semibold">Save recipe</span> when you
+            are done.
+          </p>
         </div>
         <p className="shrink-0 text-sm text-ink-muted">+ Click to add step</p>
       </div>
@@ -149,7 +177,9 @@ export default function StepsEditor({
                     }
                     isFirst={index === 0}
                     isLast={index === steps.length - 1}
+                    dialogOpen={pendingDelete !== null}
                     onActivate={() => activate(id)}
+                    onRequestDeactivate={() => deactivate(id)}
                     onChange={(patch) => changeStep(index, patch)}
                     onDelete={() => setPendingDelete(index)}
                   />
