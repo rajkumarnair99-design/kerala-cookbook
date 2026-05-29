@@ -32,7 +32,7 @@ import StepsEditor from "./StepsEditor";
 
 /** Shared input styling — matches the public site's warm, minimal form look. */
 const inputClass =
-  "w-full rounded-lg border border-rule bg-background px-3 py-2 text-ink " +
+  "w-full rounded-lg border border-rule bg-inset px-3 py-2 text-ink " +
   "placeholder:text-ink-muted focus:outline-none focus:border-accent " +
   "focus:ring-1 focus:ring-accent";
 
@@ -298,7 +298,7 @@ export default function RecipeEditor({
                       photo's natural aspect ratio — the <img> is absolutely
                       positioned so its intrinsic size can never push the
                       card past the aspect-ratio frame. */}
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-rule bg-surface">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-rule bg-card">
                     {recipe.hero_image_url ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -341,7 +341,7 @@ export default function RecipeEditor({
                       height in the column; the inner textarea uses the same
                       trick to fill the box. `rows={6}` sets a sensible
                       minimum if the right column is short. */}
-                  <div className="flex flex-1 min-h-0 flex-col rounded-2xl border border-rule bg-surface p-4">
+                  <div className="flex flex-1 min-h-0 flex-col rounded-2xl border border-rule bg-card p-4">
                     <div className="mb-2 text-xs uppercase tracking-[0.12em] text-ink-muted">
                       Story
                     </div>
@@ -468,7 +468,7 @@ export default function RecipeEditor({
                 </p>
               </div>
 
-              <div className="mt-6 flex flex-col rounded-2xl border border-rule bg-surface p-4">
+              <div className="mt-6 flex flex-col rounded-2xl border border-rule bg-card p-4">
                 <textarea
                   value={recipe.notes}
                   onChange={(event) => {
@@ -656,7 +656,7 @@ function CategorySelect({
         <ul
           role="listbox"
           aria-label="Category"
-          className="absolute z-30 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-rule bg-surface py-1 shadow-lg"
+          className="absolute z-30 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-rule bg-card py-1 shadow-lg"
         >
           {categories.map((category, index) => {
             const isSelected = category.slug === value;

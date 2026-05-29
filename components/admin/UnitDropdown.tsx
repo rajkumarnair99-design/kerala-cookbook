@@ -162,7 +162,7 @@ export default function UnitDropdown({
         <ul
           role="listbox"
           aria-label={ariaLabel}
-          className="absolute z-40 mt-1 max-h-72 w-40 overflow-auto rounded-lg border border-rule bg-surface py-1 shadow-lg"
+          className="absolute z-40 mt-1 max-h-72 w-40 overflow-auto rounded-lg border border-rule bg-card py-1 shadow-lg"
         >
           {/* Blank / no unit */}
           <Option

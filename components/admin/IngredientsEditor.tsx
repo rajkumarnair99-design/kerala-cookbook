@@ -282,7 +282,7 @@ export default function IngredientsEditor({
       </DndContext>
 
       {sections.length === 0 && (
-        <p className="mt-6 rounded-2xl border border-dashed border-rule bg-surface p-8 text-center text-sm text-ink-soft">
+        <p className="mt-6 rounded-2xl border border-dashed border-rule bg-card p-8 text-center text-sm text-ink-soft">
           No sections yet. Use “Add section” to create one.
         </p>
       )}

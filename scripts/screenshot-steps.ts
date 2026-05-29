@@ -51,29 +51,30 @@ async function gotoSteps(page: Page) {
   await wait(400);
 }
 
-/** Element handle for the Nth step card (its root div = the grip's parent). */
-async function cardHandle(page: Page, index: number) {
+/** The Nth step ROW (rail + card) — the sortable node = grip's grandparent. */
+async function rowHandle(page: Page, index: number) {
   const handle = await page.evaluateHandle((i) => {
     const grips = Array.from(
       document.querySelectorAll('button[aria-label="Drag to reorder step"]'),
     );
-    const card = grips[i]?.parentElement ?? null;
-    card?.scrollIntoView({ block: "center" });
-    return card;
+    const row = grips[i]?.parentElement?.parentElement ?? null;
+    row?.scrollIntoView({ block: "center" });
+    return row;
   }, index);
   await wait(250);
   return handle.asElement();
 }
 
-/** Click a button in <main> by its exact trimmed text. */
-async function clickButtonByText(page: Page, text: string) {
-  await page.evaluate((t) => {
-    const btn = Array.from(document.querySelectorAll("main button")).find(
-      (b) => b.textContent?.trim() === t,
-    ) as HTMLButtonElement | undefined;
-    btn?.click();
-  }, text);
-  await wait(300);
+/** The Nth step CARD (the bordered box; the row's last child). */
+async function cardHandle(page: Page, index: number) {
+  const handle = await page.evaluateHandle((i) => {
+    const grips = Array.from(
+      document.querySelectorAll('button[aria-label="Drag to reorder step"]'),
+    );
+    return grips[i]?.parentElement?.parentElement?.lastElementChild ?? null;
+  }, index);
+  await wait(150);
+  return handle.asElement();
 }
 
 /** Click the body of card N (activates it without hitting a control). */
@@ -82,8 +83,8 @@ async function activateCard(page: Page, index: number) {
   if (!el) throw new Error(`No card ${index}`);
   const box = await el.boundingBox();
   if (!box) throw new Error(`Card ${index} has no box`);
-  // Click near the top-left of the instruction column, away from buttons/grip.
-  await page.mouse.click(box.x + 90, box.y + 24);
+  // Click in the instruction area (right of the photo), away from any control.
+  await page.mouse.click(box.x + 220, box.y + 24);
   await wait(300);
 }
 
@@ -161,73 +162,66 @@ async function main() {
       });
     }
 
-    // Card indices (0-based) chosen from the recipe's data:
-    //  step 5 (idx 4): no tip, no timer    step 8 (idx 7): tip + 2-min timer
-    //  step 1 (idx 0): has a tip
-    const PLAIN = 4;
-    const TIP_TIMER = 7;
+    // Step 1 (idx 0) has a tip — used for the card/zone + tip close-ups.
     const TIPPED = 0;
 
-    // (a) READ state, no tip & no timer — should still read as a clear card.
+    // (a) Full Steps page from the top — rail with badges + handles outside
+    //     the cards, the connecting line, internal dividers, and helper text.
     await gotoSteps(page);
-    {
-      const el = await cardHandle(page, PLAIN);
-      await el!.screenshot({ path: `${OUT}/steps2-a-read-plain.png` });
-      console.log("✓ a: read state (no tip / no timer)");
-    }
-
-    // (b) READ state WITH tip and WITH timer.
-    await gotoSteps(page);
-    {
-      const el = await cardHandle(page, TIP_TIMER);
-      await el!.screenshot({ path: `${OUT}/steps2-b-read-tip-timer.png` });
-      console.log("✓ b: read state (tip + timer)");
-    }
-
-    // (c) EDIT state — all four buttons; background must stay cream.
-    await gotoSteps(page);
-    await activateCard(page, TIPPED);
-    {
-      const el = await cardHandle(page, TIPPED);
-      await el!.screenshot({ path: `${OUT}/steps2-c-edit-buttons.png` });
-      console.log("✓ c: edit state, four buttons");
-    }
-
-    // (d) EDIT state with the instruction editor open.
-    await gotoSteps(page);
-    await activateCard(page, TIPPED);
-    await clickButtonByText(page, "Edit step");
+    await page.evaluate(() => {
+      const m = document.querySelector("main");
+      if (m) m.scrollTop = 0;
+    });
     await wait(300);
+    await page.screenshot({ path: `${OUT}/steps3-a-fulltop.png` });
+    console.log("✓ a: full page from top");
+
+    // (d) Top-right helper text "+ Click to add step" (the header block).
     {
-      const el = await cardHandle(page, TIPPED);
-      await el!.screenshot({ path: `${OUT}/steps2-d-edit-instruction.png` });
-      console.log("✓ d: edit state, instruction editor open");
+      const header = await page.evaluateHandle(() => {
+        const p = Array.from(document.querySelectorAll("main p")).find(
+          (e) => e.textContent?.trim() === "+ Click to add step",
+        );
+        return p?.parentElement ?? null;
+      });
+      const el = header.asElement();
+      if (!el) throw new Error("could not find helper text");
+      await el.screenshot({ path: `${OUT}/steps3-d-helper.png` });
+      console.log("✓ d: helper text");
     }
 
-    // (e) The tip callout, close up (read state).
+    // (b) One card showing the three zones + tip placement (edit state, so
+    //     Zone B is populated). Capture the whole row so the rail shows too.
+    await gotoSteps(page);
+    await activateCard(page, TIPPED);
+    {
+      const el = await rowHandle(page, TIPPED);
+      await el!.screenshot({ path: `${OUT}/steps3-b-card-zones.png` });
+      console.log("✓ b: card three zones + tip");
+    }
+
+    // (c) Rail close-up — badge + drag handle + connecting line, across the
+    //     first two steps so the line between badges is visible.
     await gotoSteps(page);
     {
-      const tip = await page.evaluateHandle((i) => {
-        const grips = Array.from(
-          document.querySelectorAll('button[aria-label="Drag to reorder step"]'),
-        );
-        const card = grips[i]?.parentElement;
-        if (!card) return null;
-        const label = Array.from(card.querySelectorAll("span")).find(
-          (s) => s.textContent?.trim() === "Tip",
-        );
-        const box = label?.parentElement?.parentElement ?? null;
-        box?.scrollIntoView({ block: "center" });
-        return box;
-      }, TIPPED);
-      await wait(250);
-      const el = tip.asElement();
-      if (!el) throw new Error("could not find tip callout");
-      await el.screenshot({ path: `${OUT}/steps2-e-tip-closeup.png` });
-      console.log("✓ e: tip callout close-up");
+      const r0 = await rowHandle(page, 0);
+      const r1 = await rowHandle(page, 1);
+      const b0 = await r0!.boundingBox();
+      const b1 = await r1!.boundingBox();
+      if (!b0 || !b1) throw new Error("need two rows for the rail shot");
+      await page.screenshot({
+        path: `${OUT}/steps3-c-rail.png`,
+        clip: {
+          x: Math.max(0, b0.x - 6),
+          y: b0.y - 8,
+          width: 104,
+          height: b1.y + 64 - b0.y,
+        },
+      });
+      console.log("✓ c: rail close-up (badges + handle + line)");
     }
 
-    console.log("\nAll shots in /tmp/steps2-*.png");
+    console.log("\nAll shots in /tmp/steps3-*.png");
   } finally {
     await browser.close();
   }

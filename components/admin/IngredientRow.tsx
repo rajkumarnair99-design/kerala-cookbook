@@ -44,7 +44,7 @@ export default function IngredientRow({
   };
 
   return (
-    <div ref={setNodeRef} style={style} className={ROW_GRID + " bg-surface py-1"}>
+    <div ref={setNodeRef} style={style} className={ROW_GRID + " bg-card py-1"}>
       {/* Drag handle — keyboard-accessible: focus it, Space to lift, arrows
           to move, Space to drop (via @dnd-kit's KeyboardSensor). */}
       <button

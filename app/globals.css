@@ -3,6 +3,11 @@
 :root {
   --background: #faf6f0;
   --surface: #ffffff;
+  /* Palette signature (warm cream, no white). See AGENTS.md. Editor surfaces
+     use these warm off-cream tokens; never stark white. */
+  --card: #fdfaf4;
+  --inset: #fdfaf4;
+  --soft: #f7f1ec;
   --ink: #2b2520;
   --ink-soft: #5a4f47;
   --ink-muted: #8b7d73;
@@ -15,6 +20,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-inset: var(--inset);
+  --color-soft: var(--soft);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-muted: var(--ink-muted);

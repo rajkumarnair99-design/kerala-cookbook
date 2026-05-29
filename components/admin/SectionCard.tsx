@@ -115,7 +115,7 @@ export default function SectionCard({
     <section
       ref={setNodeRef}
       style={style}
-      className="rounded-2xl border border-rule bg-surface"
+      className="rounded-2xl border border-rule bg-card"
     >
       {/* Header */}
       <div className="flex items-center gap-2 px-4 py-3">

@@ -112,10 +112,15 @@ export default function StepsEditor({
 
   return (
     <>
-      {/* Header — adding now happens between steps, so there's no top button. */}
-      <div className="mt-8">
-        <h2 className="font-serif text-2xl font-medium text-ink">Steps</h2>
-        <p className="mt-1 text-sm text-ink-muted">Click any step to edit</p>
+      {/* Header — adding now happens between steps (via the "+" inserters), so
+          the old top-right "+ Add step" button is replaced by helper text that
+          explains the pattern. */}
+      <div className="mt-8 flex items-start justify-between gap-4">
+        <div>
+          <h2 className="font-serif text-2xl font-medium text-ink">Steps</h2>
+          <p className="mt-1 text-sm text-ink-muted">Click any step to edit</p>
+        </div>
+        <p className="shrink-0 text-sm text-ink-muted">+ Click to add step</p>
       </div>
 
       {/* Timeline */}
@@ -129,8 +134,8 @@ export default function StepsEditor({
           strategy={verticalListSortingStrategy}
         >
           <div className="mt-6">
-            {/* Inserter above the first step. */}
-            <StepInserter onInsert={() => insertStep(0)} />
+            {/* Inserter above the first step — no rail line above badge 1. */}
+            <StepInserter onInsert={() => insertStep(0)} connected={false} />
             {steps.map((step, index) => {
               const id = stepDndId(step);
               return (
@@ -142,12 +147,18 @@ export default function StepsEditor({
                     autoEdit={
                       step._dndKey != null && step._dndKey === justAddedKey
                     }
+                    isFirst={index === 0}
+                    isLast={index === steps.length - 1}
                     onActivate={() => activate(id)}
                     onChange={(patch) => changeStep(index, patch)}
                     onDelete={() => setPendingDelete(index)}
                   />
-                  {/* Inserter in the gap below this step. */}
-                  <StepInserter onInsert={() => insertStep(index + 1)} />
+                  {/* Inserter in the gap below this step. It carries the rail
+                      line only when there's a following step to connect to. */}
+                  <StepInserter
+                    onInsert={() => insertStep(index + 1)}
+                    connected={index < steps.length - 1}
+                  />
                 </Fragment>
               );
             })}
@@ -156,7 +167,7 @@ export default function StepsEditor({
       </DndContext>
 
       {steps.length === 0 && (
-        <p className="mt-2 rounded-2xl border border-dashed border-rule bg-surface p-8 text-center text-sm text-ink-soft">
+        <p className="mt-2 rounded-2xl border border-dashed border-rule bg-card p-8 text-center text-sm text-ink-soft">
           No steps yet. Use the “+” above to add the first one.
         </p>
       )}

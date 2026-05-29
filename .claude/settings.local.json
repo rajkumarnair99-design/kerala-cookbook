@@ -26,7 +26,9 @@
       "Bash(sed -n '/export type EditorStep/,/};/p' types/recipe.ts)",
       "Bash(sed -n '/steps: recipe.steps.map/,/}\\)\\),/p' app/admin/recipes/\\\\[slug\\\\]/edit/actions.ts)",
       "Bash(npx eslint *)",
-      "Bash(sips -g pixelWidth -g pixelHeight steps-mockup.png)"
+      "Bash(sips -g pixelWidth -g pixelHeight steps-mockup.png)",
+      "Bash([ -d \"node_modules/$lib\" ])",
+      "Bash(python3 -c \"import PIL; print\\('  PIL', PIL.__version__\\)\")"
     ]
   }
 }

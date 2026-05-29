@@ -58,7 +58,7 @@ export default function ConfirmDialog({
         className="absolute inset-0 cursor-default bg-ink/30 backdrop-blur-[1px]"
       />
       {/* Card */}
-      <div className="relative w-full max-w-sm rounded-2xl border border-rule bg-surface p-6 shadow-xl">
+      <div className="relative w-full max-w-sm rounded-2xl border border-rule bg-card p-6 shadow-xl">
         <h2 className="font-serif text-xl text-ink">{title}</h2>
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">{message}</p>
         <div className="mt-6 flex justify-end gap-3">
