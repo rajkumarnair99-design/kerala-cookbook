@@ -1,4 +1,4 @@
-import type { EditorIngredient, EditorSection } from "@/types/recipe";
+import type { EditorIngredient, EditorSection, EditorStep } from "@/types/recipe";
 
 /**
  * Stable drag-and-drop ids. Saved rows/sections use their database id;
@@ -12,4 +12,8 @@ export function sectionDndId(s: EditorSection): string {
 
 export function ingredientDndId(ing: EditorIngredient): string {
   return ing.id !== null ? `ing-id-${ing.id}` : `ing-new-${ing._dndKey}`;
+}
+
+export function stepDndId(step: EditorStep): string {
+  return step.id !== null ? `step-id-${step.id}` : `step-new-${step._dndKey}`;
 }

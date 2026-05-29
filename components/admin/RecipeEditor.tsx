@@ -24,9 +24,11 @@ import type {
   EditorIngredient,
   EditorRecipe,
   EditorSection,
+  EditorStep,
   SaveResult,
 } from "@/types/recipe";
 import IngredientsEditor from "./IngredientsEditor";
+import StepsEditor from "./StepsEditor";
 
 /** Shared input styling — matches the public site's warm, minimal form look. */
 const inputClass =
@@ -79,6 +81,9 @@ export default function RecipeEditor({
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<Toast | null>(null);
   const [activeTab, setActiveTab] = useState<TabId>("overview");
+  // Bumped on every successful save. StepsEditor watches it to return all
+  // steps to read state and close any revealed editors.
+  const [savedNonce, setSavedNonce] = useState(0);
 
   // Warn before leaving (tab close, refresh, external nav) with edits pending.
   useEffect(() => {
@@ -119,6 +124,11 @@ export default function RecipeEditor({
     setDirty(true);
   }
 
+  function updateSteps(steps: EditorStep[]) {
+    setRecipe((current) => ({ ...current, steps }));
+    setDirty(true);
+  }
+
   async function handleSave() {
     if (saving) return;
     setSaving(true);
@@ -130,6 +140,7 @@ export default function RecipeEditor({
       setRecipe(result.recipe);
       setTagsText(result.recipe.tags.join(", "));
       setDirty(false);
+      setSavedNonce((n) => n + 1);
       setToast({ text: "Recipe saved.", kind: "ok" });
     } else {
       setToast({ text: result.error, kind: "error" });
@@ -144,8 +155,6 @@ export default function RecipeEditor({
       event.preventDefault();
     }
   }
-
-  const activeTabMeta = TABS.find((tab) => tab.id === activeTab)!;
 
   return (
     // Fixed-height shell: the page itself never scrolls. The top bar stays
@@ -189,16 +198,9 @@ export default function RecipeEditor({
               type="button"
               onClick={handleSave}
               disabled={saving}
-              className="relative rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-ink disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-ink disabled:cursor-not-allowed disabled:opacity-60"
             >
               {saving ? "Saving…" : "Save recipe"}
-              {dirty && !saving && (
-                <span
-                  aria-label="Unsaved changes"
-                  title="Unsaved changes"
-                  className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-sm bg-accent-soft ring-2 ring-background"
-                />
-              )}
             </button>
           </div>
         </div>
@@ -494,17 +496,13 @@ export default function RecipeEditor({
             />
           )}
 
-          {/* Placeholder — only Steps (2D) remains unbuilt. Overview,
-              Ingredients, and Kitchen Notes have real panels above. */}
+          {/* Steps tab (2D) — timeline of step cards. */}
           {activeTab === "steps" && (
-            <div className="mt-8 rounded-2xl border border-rule bg-surface p-10 sm:p-14 text-center">
-              <p className="font-serif text-2xl text-ink">
-                {activeTabMeta.label}
-              </p>
-              <p className="mt-2 text-sm text-ink-muted">
-                Coming in Stage {activeTabMeta.stage}.
-              </p>
-            </div>
+            <StepsEditor
+              steps={recipe.steps}
+              onChange={updateSteps}
+              savedNonce={savedNonce}
+            />
           )}
         </main>
       </div>

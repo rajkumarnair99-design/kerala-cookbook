@@ -22,7 +22,11 @@
       "Bash(git reset *)",
       "Bash(perl -pi -e s/rounded-full/rounded-chiclet/g components/cook/CookMode.tsx components/cook/Timer.tsx components/CookModeButton.tsx components/FavoriteButton.tsx components/SearchBar.tsx 'app/\\(site\\)/not-found.tsx' 'app/\\(site\\)/search/page.tsx' 'app/\\(site\\)/search/SearchResults.tsx')",
       "Bash(perl -pi -e 's/rounded-full/rounded-2xl/g' components/VideoPanel.tsx)",
-      "Bash(perl -pi -e 's/rounded-full/rounded-lg/g' \"app/\\(site\\)/recipes/[slug]/page.tsx\")"
+      "Bash(perl -pi -e 's/rounded-full/rounded-lg/g' \"app/\\(site\\)/recipes/[slug]/page.tsx\")",
+      "Bash(sed -n '/export type EditorStep/,/};/p' types/recipe.ts)",
+      "Bash(sed -n '/steps: recipe.steps.map/,/}\\)\\),/p' app/admin/recipes/\\\\[slug\\\\]/edit/actions.ts)",
+      "Bash(npx eslint *)",
+      "Bash(sips -g pixelWidth -g pixelHeight steps-mockup.png)"
     ]
   }
 }

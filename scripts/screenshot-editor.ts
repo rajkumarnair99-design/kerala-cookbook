@@ -149,6 +149,23 @@ async function main() {
       }, label);
       if (!clicked) throw new Error(`Could not find nav tab labelled "${label}"`);
       await new Promise((r) => setTimeout(r, 400));
+      // Wait for any images in the newly-shown tab to finish loading.
+      await page
+        .evaluate(
+          () =>
+            Promise.all(
+              Array.from(document.querySelectorAll("main img")).map((img) => {
+                const el = img as HTMLImageElement;
+                if (el.complete) return null;
+                return new Promise((res) => {
+                  el.onload = res;
+                  el.onerror = res;
+                });
+              }),
+            ),
+        )
+        .catch(() => {});
+      await new Promise((r) => setTimeout(r, 600));
     }
 
     // --make-dirty types a space into the first content input so the editor's

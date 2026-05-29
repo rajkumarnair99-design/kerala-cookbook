@@ -107,6 +107,11 @@ export type EditorStep = {
   timer_minutes: number | null;
   tip: string;
   photos: { url: string }[];
+  /** Editor-only, transient identity for a not-yet-saved step so drag-and-drop
+   *  has a stable key before the row gets a real database id. Never sent to
+   *  the server (the save action picks fields explicitly) and never loaded
+   *  from it — saved steps are identified by their `id` instead. */
+  _dndKey?: string;
 };
 
 export type EditorRecipe = {
