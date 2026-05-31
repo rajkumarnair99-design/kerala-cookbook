@@ -40,6 +40,21 @@ export type RecipeSummary = {
   title: string;
   author: string | null;
   categoryName: string | null;
+  /** The category this recipe belongs to (FK slug) and its position within
+   *  that category. Used by the grouped, drag-orderable admin list. */
+  categorySlug: string;
+  sortOrder: number;
+  heroImageUrl: string | null;
+  tags: string[];
+};
+
+/** A category as the admin list needs it: identity, display name, its own
+ *  order among categories, and how many recipes it holds. */
+export type AdminCategory = {
+  slug: string;
+  name: string;
+  sortOrder: number;
+  count: number;
 };
 
 /**

@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { supabase } from "@/lib/supabase";
 import type {
+  AdminCategory,
   Category,
   CookbookSource,
   EditorIngredient,
@@ -217,18 +218,27 @@ type RecipeSummaryRow = {
   slug: string;
   title: string;
   author: string | null;
+  category_slug: string;
+  sort_order: number;
+  hero_image_url: string | null;
+  tags: string[] | null;
   categories: { name: string } | null;
 };
 
 /**
- * Every recipe as a lightweight summary (slug, title, author, category
- * name), sorted alphabetically by title. Used by the admin recipe list.
+ * Every recipe as a lightweight summary for the admin list, ordered by
+ * (category_slug, sort_order) so each category's recipes arrive in their
+ * stored within-category order. The page groups them by category using the
+ * category order from getAdminCategories.
  */
 export const getRecipeSummaries = cache(async (): Promise<RecipeSummary[]> => {
   const { data, error } = await supabase
     .from("recipes")
-    .select("slug, title, author, categories ( name )")
-    .order("title", { ascending: true });
+    .select(
+      "slug, title, author, category_slug, sort_order, hero_image_url, tags, categories ( name )",
+    )
+    .order("category_slug", { ascending: true })
+    .order("sort_order", { ascending: true });
   if (error) {
     throw new Error(`Failed to load the recipe list: ${error.message}`);
   }
@@ -237,6 +247,36 @@ export const getRecipeSummaries = cache(async (): Promise<RecipeSummary[]> => {
     title: row.title,
     author: row.author,
     categoryName: row.categories?.name ?? null,
+    categorySlug: row.category_slug,
+    sortOrder: row.sort_order,
+    heroImageUrl: row.hero_image_url,
+    tags: row.tags ?? [],
+  }));
+});
+
+/**
+ * Categories for the admin list: identity + display name + their own order +
+ * recipe count, in sort_order. Built from the categories table and the
+ * per-category counts.
+ */
+export const getAdminCategories = cache(async (): Promise<AdminCategory[]> => {
+  const { data, error } = await supabase
+    .from("categories")
+    .select("slug, name, sort_order")
+    .order("sort_order", { ascending: true });
+  if (error) {
+    throw new Error(`Failed to load categories: ${error.message}`);
+  }
+  const counts = await getCategoryCounts();
+  return ((data ?? []) as unknown as {
+    slug: string;
+    name: string;
+    sort_order: number;
+  }[]).map((row) => ({
+    slug: row.slug,
+    name: row.name,
+    sortOrder: row.sort_order,
+    count: counts[row.slug] ?? 0,
   }));
 });
 
