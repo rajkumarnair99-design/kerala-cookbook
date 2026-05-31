@@ -18,8 +18,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Good food at home — A Kerala Family Recipe Collection",
-    template: "%s · Good food at home",
+    default: "Good Food at Home",
+    template: "%s · Good Food at Home",
   },
   description:
     "A digital home for our family cookbook — recipes from the southern parts of Kerala, set down by K. Indira Devi and translated by Rajkumar Nair.",
