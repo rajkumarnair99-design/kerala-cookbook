@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function AdminHeader({ email }: { email: string }) {
   return (
     <header className="border-b border-rule bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70 sticky top-0 z-20">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
         <Link
           href="/admin"
           className="font-serif text-lg sm:text-xl text-ink tracking-tight leading-none hover:text-accent-ink transition-colors"
