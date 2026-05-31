@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   DndContext,
   KeyboardSensor,
@@ -16,9 +16,9 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { Plus } from "lucide-react";
 import type { EditorIngredient, EditorSection } from "@/types/recipe";
 import SectionCard from "./SectionCard";
+import SectionInserter from "./SectionInserter";
 import ConfirmDialog from "./ConfirmDialog";
 import { sectionDndId } from "./dnd-helpers";
 
@@ -48,8 +48,7 @@ function sectionIngredients(
 }
 
 /** Re-flatten ingredients grouped by the given section order (preserving
- *  each section's internal order). Keeps the saved sort_order matching the
- *  visible layout. */
+ *  each section's internal order). */
 function regroup(
   sections: EditorSection[],
   ingredients: EditorIngredient[],
@@ -79,9 +78,7 @@ function newClientKey(): string {
     : `new-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
-/** A blank ingredient that belongs to the given section, carrying the
- *  section link (real id, or client_key for a not-yet-saved section) plus a
- *  transient _dndKey so drag-and-drop has a stable id before it's saved. */
+/** A blank ingredient that belongs to the given section. */
 function blankIngredient(section: EditorSection): EditorIngredient {
   return {
     id: null,
@@ -97,35 +94,104 @@ function blankIngredient(section: EditorSection): EditorIngredient {
   };
 }
 
+const isBlankIngredient = (i: EditorIngredient) =>
+  !i.name.trim() &&
+  !i.quantity.trim() &&
+  !i.unit.trim() &&
+  !i.preparation.trim();
+
 export default function IngredientsEditor({
   sections,
   ingredients,
   onChange,
+  savedNonce,
 }: {
   sections: EditorSection[];
   ingredients: EditorIngredient[];
   onChange: (sections: EditorSection[], ingredients: EditorIngredient[]) => void;
+  /** Bumps on each successful save; we watch it to drop every section back to
+   *  read state (mirrors the Steps tab). */
+  savedNonce: number;
 }) {
   const [pendingDelete, setPendingDelete] = useState<EditorSection | null>(null);
+  // Sections currently in edit mode, keyed by section dnd id. Sticky: a section
+  // stays in edit until the next save or an outside-click with no real edits.
+  const [editingSectionIds, setEditingSectionIds] = useState<Set<string>>(
+    () => new Set(),
+  );
+  // Which just-inserted section should autofocus its name input.
+  const [justAddedKey, setJustAddedKey] = useState<string | null>(null);
 
-  // Sensors for reordering the sections themselves. (Each section card has
-  // its own context for reordering its rows — see SectionCard.)
+  // On a successful save, return every section to read state.
+  const [seenNonce, setSeenNonce] = useState(savedNonce);
+  if (seenNonce !== savedNonce) {
+    setSeenNonce(savedNonce);
+    if (editingSectionIds.size > 0) setEditingSectionIds(new Set());
+  }
+
+  // Sensors for reordering the sections themselves.
   const sectionSensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
 
+  /* ---- edit-state ---- */
+
+  function activate(id: string) {
+    setEditingSectionIds((prev) => {
+      if (prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
+  }
+
+  // Outside-click on a section with no real edits asks to deactivate it. On the
+  // way out we drop any unsaved BLANK ingredient rows (so "Add ingredient" then
+  // click-away leaves nothing behind); a brand-new section that's still empty is
+  // removed entirely. Saved sections just return to read state.
+  function deactivate(id: string) {
+    const s = sections.find((x) => sectionDndId(x) === id) ?? null;
+    setEditingSectionIds((prev) => {
+      if (!prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
+    if (!s) return;
+
+    const afterDrop = ingredients.filter(
+      (i) => !(ingredientBelongs(i, s) && i.id === null && isBlankIngredient(i)),
+    );
+    const remaining = afterDrop.filter((i) => ingredientBelongs(i, s));
+    const emptyNew =
+      s.id === null && s.name.trim() === "" && remaining.length === 0;
+
+    if (emptyNew) {
+      onChange(
+        sections.filter((x) => !sameSection(x, s)),
+        afterDrop.filter((i) => !ingredientBelongs(i, s)),
+      );
+    } else if (afterDrop.length !== ingredients.length) {
+      onChange(sections, afterDrop);
+    }
+  }
+
   /* ---- section operations ---- */
 
-  function addSection() {
-    const newSection: EditorSection = {
+  function insertSection(index: number) {
+    const s: EditorSection = {
       id: null,
       client_key: newClientKey(),
       name: "",
-      sort_order: sections.length,
+      sort_order: index,
       collapsed: false,
     };
-    onChange([...sections, newSection], ingredients);
+    setJustAddedKey(s.client_key);
+    activate(sectionDndId(s));
+    const next = [...sections];
+    next.splice(index, 0, s);
+    onChange(next, ingredients);
   }
 
   function renameSection(s: EditorSection, name: string) {
@@ -140,7 +206,9 @@ export default function IngredientsEditor({
 
   function toggleCollapse(s: EditorSection) {
     onChange(
-      sections.map((x) => (sameSection(x, s) ? { ...x, collapsed: !x.collapsed } : x)),
+      sections.map((x) =>
+        sameSection(x, s) ? { ...x, collapsed: !x.collapsed } : x,
+      ),
       ingredients,
     );
   }
@@ -163,7 +231,6 @@ export default function IngredientsEditor({
   function reorderSections(from: number, to: number) {
     if (from === to) return;
     const newSections = arrayMove(sections, from, to);
-    // Re-flatten so the saved order matches the new section order.
     onChange(newSections, regroup(newSections, ingredients));
   }
 
@@ -211,9 +278,11 @@ export default function IngredientsEditor({
     toIndex: number,
   ) {
     if (fromIndex === toIndex) return;
-    const moved = arrayMove(sectionIngredients(s, ingredients), fromIndex, toIndex);
-    // Rebuild the flat array: target section uses the reordered slice;
-    // every other section keeps its rows in place.
+    const moved = arrayMove(
+      sectionIngredients(s, ingredients),
+      fromIndex,
+      toIndex,
+    );
     const next = sections.flatMap((sec) =>
       sameSection(sec, s) ? moved : sectionIngredients(sec, ingredients),
     );
@@ -226,31 +295,25 @@ export default function IngredientsEditor({
 
   return (
     <>
-      {/* Header — heading + subtitle on the left, "+ Add section" on the right.
-          No top quick-add bar (intentionally removed). */}
+      {/* Header — adding now happens between sections (via the "+" inserters),
+          so the old top-right "+ Add section" button is replaced by helper
+          text that explains the pattern. */}
       <div className="mt-8 flex items-start justify-between gap-4">
         <div>
-          <h2 className="font-serif text-2xl font-medium text-ink">Ingredients</h2>
+          <h2 className="font-serif text-2xl font-medium text-ink">
+            Ingredients
+          </h2>
           <p className="mt-1 text-sm text-ink-muted">
             Add, edit, and reorder ingredients for your recipe.
+            <br />
+            Press <span className="font-semibold">Save recipe</span> when you
+            are done.
           </p>
         </div>
-        <div className="shrink-0 text-right">
-          <button
-            type="button"
-            onClick={addSection}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-rule bg-background px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:border-accent hover:text-accent-ink"
-          >
-            <Plus className="h-4 w-4" aria-hidden />
-            Add section
-          </button>
-          <p className="mt-1.5 max-w-[16rem] text-xs text-ink-muted">
-            Create a new ingredient section
-          </p>
-        </div>
+        <p className="shrink-0 text-sm text-ink-muted">+ Click to add section</p>
       </div>
 
-      {/* Section cards — sortable. */}
+      {/* Section cards — sortable, with "+" inserters between/around them. */}
       <DndContext
         sensors={sectionSensors}
         collisionDetection={closestCenter}
@@ -260,30 +323,50 @@ export default function IngredientsEditor({
           items={sections.map((s) => sectionDndId(s))}
           strategy={verticalListSortingStrategy}
         >
-          <div className="mt-6 space-y-4">
-            {sections.map((section) => (
-              <SectionCard
-                key={sectionDndId(section)}
-                section={section}
-                ingredients={sectionIngredients(section, ingredients)}
-                onRename={(name) => renameSection(section, name)}
-                onToggleCollapse={() => toggleCollapse(section)}
-                onDelete={() => requestDeleteSection(section)}
-                onAddIngredient={() => addIngredient(section)}
-                onIngredientChange={(i, patch) => changeIngredient(section, i, patch)}
-                onIngredientDelete={(i) => deleteIngredient(section, i)}
-                onReorderIngredients={(from, to) =>
-                  reorderIngredients(section, from, to)
-                }
-              />
-            ))}
+          <div className="mt-6">
+            {/* Inserter above the first section. */}
+            <SectionInserter onInsert={() => insertSection(0)} />
+            {sections.map((section, index) => {
+              const id = sectionDndId(section);
+              return (
+                <Fragment key={id}>
+                  <SectionCard
+                    section={section}
+                    ingredients={sectionIngredients(section, ingredients)}
+                    isActive={editingSectionIds.has(id)}
+                    autoFocusName={
+                      section.client_key != null &&
+                      section.client_key === justAddedKey
+                    }
+                    dialogOpen={pendingDelete !== null}
+                    onActivate={() => activate(id)}
+                    onRequestDeactivate={() => deactivate(id)}
+                    onRename={(name) => renameSection(section, name)}
+                    onToggleCollapse={() => toggleCollapse(section)}
+                    onDelete={() => requestDeleteSection(section)}
+                    onAddIngredient={() => addIngredient(section)}
+                    onIngredientChange={(i, patch) =>
+                      changeIngredient(section, i, patch)
+                    }
+                    onIngredientDelete={(i) => deleteIngredient(section, i)}
+                    onReorderIngredients={(from, to) =>
+                      reorderIngredients(section, from, to)
+                    }
+                  />
+                  {/* Inserter in the gap below this section. */}
+                  <SectionInserter
+                    onInsert={() => insertSection(index + 1)}
+                  />
+                </Fragment>
+              );
+            })}
           </div>
         </SortableContext>
       </DndContext>
 
       {sections.length === 0 && (
-        <p className="mt-6 rounded-2xl border border-dashed border-rule bg-card p-8 text-center text-sm text-ink-soft">
-          No sections yet. Use “Add section” to create one.
+        <p className="mt-2 rounded-2xl border border-dashed border-rule bg-card p-8 text-center text-sm text-ink-soft">
+          No sections yet. Use the “+” above to add the first one.
         </p>
       )}
 

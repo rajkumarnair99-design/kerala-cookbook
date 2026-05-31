@@ -168,6 +168,31 @@ async function main() {
       await new Promise((r) => setTimeout(r, 600));
     }
 
+    // --enter-edit clicks the top-right "Click to edit" pencil so the tab
+    // enters edit mode (Overview / Kitchen Notes view-first pattern). Run
+    // after any --tab switch.
+    if (process.argv.includes("--enter-edit")) {
+      const entered = await page.evaluate(() => {
+        const btn = document.querySelector(
+          'main button[aria-label^="Edit "]',
+        ) as HTMLButtonElement | null;
+        if (btn) {
+          btn.click();
+          return true;
+        }
+        return false;
+      });
+      if (!entered) throw new Error('Could not find the "Click to edit" trigger');
+      await new Promise((r) => setTimeout(r, 500));
+    }
+
+    // --open-category opens the Category dropdown BEFORE the main capture, so
+    // the screenshot shows it active (edit state only).
+    if (process.argv.includes("--open-category")) {
+      await page.click('button[aria-haspopup="listbox"]');
+      await new Promise((r) => setTimeout(r, 400));
+    }
+
     // --make-dirty types a space into the first content input so the editor's
     // "unsaved changes" status dot appears (for capturing it).
     if (process.argv.includes("--make-dirty")) {
