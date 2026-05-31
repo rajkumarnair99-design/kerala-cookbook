@@ -16,9 +16,8 @@ import RecipeRow from "./RecipeRow";
  * chiclets plus a functional collapse chevron. The body hosts a per-category
  * SortableContext so its recipes can be dragged to reorder within the
  * category. Cross-category moves happen via each row's "…" menu, not drag.
- *
- * `isDropTarget` is set while a *category* drag hovers this card (so it shows
- * the dashed terracotta drop treatment for the reorder).
+ * Category reorder is a standard vertical sortable in the single-column
+ * layout, so the live-gap reflow alone shows the landing spot.
  */
 export default function CategorySection({
   category,
@@ -26,27 +25,18 @@ export default function CategorySection({
   categories,
   onMove,
   dragHandle,
-  isDropTarget,
 }: {
   category: AdminCategory;
   recipes: RecipeSummary[];
   categories: AdminCategory[];
   onMove: (recipeSlug: string, targetCategorySlug: string) => void;
   dragHandle: ReactNode;
-  isDropTarget: boolean;
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const isEmpty = category.count === 0;
 
   return (
-    <section
-      className={
-        "rounded-2xl border bg-card transition-colors " +
-        (isDropTarget
-          ? "border-rule outline outline-2 outline-dashed outline-accent-soft -outline-offset-2 bg-accent-soft/[0.09]"
-          : "border-rule")
-      }
-    >
+    <section className="rounded-2xl border border-rule bg-card">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3">
         {dragHandle}

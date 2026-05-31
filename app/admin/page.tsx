@@ -4,10 +4,10 @@ import AdminHeader from "@/components/AdminHeader";
 import AdminRecipeList from "@/components/admin/AdminRecipeList";
 
 /**
- * The /admin home — the recipe list, grouped by category and ordered by each
- * category's sort_order (recipes within a category in their own sort_order).
- * Each row links to its editor. Protected: requireOwner() redirects anyone who
- * is not the owner.
+ * The /admin home — the recipe list. A fixed-height shell (like the editor):
+ * the full-width AdminHeader on top, then AdminRecipeList renders the left
+ * sidebar + the scrolling content column. Protected: requireOwner() redirects
+ * anyone who is not the owner.
  */
 export default async function AdminRecipesPage() {
   const user = await requireOwner();
@@ -17,11 +17,9 @@ export default async function AdminRecipesPage() {
   ]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex h-screen flex-col overflow-hidden bg-background">
       <AdminHeader email={user.email ?? ""} />
-      <main className="w-full flex-1">
-        <AdminRecipeList categories={categories} recipes={recipes} />
-      </main>
+      <AdminRecipeList categories={categories} recipes={recipes} />
     </div>
   );
 }

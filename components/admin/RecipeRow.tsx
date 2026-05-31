@@ -42,19 +42,8 @@ export default function RecipeRow({
     opacity: isDragging ? 0.5 : undefined,
   };
 
-  const meta = [
-    recipe.author ?? "no author yet",
-    recipe.tags.length > 0 ? recipe.tags.slice(0, 2).join(", ") : null,
-  ]
-    .filter(Boolean)
-    .join(" · ");
-
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      className="flex items-center gap-2 py-1"
-    >
+    <div ref={setNodeRef} style={style} className="flex items-center gap-1.5 py-0.5">
       {/* Drag grip — the only drag activator. */}
       <button
         ref={setActivatorNodeRef}
@@ -67,10 +56,11 @@ export default function RecipeRow({
         <GripVertical className="h-4 w-4" aria-hidden />
       </button>
 
-      {/* Main click target → editor. */}
+      {/* Main click target → editor. Content-sized (not stretched) so the
+          title, edit-cue, and "…" hug the left with no chasm. */}
       <Link
         href={`/admin/recipes/${recipe.slug}/edit`}
-        className="group flex min-w-0 flex-1 items-center gap-3 rounded-chiclet px-2 py-1.5 transition-colors hover:bg-soft"
+        className="group flex min-w-0 items-center gap-3 rounded-chiclet px-2 py-1.5 transition-colors hover:bg-soft"
       >
         {recipe.heroImageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -98,11 +88,8 @@ export default function RecipeRow({
           </span>
         )}
 
-        <span className="min-w-0 flex-1">
-          <span className="block truncate font-medium text-ink">
-            {recipe.title}
-          </span>
-          <span className="block truncate text-xs text-ink-muted">{meta}</span>
+        <span className="max-w-[28rem] truncate font-medium text-ink">
+          {recipe.title}
         </span>
 
         <span
