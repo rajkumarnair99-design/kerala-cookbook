@@ -30,9 +30,17 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
 import type { AdminCategory, RecipeSummary } from "@/types/recipe";
-import { reorderCategories, reorderRecipes, moveRecipe } from "@/app/admin/actions";
+import {
+  addCategory,
+  deleteCategory,
+  moveRecipe,
+  renameCategory,
+  reorderCategories,
+  reorderRecipes,
+} from "@/app/admin/actions";
 import AdminSidebar, { type ViewMode } from "./AdminSidebar";
 import CategorySection from "./CategorySection";
+import ConfirmDialog from "./ConfirmDialog";
 import RowOverflowMenu from "./RowOverflowMenu";
 
 type Toast = { text: string; kind: "ok" | "error" };
@@ -74,11 +82,21 @@ export default function AdminRecipeList({
   const [recipesByCat, setRecipesByCat] = useState<Record<string, string[]>>(
     () => bucketsFromProps(categories, recipes),
   );
+  // Local display names — lets rename be optimistic and lets a just-added
+  // category (not yet in props) render with its server-returned name.
+  const [catNames, setCatNames] = useState<Record<string, string>>(() =>
+    Object.fromEntries(categories.map((c) => [c.slug, c.name])),
+  );
 
-  // Live categories (counts derived from local state, so they update on moves).
+  // Live categories (name + count derived from local state, so they update
+  // immediately on rename / move / add).
   const liveCategories: AdminCategory[] = catOrder
-    .filter((slug) => catMap[slug])
-    .map((slug) => ({ ...catMap[slug], count: recipesByCat[slug]?.length ?? 0 }));
+    .map((slug) => ({
+      slug,
+      name: catNames[slug] ?? catMap[slug]?.name ?? slug,
+      sortOrder: catMap[slug]?.sortOrder ?? 0,
+      count: recipesByCat[slug]?.length ?? 0,
+    }));
 
   // recipe slug → category slug (current).
   const recipeToCat: Record<string, string> = {};
@@ -103,6 +121,8 @@ export default function AdminRecipeList({
     null,
   );
   const [toast, setToast] = useState<Toast | null>(null);
+  const [pendingDelete, setPendingDelete] = useState<AdminCategory | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const registerCard = useCallback((slug: string, el: HTMLElement | null) => {
     if (el) cardRefs.current.set(slug, el);
@@ -131,6 +151,7 @@ export default function AdminRecipeList({
     if (activeIdRef.current) return;
     setCatOrder(categories.map((c) => c.slug));
     setRecipesByCat(bucketsFromProps(categories, recipes));
+    setCatNames(Object.fromEntries(categories.map((c) => [c.slug, c.name])));
   }, [categories, recipes]);
 
   // Toast auto-dismiss.
@@ -347,6 +368,70 @@ export default function AdminRecipeList({
     [catOrder, recipesByCat],
   );
 
+  // Add a category. Not pre-optimistic (the unique slug is computed server-
+  // side); on success we insert the server-returned category immediately so it
+  // appears without waiting for the revalidate round-trip.
+  const handleAddCategory = useCallback(
+    async (name: string): Promise<boolean> => {
+      const result = await addCategory(name);
+      if (result.ok) {
+        const c = result.category;
+        setCatOrder((prev) => (prev.includes(c.slug) ? prev : [...prev, c.slug]));
+        setCatNames((prev) => ({ ...prev, [c.slug]: c.name }));
+        setRecipesByCat((prev) =>
+          prev[c.slug] ? prev : { ...prev, [c.slug]: [] },
+        );
+        setToast({ text: "Category added", kind: "ok" });
+        return true;
+      }
+      setToast({ text: `Couldn't add the category — ${result.error}`, kind: "error" });
+      return false;
+    },
+    [],
+  );
+
+  // Rename — optimistic on the local display name; revert on failure.
+  const handleRename = useCallback(
+    (slug: string, newName: string) => {
+      const prevName = catNames[slug] ?? catMap[slug]?.name ?? slug;
+      if (newName === prevName) return;
+      setCatNames((prev) => ({ ...prev, [slug]: newName }));
+      void renameCategory(slug, newName).then((result) => {
+        if (!result.ok) {
+          setCatNames((prev) => ({ ...prev, [slug]: prevName }));
+          setToast({ text: `Couldn't rename the category — ${result.error}`, kind: "error" });
+        } else {
+          setToast({ text: "Category renamed", kind: "ok" });
+        }
+      });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [catNames],
+  );
+
+  // Delete (confirmed) — optimistic removal; revert on failure. The `deleting`
+  // guard means rapid double-confirms only fire once.
+  function handleDeleteConfirmed(category: AdminCategory) {
+    if (deleting) return;
+    setDeleting(true);
+    const snapOrder = [...catOrder];
+    const snapRecipes = cloneBuckets(recipesByCat);
+    const snapNames = { ...catNames };
+    setCatOrder((prev) => prev.filter((s) => s !== category.slug));
+    setPendingDelete(null);
+    void deleteCategory(category.slug).then((result) => {
+      setDeleting(false);
+      if (!result.ok) {
+        setCatOrder(snapOrder);
+        setRecipesByCat(snapRecipes);
+        setCatNames(snapNames);
+        setToast({ text: `Couldn't delete the category — ${result.error}`, kind: "error" });
+      } else {
+        setToast({ text: "Category deleted", kind: "ok" });
+      }
+    });
+  }
+
   const renderCategory = (slug: string) => {
     const category = liveCategories.find((c) => c.slug === slug);
     if (!category) return null;
@@ -360,6 +445,8 @@ export default function AdminRecipeList({
         recipes={recipeList}
         categories={liveCategories}
         onMove={handleMove}
+        onRename={handleRename}
+        onRequestDelete={setPendingDelete}
         registerCard={registerCard}
       />
     );
@@ -389,7 +476,7 @@ export default function AdminRecipeList({
         onViewModeChange={setViewMode}
         activeSlug={viewMode === "byCategory" ? activeSlug : null}
         onCategoryClick={jumpToCategory}
-        onAddCategory={() => undefined}
+        onAddCategory={handleAddCategory}
       />
 
       <main ref={scrollRef} className="min-w-0 flex-1 overflow-y-auto">
@@ -436,7 +523,11 @@ export default function AdminRecipeList({
                   <AlphabeticalRow
                     key={r.slug}
                     recipe={r}
-                    categoryName={catMap[recipeToCat[r.slug]]?.name ?? ""}
+                    categoryName={
+                      catNames[recipeToCat[r.slug]] ??
+                      catMap[recipeToCat[r.slug]]?.name ??
+                      ""
+                    }
                     categories={liveCategories}
                     onMove={handleMove}
                   />
@@ -462,6 +553,18 @@ export default function AdminRecipeList({
           </button>
         </div>
       )}
+
+      <ConfirmDialog
+        open={pendingDelete !== null}
+        title={pendingDelete ? `Delete “${pendingDelete.name}”?` : ""}
+        message="This cannot be undone. The category will be permanently removed."
+        confirmLabel="Delete category"
+        initialFocus="cancel"
+        onConfirm={() => {
+          if (pendingDelete) handleDeleteConfirmed(pendingDelete);
+        }}
+        onCancel={() => setPendingDelete(null)}
+      />
     </div>
   );
 }
@@ -472,12 +575,16 @@ function SortableCategory({
   recipes,
   categories,
   onMove,
+  onRename,
+  onRequestDelete,
   registerCard,
 }: {
   category: AdminCategory;
   recipes: RecipeSummary[];
   categories: AdminCategory[];
   onMove: (recipeSlug: string, targetSlug: string) => void;
+  onRename: (slug: string, newName: string) => void;
+  onRequestDelete: (category: AdminCategory) => void;
   registerCard: (slug: string, el: HTMLElement | null) => void;
 }) {
   const {
@@ -522,6 +629,8 @@ function SortableCategory({
         recipes={recipes}
         categories={categories}
         onMove={onMove}
+        onRename={onRename}
+        onRequestDelete={onRequestDelete}
         dragHandle={grip}
       />
     </div>

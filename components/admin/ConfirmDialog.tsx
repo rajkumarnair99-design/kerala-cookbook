@@ -16,6 +16,7 @@ export default function ConfirmDialog({
   message,
   confirmLabel = "Delete",
   cancelLabel = "Cancel",
+  initialFocus = "confirm",
   onConfirm,
   onCancel,
 }: {
@@ -24,21 +25,41 @@ export default function ConfirmDialog({
   message: string;
   confirmLabel?: string;
   cancelLabel?: string;
+  /** Which button gets focus on open. Use "cancel" for destructive dialogs so
+   *  a stray Enter cancels rather than confirms. Defaults to "confirm". */
+  initialFocus?: "confirm" | "cancel";
   onConfirm: () => void;
   onCancel: () => void;
 }) {
   const confirmRef = useRef<HTMLButtonElement | null>(null);
+  const cancelRef = useRef<HTMLButtonElement | null>(null);
 
-  // Move focus to the confirm button when the dialog opens, and close on Esc.
+  // Focus the chosen button on open; close on Esc; trap Tab within the two
+  // buttons so focus can't wander to the page behind the modal.
   useEffect(() => {
     if (!open) return;
-    confirmRef.current?.focus();
+    (initialFocus === "cancel" ? cancelRef : confirmRef).current?.focus();
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onCancel();
+      if (event.key === "Escape") {
+        onCancel();
+        return;
+      }
+      if (event.key === "Tab") {
+        const first = cancelRef.current;
+        const last = confirmRef.current;
+        if (!first || !last) return;
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [open, onCancel]);
+  }, [open, onCancel, initialFocus]);
 
   if (!open) return null;
 
@@ -63,6 +84,7 @@ export default function ConfirmDialog({
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">{message}</p>
         <div className="mt-6 flex justify-end gap-3">
           <button
+            ref={cancelRef}
             type="button"
             onClick={onCancel}
             className="rounded-lg border border-rule px-4 py-2 text-sm font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink"

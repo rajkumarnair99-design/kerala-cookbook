@@ -1,19 +1,27 @@
 "use client";
 
-import { Plus } from "lucide-react";
+import {
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+} from "react";
+import { Check, Plus } from "lucide-react";
 import type { AdminCategory } from "@/types/recipe";
 
 export type ViewMode = "byCategory" | "alphabetical";
 
 /**
  * The /admin left rail (mirrors the editor's sidebar feel): a view-mode
- * toggle, the categories list (doubles as jump-nav in both modes), an inert
- * "+ Add category" at the bottom of the list, and the leaf wordmark pinned to
- * the very bottom.
+ * toggle, the categories list (doubles as jump-nav in both modes), an
+ * inline-add "+ Add category" control at the bottom of the list, and the leaf
+ * wordmark pinned to the very bottom.
  *
  * The categories list is fully interactive in BOTH modes — clicking one jumps
  * to its section (switching back to "By category" first when in Alphabetical).
  * Active category is marked by a 3px terracotta left-border only (calm).
+ *
+ * Add-category: the button transforms into an autofocused input. Enter or the
+ * ✓ commits (calls onAddCategory, which resolves true on success); Escape or
+ * blur (click-outside) reverts without saving. Empty input does nothing.
  */
 export default function AdminSidebar({
   categories,
@@ -28,12 +36,41 @@ export default function AdminSidebar({
   onViewModeChange: (mode: ViewMode) => void;
   activeSlug: string | null;
   onCategoryClick: (slug: string) => void;
-  onAddCategory: () => void;
+  /** Resolves true on success (the input then closes), false on failure
+   *  (the input stays so the typed name isn't lost). */
+  onAddCategory: (name: string) => Promise<boolean>;
 }) {
   const modes: { id: ViewMode; label: string }[] = [
     { id: "byCategory", label: "By category" },
     { id: "alphabetical", label: "Alphabetical" },
   ];
+
+  const [adding, setAdding] = useState(false);
+  const [draft, setDraft] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  async function submit() {
+    const name = draft.trim();
+    if (!name || submitting) return; // empty → do nothing
+    setSubmitting(true);
+    const ok = await onAddCategory(name);
+    setSubmitting(false);
+    if (ok) {
+      setAdding(false);
+      setDraft("");
+    }
+  }
+
+  function onAddKey(e: ReactKeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      void submit();
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      setAdding(false);
+      setDraft("");
+    }
+  }
 
   return (
     <aside className="flex w-[300px] flex-none flex-col overflow-y-auto border-r border-rule bg-card">
@@ -84,7 +121,7 @@ export default function AdminSidebar({
                       : "border-transparent hover:bg-soft")
                   }
                 >
-                  <span className="font-serif text-[15px] text-ink">
+                  <span className="min-w-0 truncate font-serif text-[15px] text-ink">
                     {c.name}
                   </span>
                   <span className="shrink-0 text-xs text-ink-muted">
@@ -95,15 +132,51 @@ export default function AdminSidebar({
             })}
           </nav>
 
-          {/* Inert in 5b; wired in 5c. */}
-          <button
-            type="button"
-            onClick={onAddCategory}
-            className="mt-3 inline-flex items-center gap-2 rounded-chiclet border border-rule bg-card px-3 py-2 text-sm font-medium text-accent-ink transition-colors hover:border-accent"
-          >
-            <Plus className="h-4 w-4" aria-hidden />
-            Add category
-          </button>
+          {/* Inline add-category */}
+          {adding ? (
+            <div className="mt-3 flex items-center gap-1.5">
+              <input
+                autoFocus
+                value={draft}
+                disabled={submitting}
+                onChange={(e) => setDraft(e.target.value)}
+                onKeyDown={onAddKey}
+                onBlur={() => {
+                  if (!submitting) {
+                    setAdding(false);
+                    setDraft("");
+                  }
+                }}
+                placeholder="Category name…"
+                aria-label="New category name"
+                className="min-w-0 flex-1 rounded-chiclet border border-rule bg-inset px-3 py-2 text-sm text-ink placeholder:text-ink-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent disabled:opacity-60"
+              />
+              <button
+                type="button"
+                // onMouseDown preventDefault keeps the input focused so its blur
+                // (which reverts) doesn't fire before this click commits.
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => void submit()}
+                disabled={submitting || draft.trim() === ""}
+                aria-label="Save new category"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-chiclet border border-rule bg-card text-accent-ink transition-colors hover:border-accent disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <Check className="h-4 w-4" aria-hidden />
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                setDraft("");
+                setAdding(true);
+              }}
+              className="mt-3 inline-flex items-center gap-2 rounded-chiclet border border-rule bg-card px-3 py-2 text-sm font-medium text-accent-ink transition-colors hover:border-accent"
+            >
+              <Plus className="h-4 w-4" aria-hidden />
+              Add category
+            </button>
+          )}
         </div>
       </div>
 
