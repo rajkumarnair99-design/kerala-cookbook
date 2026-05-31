@@ -1,45 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
-  ChevronDown,
-  ChevronRight,
-  GripVertical,
-  Pencil,
-  Trash2,
-} from "lucide-react";
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { ChevronDown, ChevronRight, Pencil, Trash2 } from "lucide-react";
 import type { AdminCategory, RecipeSummary } from "@/types/recipe";
 import RecipeRow from "./RecipeRow";
 
 /**
- * One category on the admin list: a serif-titled header (categories are
- * first-class structural units, not subordinate labels) with its controls,
- * and a collapsible body of recipe rows in their stored order.
+ * One category card on the admin list. The header carries the category drag
+ * grip (passed in as `dragHandle`, since the sortable wiring lives in the
+ * parent), a serif title, count, and the (still-inert in 5b) rename/delete
+ * chiclets plus a functional collapse chevron. The body hosts a per-category
+ * SortableContext so its recipes can be dragged to reorder within the
+ * category. Cross-category moves happen via each row's "…" menu, not drag.
  *
- * In 5a everything except the collapse chevron is inert:
- *  - grip (reorder) — visible, drag wired in 5b
- *  - pencil (rename) — visible, wired in 5c
- *  - trash (delete) — greyed/disabled when the category has recipes; visible
- *    and enabled-looking only when empty, but still inert until 5c
- *  - chevron — FUNCTIONAL: toggles this section's local collapse state
+ * `isDropTarget` is set while a *category* drag hovers this card (so it shows
+ * the dashed terracotta drop treatment for the reorder).
  */
 export default function CategorySection({
   category,
   recipes,
+  categories,
+  onMove,
+  dragHandle,
+  isDropTarget,
 }: {
   category: AdminCategory;
   recipes: RecipeSummary[];
+  categories: AdminCategory[];
+  onMove: (recipeSlug: string, targetCategorySlug: string) => void;
+  dragHandle: ReactNode;
+  isDropTarget: boolean;
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const isEmpty = category.count === 0;
 
   return (
-    <section className="rounded-2xl border border-rule bg-card">
+    <section
+      className={
+        "rounded-2xl border bg-card transition-colors " +
+        (isDropTarget
+          ? "border-rule outline outline-2 outline-dashed outline-accent-soft -outline-offset-2 bg-accent-soft/[0.09]"
+          : "border-rule")
+      }
+    >
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3">
-        <span aria-hidden className="flex shrink-0 cursor-grab text-ink-muted">
-          <GripVertical className="h-4 w-4" aria-hidden />
-        </span>
+        {dragHandle}
 
         <h2 className="font-serif text-xl leading-tight text-ink">
           {category.name}
@@ -49,7 +59,6 @@ export default function CategorySection({
         </span>
 
         <div className="ml-auto flex items-center gap-2">
-          {/* Rename (inert in 5a) */}
           <button
             type="button"
             aria-label={`Rename ${category.name}`}
@@ -57,8 +66,6 @@ export default function CategorySection({
           >
             <Pencil className="h-3.5 w-3.5" aria-hidden />
           </button>
-
-          {/* Delete — greyed/disabled while the category has recipes */}
           <button
             type="button"
             disabled={!isEmpty}
@@ -77,8 +84,6 @@ export default function CategorySection({
           >
             <Trash2 className="h-3.5 w-3.5" aria-hidden />
           </button>
-
-          {/* Collapse / expand — the one functional control in 5a */}
           <button
             type="button"
             aria-label={collapsed ? "Expand category" : "Collapse category"}
@@ -103,11 +108,21 @@ export default function CategorySection({
               No recipes in this category yet.
             </p>
           ) : (
-            <div className="divide-y divide-rule/50">
-              {recipes.map((recipe) => (
-                <RecipeRow key={recipe.slug} recipe={recipe} />
-              ))}
-            </div>
+            <SortableContext
+              items={recipes.map((r) => `recipe:${r.slug}`)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div className="divide-y divide-rule/50">
+                {recipes.map((recipe) => (
+                  <RecipeRow
+                    key={recipe.slug}
+                    recipe={recipe}
+                    categories={categories}
+                    onMove={onMove}
+                  />
+                ))}
+              </div>
+            </SortableContext>
           )}
         </div>
       )}

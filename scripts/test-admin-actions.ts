@@ -22,6 +22,7 @@ import {
   reorderCategoriesCore,
   deleteCategoryCore,
   reorderRecipesCore,
+  moveRecipeCore,
 } from "@/lib/admin-actions-core";
 
 let passed = 0;
@@ -210,6 +211,50 @@ async function main() {
       const eggRestored = await orderedSlugs(db, "egg-dishes");
       check("egg-dishes restored to original order",
         eggRestored.length === eggBefore.length && eggRestored.every((s, i) => s === eggBefore[i]));
+    }
+
+    /* F. moveRecipe ------------------------------------------------- */
+    {
+      // happy path: move the first egg recipe to the bottom of rice-noodles
+      const moved = (await orderedSlugs(db, "egg-dishes"))[0];
+      const riceCount = (await orderedSlugs(db, "rice-noodles")).length;
+      const m1 = await moveRecipeCore(db, {
+        recipeSlug: moved,
+        targetCategorySlug: "rice-noodles",
+      });
+      check("moveRecipe ok", m1.ok, m1.ok ? "" : (m1 as { error: string }).error);
+      const recs = await readRecipes(db);
+      const movedRow = recs.find((r) => r.slug === moved);
+      check("moveRecipe → recipe now in target at bottom",
+        !!movedRow && movedRow.category_slug === "rice-noodles" &&
+          movedRow.sort_order === riceCount,
+        movedRow ? `cat=${movedRow.category_slug} pos=${movedRow.sort_order}` : "missing");
+
+      // no-op: moving to its (now current) category succeeds without change
+      const m2 = await moveRecipeCore(db, {
+        recipeSlug: moved,
+        targetCategorySlug: "rice-noodles",
+      });
+      check("moveRecipe to same category → ok (no-op)", m2.ok,
+        m2.ok ? "" : (m2 as { error: string }).error);
+
+      // unknown recipe
+      const m3 = await moveRecipeCore(db, {
+        recipeSlug: "this-recipe-does-not-exist",
+        targetCategorySlug: "rice-noodles",
+      });
+      check("moveRecipe unknown recipe → refused",
+        !m3.ok && /unknown recipe/i.test((m3 as { error: string }).error),
+        m3.ok ? "unexpectedly ok" : (m3 as { error: string }).error);
+
+      // unknown target category
+      const m4 = await moveRecipeCore(db, {
+        recipeSlug: moved,
+        targetCategorySlug: "no-such-category",
+      });
+      check("moveRecipe unknown target → refused",
+        !m4.ok && /unknown category/i.test((m4 as { error: string }).error),
+        m4.ok ? "unexpectedly ok" : (m4 as { error: string }).error);
     }
   } finally {
     /* ---- Restoration backstop: guarantee the baseline, whatever happened ---- */

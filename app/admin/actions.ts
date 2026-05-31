@@ -9,6 +9,7 @@ import {
   reorderCategoriesCore,
   deleteCategoryCore,
   reorderRecipesCore,
+  moveRecipeCore,
   type CategoryRow,
   type RecipeGroup,
   type Result,
@@ -68,6 +69,19 @@ export async function deleteCategory(slug: string): Promise<Result> {
 export async function reorderRecipes(groups: RecipeGroup[]): Promise<Result> {
   await requireOwner();
   const result = await reorderRecipesCore(supabaseAdmin, groups);
+  if (result.ok) revalidatePath("/", "layout");
+  return result;
+}
+
+export async function moveRecipe(
+  recipeSlug: string,
+  targetCategorySlug: string,
+): Promise<Result> {
+  await requireOwner();
+  const result = await moveRecipeCore(supabaseAdmin, {
+    recipeSlug,
+    targetCategorySlug,
+  });
   if (result.ok) revalidatePath("/", "layout");
   return result;
 }

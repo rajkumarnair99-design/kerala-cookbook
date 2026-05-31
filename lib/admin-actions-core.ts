@@ -279,3 +279,59 @@ export async function reorderRecipesCore(
 
   return { ok: true };
 }
+
+/* ------------------------------------------------------------------ */
+/* F. Move a single recipe to another category (bottom of target)     */
+/* ------------------------------------------------------------------ */
+export async function moveRecipeCore(
+  db: SupabaseClient,
+  args: { recipeSlug: string; targetCategorySlug: string },
+): Promise<Result> {
+  const recipeSlug = (args?.recipeSlug ?? "").trim();
+  const targetCategorySlug = (args?.targetCategorySlug ?? "").trim();
+  if (!recipeSlug) return err("Missing recipe.");
+  if (!targetCategorySlug) return err("Missing target category.");
+
+  // Target category must exist.
+  const { data: cat, error: catErr } = await db
+    .from("categories")
+    .select("slug")
+    .eq("slug", targetCategorySlug)
+    .maybeSingle();
+  if (catErr) return err(`Could not read category: ${catErr.message}`);
+  if (!cat) return err(`Unknown category "${targetCategorySlug}".`);
+
+  // Recipe must exist; read its current category.
+  const { data: recipe, error: recErr } = await db
+    .from("recipes")
+    .select("category_slug")
+    .eq("slug", recipeSlug)
+    .maybeSingle();
+  if (recErr) return err(`Could not read recipe: ${recErr.message}`);
+  if (!recipe) return err(`Unknown recipe "${recipeSlug}".`);
+
+  // Already there → silent no-op (the UI never offers the current category).
+  if (recipe.category_slug === targetCategorySlug) return { ok: true };
+
+  // New position = bottom of the target category (same idea as save_recipe's
+  // category-change branch, as a standalone op). Note: this intentionally
+  // leaves the source category's sort_orders non-dense (a harmless gap, since
+  // sort_order is advisory) — matching save_recipe's existing behaviour.
+  const { data: maxRow, error: maxErr } = await db
+    .from("recipes")
+    .select("sort_order")
+    .eq("category_slug", targetCategorySlug)
+    .order("sort_order", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (maxErr) return err(`Could not compute position: ${maxErr.message}`);
+  const newSortOrder = (maxRow?.sort_order ?? -1) + 1;
+
+  const { error: upErr } = await db
+    .from("recipes")
+    .update({ category_slug: targetCategorySlug, sort_order: newSortOrder })
+    .eq("slug", recipeSlug);
+  if (upErr) return err(`Could not move recipe: ${upErr.message}`);
+
+  return { ok: true };
+}
